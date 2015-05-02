@@ -2,8 +2,8 @@ parameters:
     database_driver: pdo_mysql
     database_host: localhost
     database_port: null
-    database_name: politizr_v2
-    database_user: politizr2
+    database_name: politizr_proto
+    database_user: politizr
     database_password: vSttHajC77QLSJFK
     mailer_auth_mode:  login
     mailer_port:       25
