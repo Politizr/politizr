@@ -2,6 +2,7 @@
 $(function() {
     $("#formDebateUpdate").ajaxForm(options);
     stickySidebar();
+    initMediumInsert(descriptionEditor);
 });
 
 // TAG vars

@@ -1,0 +1,21 @@
+{
+  "name": "politizr",
+  "homepage": "https://github.com/Politizr/Politizr",
+  "authors": [
+    "Lionel Bouzonville <lionel.bouzonville@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "priv",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "medium-editor-insert-plugin": "^2.3.3"
+  }
+}

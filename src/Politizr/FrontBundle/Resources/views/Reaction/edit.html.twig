@@ -3,6 +3,23 @@
 
 {% block title %}Éditer une réponse - {{ parent() }}{% endblock title %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('components/medium-editor-insert-plugin/dist/css/medium-editor-insert-plugin.min.css') }}">
+{% endblock %}
+
+{% block javascriptHeader %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('components/smoke.js/smoke.min.js') }}"></script>  
+    <script type="text/javascript" src="{{ asset('components/medium-editor/dist/js/medium-editor.min.js') }}"></script>  
+    <script type="text/javascript" src="{{ asset('components/handlebars/handlebars.runtime.min.js') }}"></script>  
+    <script type="text/javascript" src="{{ asset('components/jquery-sortable/source/js/jquery-sortable-min.js') }}"></script>  
+    <script type="text/javascript" src="{{ asset('components/blueimp-file-upload/js/vendor/jquery.ui.widget.js') }}"></script>  
+    <script type="text/javascript" src="{{ asset('components/blueimp-file-upload/js/jquery.iframe-transport.js') }}"></script>  
+    <script type="text/javascript" src="{{ asset('components/blueimp-file-upload/js/jquery.fileupload.js') }}"></script>  
+    <script type="text/javascript" src="{{ asset('components/medium-editor-insert-plugin/dist/js/medium-editor-insert-plugin.min.js') }}"></script>  
+{% endblock %}
+
 {% block bodyClass %} class="user edition"{% endblock bodyClass %}
 
 {% block content %}
@@ -67,8 +84,6 @@
     {{ parent() }}
 
     {% javascripts
-        '@PolitizrFrontBundle/Resources/public/js/smoke.min.js'
-        '@PolitizrFrontBundle/Resources/public/js/medium-editor.min.js'
         '@PolitizrFrontBundle/Resources/public/js/jquery.form.min.js'
         '@PolitizrFrontBundle/Resources/public/js/politizr/tag/editTags.js'
         '@PolitizrFrontBundle/Resources/public/js/politizr/document/medium.js'

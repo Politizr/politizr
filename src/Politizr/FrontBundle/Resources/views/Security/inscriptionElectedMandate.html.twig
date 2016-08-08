@@ -4,6 +4,11 @@
     Inscription étape 2 / 2 - {{ parent() }}
 {% endblock title %}
 
+{% block javascriptHeader %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('components/smoke.js/smoke.min.js') }}"></script>  
+{% endblock %}
+
 {% block bodyClass %} class="process"{% endblock %}
 
 {% block header %}
@@ -57,7 +62,6 @@
     {{ parent() }}
 
     {% javascripts
-        '@PolitizrFrontBundle/Resources/public/js/smoke.min.js'
         '@PolitizrFrontBundle/Resources/public/js/politizr/user/mandates.js'
         '@PolitizrFrontBundle/Resources/public/js/politizr/pages/inscriptionElectedMandate.js'
         filter='uglifyjs2' %}

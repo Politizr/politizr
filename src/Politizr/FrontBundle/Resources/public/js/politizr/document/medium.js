@@ -24,3 +24,4 @@ var descriptionEditor = new MediumEditor('.editable.description', {
     anchorPreview: false,
     autoLink:true
 });
+

@@ -3,6 +3,11 @@
 
 {% block title %}Édition de mon profil - {{ parent() }}{% endblock title %}
 
+{% block javascriptHeader %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('components/smoke.js/smoke.min.js') }}"></script>  
+{% endblock %}
+
 {% block content %}
     <div id="content">
         <div class="editionProfileCard">      
@@ -95,7 +100,6 @@
     {{ parent() }}
 
     {% javascripts
-        '@PolitizrFrontBundle/Resources/public/js/smoke.min.js'
         '@PolitizrFrontBundle/Resources/public/js/jquery.form.min.js'
         '@PolitizrFrontBundle/Resources/public/js/politizr/tag/editTags.js'
         '@PolitizrFrontBundle/Resources/public/js/politizr/document/editPhoto.js'
