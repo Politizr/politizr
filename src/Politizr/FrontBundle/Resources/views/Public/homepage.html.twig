@@ -24,8 +24,8 @@
     <div id="publicVideo">
         <div id="videoOverlay">
             <div id="videoText">
-                <h1>Changerez-vous d'opinion ?</h1>
-                <h2>Exprimez vos opinions. Faites réagir vos élu-e-s.<br> Devenez acteur de votre territoire!</h2>
+                <h1>Élus ou Citoyens?<br/>Bienvenue sur un lieu d'échange unique et adapté</h1>
+                <h2>Politizr est un espace <b>indépendant, neutre et gratuit</b><br/>permettant aux <b>élu-e-s</b> de discuter publiquement des sujets proposés par leurs <b>concitoyen-ne-s</b></h2>
                 <a href="{{ path('InscriptionChoice') }}">Créer un compte</a>
                 <a href="{{ path('Concept') }}">En savoir plus</a>
             </div>
@@ -39,16 +39,25 @@
     </div>
     
     <div id="triggerVideo"></div>
+
     <div id="videoFooter">
         <div class="center">
+            <h1>Changerez-vous d'opinion ?</h1>
+
             <div id="yellowBlock">
-                <span>Politizr est un espace <b>indépendant, neutre et gratuit</b> permettant aux <b>élu-e-s</b> de discuter publiquement des sujets proposés par leurs <b>concitoyen-ne-s</b>.</span>
-                <a href="{{ path('InscriptionChoice') }}">Exprimez-vous et lancez un débat</a>
+                <span>Exprimez vos opinions. Faîtes réagir vos élu-e-s. Devenez acteur de votre territoire!</span>
             </div>
             <div id="blueBlock">
                 <span>Des échanges entre <br>citoyen-ne-s et élu-e-s aux<b><br>quatre coins de la France !</b></span>
             </div>
-        </div>
+            <div class="column column360">
+                {% include 'PolitizrFrontBundle:Public:_cardAdvantagesCitizen.html.twig' %}
+            </div><!-- keep comment mark this way : they prevent unwanted space between cols
+            --><div class="column column360">
+                {% include 'PolitizrFrontBundle:Public:_cardAdvantagesElected.html.twig' %}
+            </div>
+            <div class="footerXcolumns footer2columns">Déjà inscrit-e? <a href="{{ path('Login') }}">Identifiez-vous</a></div>
+        </center>
     </div>
 
     <div id="postSelection">
