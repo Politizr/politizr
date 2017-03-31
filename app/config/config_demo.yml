@@ -1,0 +1,50 @@
+imports:
+    - { resource: config.yml }
+
+framework:
+    # http://symfony.com/doc/current/reference/configuration/framework.html#session
+    session:
+        # cookies should only be sent over secure connections.
+        # cookie_secure: true
+
+monolog:
+    handlers:
+        main:
+            type:         fingers_crossed
+            action_level: error
+            handler:      nested
+        nested:
+            type:  stream
+            path:  %kernel.logs_dir%/%kernel.environment%.log
+            level: debug
+
+# # LOGS light pour les scripts en ligne de commande
+# monolog:
+#     handlers:
+#         main:
+#             type:         fingers_crossed
+#             action_level: error
+#             handler:      nested
+#         nested:
+#             type:  stream
+#             path:  %kernel.logs_dir%/%kernel.environment%.log
+#             level: debug
+# 
+
+assetic:
+    use_controller: true
+
+swiftmailer:
+    disable_delivery: true
+
+# Bazinga Faker
+bazinga_faker:
+    locale:                             fr_FR
+    entities:
+        Politizr\Model\PUser:
+            custom_formatters:
+                FileName:               { method: image, parameters: [ '/var/www/demo.politizr.com/web/uploads/users', '150', '150', 'people', false ] }
+
+        # Politizr\Model\PDDebate:
+        #     custom_formatters:
+        #         FileName:               { method: image, parameters: [ '/var/www/demo.politizr.com/web/uploads/documents', '640', '480', 'city', false ] }

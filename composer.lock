@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "2d2f5ed2a0ff3a291fc44f29cb222457",
-    "content-hash": "c14208ddcf408a6d8c48607398d9bd21",
+    "hash": "85d89efc600793e15c01329e6af0344e",
+    "content-hash": "68ffcb26da888b97f5063cf28e7ba87e",
     "packages": [
         {
             "name": "badlamer/propel-uuid-behavior",
@@ -1075,7 +1075,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/8a8f79e41277ad78f134578dd05424f7e658925d",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/2e0243e9e8a3ca0dab753fc5f2e79b4b3093ac9a",
                 "reference": "4393a98891a03fb7628c546aee4e5ced699c83de",
                 "shasum": ""
             },
@@ -1144,33 +1144,29 @@
         },
         {
             "name": "fzaninotto/faker",
-            "version": "v1.5.0",
+            "version": "v1.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fzaninotto/Faker.git",
-                "reference": "d0190b156bcca848d401fb80f31f504f37141c8d"
+                "reference": "44f9a286a04b80c76a4e5fb7aad8bb539b920123"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/d0190b156bcca848d401fb80f31f504f37141c8d",
-                "reference": "d0190b156bcca848d401fb80f31f504f37141c8d",
+                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/44f9a286a04b80c76a4e5fb7aad8bb539b920123",
+                "reference": "44f9a286a04b80c76a4e5fb7aad8bb539b920123",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.3"
+                "php": "^5.3.3|^7.0"
             },
             "require-dev": {
+                "ext-intl": "*",
                 "phpunit/phpunit": "~4.0",
                 "squizlabs/php_codesniffer": "~1.5"
             },
-            "suggest": {
-                "ext-intl": "*"
-            },
             "type": "library",
             "extra": {
-                "branch-alias": {
-                    "dev-master": "1.5.x-dev"
-                }
+                "branch-alias": []
             },
             "autoload": {
                 "psr-4": {
@@ -1192,7 +1188,7 @@
                 "faker",
                 "fixtures"
             ],
-            "time": "2015-05-29 06:29:14"
+            "time": "2016-04-29 12:21:54"
         },
         {
             "name": "google/apiclient",
@@ -2607,7 +2603,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/liip/LiipUrlAutoConverterBundle/zipball/a8cbdaf30b553a971be78d180994be2f013adf25",
+                "url": "https://api.github.com/repos/liip/LiipUrlAutoConverterBundle/zipball/0d19d76980fadea2f617019777021d1afb756e7a",
                 "reference": "536dd001fc2d1d6fd257551fd77247f9fb271404",
                 "shasum": ""
             },
@@ -4836,7 +4832,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony2admingenerator/FormExtensionsBundle/zipball/c588c937fa481ff3abfd88ae40573cbdd4e3388a",
+                "url": "https://api.github.com/repos/symfony2admingenerator/FormExtensionsBundle/zipball/e4a0a3d0e020ee07b2d01af684311a6ba46deec2",
                 "reference": "46e0fc9440c13cb0e4efc95f09a24aff67d8e467",
                 "shasum": ""
             },

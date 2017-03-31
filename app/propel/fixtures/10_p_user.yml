@@ -1,0 +1,548 @@
+Politizr\Model\PUStatus:
+    activ:
+        id:                     1
+    inscription:
+        id:                     2
+    excluded:
+        id:                     3
+    archived:
+        id:                     4
+
+Politizr\Model\PUser:
+    test:
+        p_u_status_id:          activ
+        uuid:                   <?php $faker('uuid'); ?>
+
+        # back_file_name:         <?php $faker('image', '/home/lionel/www/politizr.beta/web/uploads/users', 1280, 600, 'city', false) ?>
+        copyright:              <p>&copy; Politizr</p>
+
+        file_name:              <?php $faker('image', '/home/lionel/www/politizr.beta/web/uploads/users', 150, 150, 'people', false) ?>
+
+        gender:                 Monsieur
+        firstname:              Jean
+        name:                   Dupont
+
+        # contacŧ@politizr.com / demodemo
+        username:               contact@politizr.com
+        username_canonical:     contact@politizr.com
+        salt:                   k40zsx23jfkg0k08g44goocgs48848w
+        password:               Jx8rX0DQcRcQGh8GIJ1jFOTz7+nH2M4X1EVSfUv+WRwONIeA6O4KaC6rw+kwiYa/ssL9ys7F9U6yUmfRc9U1eQ==
+        roles:                  [ROLE_CITIZEN, ROLE_ELECTED, ROLE_PROFILE_COMPLETED]
+
+        website:                <?php $faker('url'); ?>
+        twitter:                <?php $faker('lexify', 'https://twitter.com/??????'); ?>
+        facebook:               <?php $faker('lexify', 'https://facebook.com/??????'); ?>
+        phone:                  <?php $faker('phoneNumber'); ?>
+
+        email:                  contact@politizr.com
+
+        nb_views:               <?php $faker('numberBetween', 150, 1500) ?>
+
+        qualified:              1
+        validated:              1
+        online:                 1
+
+    utilisateur1:
+        p_u_status_id:          activ
+        uuid:                   <?php $faker('uuid'); ?>
+
+        # back_file_name:         <?php $faker('image', '/home/lionel/www/politizr.beta/web/uploads/users', 1280, 600, 'city', false) ?>
+        copyright:              <p>&copy; Politizr</p>
+
+        file_name:              <?php $faker('image', '/home/lionel/www/politizr.beta/web/uploads/users', 150, 150, 'people', false) ?>
+
+        gender:                 Monsieur
+        firstname:              <?php $faker('firstname'); ?>
+        name:                   <?php $faker('lastname'); ?>
+
+        website:                <?php $faker('url'); ?>
+        twitter:                <?php $faker('lexify', 'https://twitter.com/??????'); ?>
+        facebook:               <?php $faker('lexify', 'https://facebook.com/??????'); ?>
+        phone:                  <?php $faker('phoneNumber'); ?>
+
+        email:                  <?php $faker('email'); ?>
+
+        nb_views:               <?php $faker('numberBetween', 150, 1500) ?>
+
+        qualified:              1
+        validated:              1
+        online:                 1
+
+    utilisateur2:
+        p_u_status_id:          activ
+        uuid:                   <?php $faker('uuid'); ?>
+
+        # back_file_name:         <?php $faker('image', '/home/lionel/www/politizr.beta/web/uploads/users', 1280, 600, 'city', false) ?>
+        copyright:              <p>&copy; Politizr</p>
+
+        file_name:              <?php $faker('image', '/home/lionel/www/politizr.beta/web/uploads/users', 150, 150, 'people', false) ?>
+
+        gender:                 Madame
+        firstname:              <?php $faker('firstname'); ?>
+        name:                   <?php $faker('lastname'); ?>
+
+        website:                <?php $faker('url'); ?>
+        twitter:                <?php $faker('lexify', 'https://twitter.com/??????'); ?>
+        facebook:               <?php $faker('lexify', 'https://facebook.com/??????'); ?>
+        phone:                  <?php $faker('phoneNumber'); ?>
+
+        email:                  <?php $faker('email'); ?>
+
+        nb_views:               <?php $faker('numberBetween', 150, 1500) ?>
+
+        qualified:              1
+        validated:              1
+        online:                 1
+
+    utilisateur3:
+        p_u_status_id:          activ
+        uuid:                   <?php $faker('uuid'); ?>
+
+        # back_file_name:         <?php $faker('image', '/home/lionel/www/politizr.beta/web/uploads/users', 1280, 600, 'city', false) ?>
+        copyright:              <p>&copy; Politizr</p>
+
+        file_name:              <?php $faker('image', '/home/lionel/www/politizr.beta/web/uploads/users', 150, 150, 'people', false) ?>
+
+        gender:                 Monsieur
+        firstname:              <?php $faker('firstname'); ?>
+        name:                   <?php $faker('lastname'); ?>
+
+        website:                <?php $faker('url'); ?>
+        twitter:                <?php $faker('lexify', 'https://twitter.com/??????'); ?>
+        facebook:               <?php $faker('lexify', 'https://facebook.com/??????'); ?>
+        phone:                  <?php $faker('phoneNumber'); ?>
+
+        email:                  <?php $faker('email'); ?>
+
+        nb_views:               <?php $faker('numberBetween', 150, 1500) ?>
+
+        qualified:              1
+        validated:              1
+        online:                 1
+
+    utilisateur4:
+        p_u_status_id:          activ
+        uuid:                   <?php $faker('uuid'); ?>
+
+        # back_file_name:         <?php $faker('image', '/home/lionel/www/politizr.beta/web/uploads/users', 1280, 600, 'city', false) ?>
+        copyright:              <p>&copy; Politizr</p>
+
+        file_name:              <?php $faker('image', '/home/lionel/www/politizr.beta/web/uploads/users', 150, 150, 'people', false) ?>
+
+        gender:                 Monsieur
+        firstname:              <?php $faker('firstname'); ?>
+        name:                   <?php $faker('lastname'); ?>
+
+        website:                <?php $faker('url'); ?>
+        twitter:                <?php $faker('lexify', 'https://twitter.com/??????'); ?>
+        facebook:               <?php $faker('lexify', 'https://facebook.com/??????'); ?>
+        phone:                  <?php $faker('phoneNumber'); ?>
+
+        email:                  <?php $faker('email'); ?>
+
+        nb_views:               <?php $faker('numberBetween', 150, 1500) ?>
+
+        qualified:              1
+        validated:              1
+        online:                 1
+
+    utilisateur5:
+        p_u_status_id:          activ
+        uuid:                   <?php $faker('uuid'); ?>
+
+        # back_file_name:         <?php $faker('image', '/home/lionel/www/politizr.beta/web/uploads/users', 1280, 600, 'city', false) ?>
+        copyright:              <p>&copy; Politizr</p>
+
+        file_name:              <?php $faker('image', '/home/lionel/www/politizr.beta/web/uploads/users', 150, 150, 'people', false) ?>
+
+        gender:                 Monsieur
+        firstname:              <?php $faker('firstname'); ?>
+        name:                   <?php $faker('lastname'); ?>
+
+        website:                <?php $faker('url'); ?>
+        twitter:                <?php $faker('lexify', 'https://twitter.com/??????'); ?>
+        facebook:               <?php $faker('lexify', 'https://facebook.com/??????'); ?>
+        phone:                  <?php $faker('phoneNumber'); ?>
+
+        email:                  <?php $faker('email'); ?>
+
+        nb_views:               <?php $faker('numberBetween', 150, 1500) ?>
+
+        qualified:              1
+        validated:              1
+        online:                 1
+
+    utilisateur6:
+        p_u_status_id:          activ
+        uuid:                   <?php $faker('uuid'); ?>
+
+        # back_file_name:         <?php $faker('image', '/home/lionel/www/politizr.beta/web/uploads/users', 1280, 600, 'city', false) ?>
+        copyright:              <p>&copy; Politizr</p>
+
+        file_name:              <?php $faker('image', '/home/lionel/www/politizr.beta/web/uploads/users', 150, 150, 'people', false) ?>
+
+        gender:                 Madame
+        firstname:              <?php $faker('firstname'); ?>
+        name:                   <?php $faker('lastname'); ?>
+
+        website:                <?php $faker('url'); ?>
+        twitter:                <?php $faker('lexify', 'https://twitter.com/??????'); ?>
+        facebook:               <?php $faker('lexify', 'https://facebook.com/??????'); ?>
+        phone:                  <?php $faker('phoneNumber'); ?>
+
+        email:                  <?php $faker('email'); ?>
+
+        nb_views:               <?php $faker('numberBetween', 150, 1500) ?>
+
+        qualified:              1
+        validated:              1
+        online:                 1
+
+    utilisateur7:
+        p_u_status_id:          activ
+        uuid:                   <?php $faker('uuid'); ?>
+
+        gender:                 Monsieur
+        firstname:              <?php $faker('firstname'); ?>
+        name:                   <?php $faker('lastname'); ?>
+
+        website:                <?php $faker('url'); ?>
+        twitter:                <?php $faker('lexify', 'https://twitter.com/??????'); ?>
+        facebook:               <?php $faker('lexify', 'https://facebook.com/??????'); ?>
+        phone:                  <?php $faker('phoneNumber'); ?>
+
+        email:                  <?php $faker('email'); ?>
+
+        nb_views:               <?php $faker('numberBetween', 150, 1500) ?>
+
+        qualified:              1
+        validated:              1
+        online:                 1
+
+    utilisateur8:
+        p_u_status_id:          activ
+        uuid:                   <?php $faker('uuid'); ?>
+
+        # back_file_name:         <?php $faker('image', '/home/lionel/www/politizr.beta/web/uploads/users', 1280, 600, 'city', false) ?>
+        copyright:              <p>&copy; Politizr</p>
+
+        file_name:              <?php $faker('image', '/home/lionel/www/politizr.beta/web/uploads/users', 150, 150, 'people', false) ?>
+
+        gender:                 Monsieur
+        firstname:              <?php $faker('firstname'); ?>
+        name:                   <?php $faker('lastname'); ?>
+
+        website:                <?php $faker('url'); ?>
+        twitter:                <?php $faker('lexify', 'https://twitter.com/??????'); ?>
+        facebook:               <?php $faker('lexify', 'https://facebook.com/??????'); ?>
+        phone:                  <?php $faker('phoneNumber'); ?>
+
+        email:                  <?php $faker('email'); ?>
+
+        nb_views:               <?php $faker('numberBetween', 150, 1500) ?>
+
+        qualified:              1
+        validated:              1
+        online:                 1
+
+    utilisateur9:
+        p_u_status_id:          activ
+        uuid:                   <?php $faker('uuid'); ?>
+
+        # back_file_name:         <?php $faker('image', '/home/lionel/www/politizr.beta/web/uploads/users', 1280, 600, 'city', false) ?>
+        copyright:              <p>&copy; Politizr</p>
+
+        file_name:              <?php $faker('image', '/home/lionel/www/politizr.beta/web/uploads/users', 150, 150, 'people', false) ?>
+
+        gender:                 Monsieur
+        firstname:              <?php $faker('firstname'); ?>
+        name:                   <?php $faker('lastname'); ?>
+
+        website:                <?php $faker('url'); ?>
+        twitter:                <?php $faker('lexify', 'https://twitter.com/??????'); ?>
+        facebook:               <?php $faker('lexify', 'https://facebook.com/??????'); ?>
+        phone:                  <?php $faker('phoneNumber'); ?>
+
+        email:                  <?php $faker('email'); ?>
+
+        nb_views:               <?php $faker('numberBetween', 150, 1500) ?>
+
+        qualified:              1
+        validated:              1
+        online:                 1
+
+    utilisateur10:
+        p_u_status_id:          activ
+        uuid:                   <?php $faker('uuid'); ?>
+
+        # back_file_name:         <?php $faker('image', '/home/lionel/www/politizr.beta/web/uploads/users', 1280, 600, 'city', false) ?>
+        copyright:              <p>&copy; Politizr</p>
+
+        file_name:              <?php $faker('image', '/home/lionel/www/politizr.beta/web/uploads/users', 150, 150, 'people', false) ?>
+
+        gender:                 Madame
+        firstname:              <?php $faker('firstname'); ?>
+        name:                   <?php $faker('lastname'); ?>
+
+        website:                <?php $faker('url'); ?>
+        twitter:                <?php $faker('lexify', 'https://twitter.com/??????'); ?>
+        facebook:               <?php $faker('lexify', 'https://facebook.com/??????'); ?>
+        phone:                  <?php $faker('phoneNumber'); ?>
+
+        email:                  <?php $faker('email'); ?>
+
+        nb_views:               <?php $faker('numberBetween', 150, 1500) ?>
+
+        qualified:              1
+        validated:              1
+        online:                 1
+    utilisateur11:
+        p_u_status_id:          activ
+        uuid:                   <?php $faker('uuid'); ?>
+
+        # back_file_name:         <?php $faker('image', '/home/lionel/www/politizr.beta/web/uploads/users', 1280, 600, 'city', false) ?>
+        copyright:              <p>&copy; Politizr</p>
+
+        file_name:              <?php $faker('image', '/home/lionel/www/politizr.beta/web/uploads/users', 150, 150, 'people', false) ?>
+
+        gender:                 Monsieur
+        firstname:              <?php $faker('firstname'); ?>
+        name:                   <?php $faker('lastname'); ?>
+
+        website:                <?php $faker('url'); ?>
+        twitter:                <?php $faker('lexify', 'https://twitter.com/??????'); ?>
+        facebook:               <?php $faker('lexify', 'https://facebook.com/??????'); ?>
+        phone:                  <?php $faker('phoneNumber'); ?>
+
+        email:                  <?php $faker('email'); ?>
+
+        nb_views:               <?php $faker('numberBetween', 150, 1500) ?>
+
+        qualified:              1
+        validated:              1
+        online:                 1
+    utilisateur12:
+        p_u_status_id:          activ
+        uuid:                   <?php $faker('uuid'); ?>
+
+        # back_file_name:         <?php $faker('image', '/home/lionel/www/politizr.beta/web/uploads/users', 1280, 600, 'city', false) ?>
+        copyright:              <p>&copy; Politizr</p>
+
+        file_name:              <?php $faker('image', '/home/lionel/www/politizr.beta/web/uploads/users', 150, 150, 'people', false) ?>
+
+        gender:                 Madame
+        firstname:              <?php $faker('firstname'); ?>
+        name:                   <?php $faker('lastname'); ?>
+
+        website:                <?php $faker('url'); ?>
+        twitter:                <?php $faker('lexify', 'https://twitter.com/??????'); ?>
+        facebook:               <?php $faker('lexify', 'https://facebook.com/??????'); ?>
+        phone:                  <?php $faker('phoneNumber'); ?>
+
+        email:                  <?php $faker('email'); ?>
+
+        nb_views:               <?php $faker('numberBetween', 150, 1500) ?>
+
+        qualified:              1
+        validated:              1
+        online:                 1
+    utilisateur13:
+        p_u_status_id:          activ
+        uuid:                   <?php $faker('uuid'); ?>
+
+        # back_file_name:         <?php $faker('image', '/home/lionel/www/politizr.beta/web/uploads/users', 1280, 600, 'city', false) ?>
+        copyright:              <p>&copy; Politizr</p>
+
+        file_name:              <?php $faker('image', '/home/lionel/www/politizr.beta/web/uploads/users', 150, 150, 'people', false) ?>
+
+        gender:                 Monsieur
+        firstname:              <?php $faker('firstname'); ?>
+        name:                   <?php $faker('lastname'); ?>
+
+        website:                <?php $faker('url'); ?>
+        twitter:                <?php $faker('lexify', 'https://twitter.com/??????'); ?>
+        facebook:               <?php $faker('lexify', 'https://facebook.com/??????'); ?>
+        phone:                  <?php $faker('phoneNumber'); ?>
+
+        email:                  <?php $faker('email'); ?>
+
+        nb_views:               <?php $faker('numberBetween', 150, 1500) ?>
+
+        qualified:              1
+        validated:              1
+        online:                 1
+    utilisateur14:
+        p_u_status_id:          activ
+        uuid:                   <?php $faker('uuid'); ?>
+
+        # back_file_name:         <?php $faker('image', '/home/lionel/www/politizr.beta/web/uploads/users', 1280, 600, 'city', false) ?>
+        copyright:              <p>&copy; Politizr</p>
+
+        file_name:              <?php $faker('image', '/home/lionel/www/politizr.beta/web/uploads/users', 150, 150, 'people', false) ?>
+
+        gender:                 Monsieur
+        firstname:              <?php $faker('firstname'); ?>
+        name:                   <?php $faker('lastname'); ?>
+
+        website:                <?php $faker('url'); ?>
+        twitter:                <?php $faker('lexify', 'https://twitter.com/??????'); ?>
+        facebook:               <?php $faker('lexify', 'https://facebook.com/??????'); ?>
+        phone:                  <?php $faker('phoneNumber'); ?>
+
+        email:                  <?php $faker('email'); ?>
+
+        nb_views:               <?php $faker('numberBetween', 150, 1500) ?>
+
+        qualified:              1
+        validated:              1
+        online:                 1
+    utilisateur15:
+        p_u_status_id:          activ
+        uuid:                   <?php $faker('uuid'); ?>
+
+        # back_file_name:         <?php $faker('image', '/home/lionel/www/politizr.beta/web/uploads/users', 1280, 600, 'city', false) ?>
+        copyright:              <p>&copy; Politizr</p>
+
+        file_name:              <?php $faker('image', '/home/lionel/www/politizr.beta/web/uploads/users', 150, 150, 'people', false) ?>
+
+        gender:                 Madame
+        firstname:              <?php $faker('firstname'); ?>
+        name:                   <?php $faker('lastname'); ?>
+
+        website:                <?php $faker('url'); ?>
+        twitter:                <?php $faker('lexify', 'https://twitter.com/??????'); ?>
+        facebook:               <?php $faker('lexify', 'https://facebook.com/??????'); ?>
+        phone:                  <?php $faker('phoneNumber'); ?>
+
+        email:                  <?php $faker('email'); ?>
+
+        nb_views:               <?php $faker('numberBetween', 150, 1500) ?>
+
+        qualified:              1
+        validated:              1
+        online:                 1
+    utilisateur16:
+        p_u_status_id:          activ
+        uuid:                   <?php $faker('uuid'); ?>
+
+        # back_file_name:         <?php $faker('image', '/home/lionel/www/politizr.beta/web/uploads/users', 1280, 600, 'city', false) ?>
+        copyright:              <p>&copy; Politizr</p>
+
+        file_name:              <?php $faker('image', '/home/lionel/www/politizr.beta/web/uploads/users', 150, 150, 'people', false) ?>
+
+        gender:                 Monsieur
+        firstname:              <?php $faker('firstname'); ?>
+        name:                   <?php $faker('lastname'); ?>
+
+        website:                <?php $faker('url'); ?>
+        twitter:                <?php $faker('lexify', 'https://twitter.com/??????'); ?>
+        facebook:               <?php $faker('lexify', 'https://facebook.com/??????'); ?>
+        phone:                  <?php $faker('phoneNumber'); ?>
+
+        email:                  <?php $faker('email'); ?>
+
+        nb_views:               <?php $faker('numberBetween', 150, 1500) ?>
+
+        qualified:              1
+        validated:              1
+        online:                 1
+    utilisateur17:
+        p_u_status_id:          activ
+        uuid:                   <?php $faker('uuid'); ?>
+
+        # back_file_name:         <?php $faker('image', '/home/lionel/www/politizr.beta/web/uploads/users', 1280, 600, 'city', false) ?>
+        copyright:              <p>&copy; Politizr</p>
+
+        file_name:              <?php $faker('image', '/home/lionel/www/politizr.beta/web/uploads/users', 150, 150, 'people', false) ?>
+
+        gender:                 Monsieur
+        firstname:              <?php $faker('firstname'); ?>
+        name:                   <?php $faker('lastname'); ?>
+
+        website:                <?php $faker('url'); ?>
+        twitter:                <?php $faker('lexify', 'https://twitter.com/??????'); ?>
+        facebook:               <?php $faker('lexify', 'https://facebook.com/??????'); ?>
+        phone:                  <?php $faker('phoneNumber'); ?>
+
+        email:                  <?php $faker('email'); ?>
+
+        nb_views:               <?php $faker('numberBetween', 150, 1500) ?>
+
+        qualified:              1
+        validated:              1
+        online:                 1
+    utilisateur18:
+        p_u_status_id:          activ
+        uuid:                   <?php $faker('uuid'); ?>
+
+        # back_file_name:         <?php $faker('image', '/home/lionel/www/politizr.beta/web/uploads/users', 1280, 600, 'city', false) ?>
+        copyright:              <p>&copy; Politizr</p>
+
+        file_name:              <?php $faker('image', '/home/lionel/www/politizr.beta/web/uploads/users', 150, 150, 'people', false) ?>
+
+        gender:                 Madame
+        firstname:              <?php $faker('firstname'); ?>
+        name:                   <?php $faker('lastname'); ?>
+
+        website:                <?php $faker('url'); ?>
+        twitter:                <?php $faker('lexify', 'https://twitter.com/??????'); ?>
+        facebook:               <?php $faker('lexify', 'https://facebook.com/??????'); ?>
+        phone:                  <?php $faker('phoneNumber'); ?>
+
+        email:                  <?php $faker('email'); ?>
+
+        nb_views:               <?php $faker('numberBetween', 150, 1500) ?>
+
+        qualified:              1
+        validated:              1
+        online:                 1
+    utilisateur19:
+        p_u_status_id:          activ
+        uuid:                   <?php $faker('uuid'); ?>
+
+        # back_file_name:         <?php $faker('image', '/home/lionel/www/politizr.beta/web/uploads/users', 1280, 600, 'city', false) ?>
+        copyright:              <p>&copy; Politizr</p>
+
+        file_name:              <?php $faker('image', '/home/lionel/www/politizr.beta/web/uploads/users', 150, 150, 'people', false) ?>
+
+        gender:                 Monsieur
+        firstname:              <?php $faker('firstname'); ?>
+        name:                   <?php $faker('lastname'); ?>
+
+        website:                <?php $faker('url'); ?>
+        twitter:                <?php $faker('lexify', 'https://twitter.com/??????'); ?>
+        facebook:               <?php $faker('lexify', 'https://facebook.com/??????'); ?>
+        phone:                  <?php $faker('phoneNumber'); ?>
+
+        email:                  <?php $faker('email'); ?>
+
+        nb_views:               <?php $faker('numberBetween', 150, 1500) ?>
+
+        qualified:              1
+        validated:              1
+        online:                 1
+    utilisateur20:
+        p_u_status_id:          activ
+        uuid:                   <?php $faker('uuid'); ?>
+
+        # back_file_name:         <?php $faker('image', '/home/lionel/www/politizr.beta/web/uploads/users', 1280, 600, 'city', false) ?>
+        copyright:              <p>&copy; Politizr</p>
+
+        file_name:              <?php $faker('image', '/home/lionel/www/politizr.beta/web/uploads/users', 150, 150, 'people', false) ?>
+
+        gender:                 Monsieur
+        firstname:              <?php $faker('firstname'); ?>
+        name:                   <?php $faker('lastname'); ?>
+
+        website:                <?php $faker('url'); ?>
+        twitter:                <?php $faker('lexify', 'https://twitter.com/??????'); ?>
+        facebook:               <?php $faker('lexify', 'https://facebook.com/??????'); ?>
+        phone:                  <?php $faker('phoneNumber'); ?>
+
+        email:                  <?php $faker('email'); ?>
+
+        nb_views:               <?php $faker('numberBetween', 150, 1500) ?>
+
+        qualified:              1
+        validated:              1
+        online:                 1

@@ -43,7 +43,7 @@
         "symfony2admingenerator/form-extensions-bundle": "dev-master",
         "liuggio/excelbundle": "^2.0",
         
-        "fzaninotto/faker": "1.5.*",
+        "fzaninotto/faker": "1.6.*",
         "willdurand/faker-bundle": "@stable",
 
         "hwi/oauth-bundle": "~0.4",
