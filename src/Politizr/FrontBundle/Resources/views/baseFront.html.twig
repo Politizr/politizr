@@ -51,25 +51,13 @@
 
             <script type="text/javascript" src="{{ asset('bundles/politizrfront/js/autosize.min.js') }}"></script>
             <script type="text/javascript" src="{{ asset('bundles/politizrfront/js/select2.full.min.js') }}"></script>  
-            <script type="text/javascript" src="{{ asset('bundles/politizrfront/js/select2.fr.js') }}"></script>  
-        {% endblock %}
-
-        {% block responsiveHeader %}
-            <script>
-                $(document).ready(function () {
-                    $('body').restive({
-                        breakpoints: ['700', '1060', '10000'],
-                        classes: ['css700', 'css1060', 'css'],
-                        force_dip: true
-                    });
-                });
-            </script>
+            <script type="text/javascript" src="{{ asset('bundles/politizrfront/js/select2.fr.js') }}"></script> 
         {% endblock %}
 
         {% block fbScript %}
             {% if app.environment == 'prod' %}
                 <!-- Facebook Pixel Code -->
-                <script>
+                <script nonce="{{ csp_nonce() }}">
                 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
                 n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
                 n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
@@ -78,7 +66,7 @@
 
                 fbq('init', '1580452892271347');
                 fbq('track', "PageView");</script>
-                <noscript><img height="1" width="1" style="display:none"
+                <noscript nonce="{{ csp_nonce() }}"><img height="1" width="1" style="display:none"
                 src="https://www.facebook.com/tr?id=1580452892271347&ev=PageView&noscript=1"
                 /></noscript>
                 <!-- End Facebook Pixel Code -->
@@ -157,13 +145,13 @@
             {% endblock %}
 
             {% block javascriptFooter %}
-                <script type="text/javascript">
+                <script type="text/javascript" nonce="{{ csp_nonce() }}">
                     var baseUrl = '{{ app.request.getBaseUrl }}';
                 </script>
 
                 {% if app.environment == 'prod' %}
                     <!-- Twitter universal website tag code -->
-                    <script>
+                    <script nonce="{{ csp_nonce() }}">
                     !function(e,t,n,s,u,a){e.twq||(s=e.twq=function(){s.exe?s.exe.apply(s,arguments):s.queue.push(arguments);
                     },s.version='1.1',s.queue=[],u=t.createElement(n),u.async=!0,u.src='//static.ads-twitter.com/uwt.js',
                     a=t.getElementsByTagName(n)[0],a.parentNode.insertBefore(u,a))}(window,document,'script');
@@ -179,7 +167,7 @@
             {% block tawkTo %}
                 {% if app.environment == 'prod' %}
                     <!--Start of Tawk.to Script-->
-                    <script type="text/javascript">
+                    <script type="text/javascript" nonce="{{ csp_nonce() }}">
                     var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
                     (function(){
                     var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];

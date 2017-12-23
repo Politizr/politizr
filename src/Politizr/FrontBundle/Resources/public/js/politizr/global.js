@@ -3,6 +3,13 @@
 // on document ready
 $(function() {
     // console.log('*** global document ready');
+
+    $('body').restive({
+        breakpoints: ['700', '1060', '10000'],
+        classes: ['css700', 'css1060', 'css'],
+        force_dip: true
+    });
+
     Waypoint.destroyAll();
     fullImgLiquid();
     $('#ajaxGlobalLoader').hide();
