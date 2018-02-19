@@ -1,0 +1,12 @@
+# https://jmsyst.com/libs/serializer/master/reference/yml_reference
+Politizr\Model\om\BasePDDebate:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+        title:
+            expose: true
+            type: string
+        description:
+            expose: true
+            type: string

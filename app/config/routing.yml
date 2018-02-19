@@ -8,6 +8,12 @@ politizr_front:
     host:     "%host.public%"
     prefix:   /
 
+politizr_api:
+    resource: "@PolitizrFrontBundle/Resources/config/routing/Api.yml"
+    host:     "%host.api%"
+    prefix:   /
+
+
 _liip_imagine:
     resource: "@LiipImagineBundle/Resources/config/routing.xml"
 

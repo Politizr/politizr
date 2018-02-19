@@ -3,9 +3,6 @@ imports:
     - { resource: security.yml }
     - { resource: services.yml }
 
-parameters:
-    session.attribute_bag.class: Symfony\Component\HttpFoundation\Session\Attribute\NamespacedAttributeBag
-
 framework:
     # config / bazingageocoder
     trusted_proxies: ['127.0.0.1']
@@ -840,3 +837,14 @@ oneup_uploader:
 # #    flexible_ssl:
 # #        cookie_name: auth
 # #        unsecured_logout: false
+
+# https://jmsyst.com/bundles/JMSSerializerBundle/master/configuration
+jms_serializer:
+    metadata:
+        directories:
+            Propel:
+                namespace_prefix: ""
+                path: "@PolitizrFrontBundle/Resources/config/serializer"
+            PolitizrFrontBundle:
+                namespace_prefix: "Politizr\\Model\\om"
+                path: "@PolitizrFrontBundle/Resources/config/serializer"

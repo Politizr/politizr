@@ -27,7 +27,7 @@ class ApiDebateController extends Controller
      */
     public function listAction()
     {
-        $debates = PDDebateQuery::create()->online()->find()->toArray();
+        $debates = PDDebateQuery::create()->online()->find();
 
         $data = $this->get('jms_serializer')->serialize($debates, 'json');
 
@@ -60,7 +60,7 @@ class ApiDebateController extends Controller
         $data = $request->getContent();
         $apiDebate = $this->get('jms_serializer')->deserialize($data, 'Politizr\Model\PDDebate', 'json');
 
-        $debate = $this->get('politizr.functional.document')->createDebate();
+        $debate = $this->get('politizr.manager.document')->createDebate(1);
 
         // Debate
         $debate->setTitle($apiDebate->getTitle());

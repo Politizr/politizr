@@ -18,7 +18,7 @@ use Politizr\Constant\LabelConstants;
 
 /**
  * Debate model object
- *
+ * 
  * @author Lionel Bouzonville
  */
 class PDDebate extends BasePDDebate implements PDocumentInterface

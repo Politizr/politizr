@@ -1,15 +1,16 @@
 ApiDebateList:
-    pattern:  /api/debates
+    pattern:  /debates
     defaults: { _controller: PolitizrFrontBundle:Api\ApiDebate:list }
 
 ApiDebateShow:
-    pattern:  /api/debates/{id}
+    pattern:  /debates/{id}
     defaults: { _controller: PolitizrFrontBundle:Api\ApiDebate:show }
     requirements:
         _method:        GET
+        id: "\d+"
 
 ApiDebateCreate:
-    pattern:  /api/debates/create
+    pattern:  /debates/create
     defaults: { _controller: PolitizrFrontBundle:Api\ApiDebate:create }
     requirements:
         _method:        POST
