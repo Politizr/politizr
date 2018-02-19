@@ -1,6 +1,6 @@
 <?php
 
-namespace Politizr\FrontBundle\Controller\Api;
+namespace Politizr\ApiBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -9,6 +9,8 @@ use Symfony\Component\HttpFoundation\Response;
 
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
+use FOS\RestBundle\Controller\Annotations as Rest;
+
 use Politizr\Exception\InconsistentDataException;
 
 use Politizr\Model\PDDebate;
@@ -16,11 +18,11 @@ use Politizr\Model\PDDebate;
 use Politizr\Model\PDDebateQuery;
 
 /**
- * API controller
+ * API debate controller
  *
  * @author Lionel Bouzonville
  */
-class ApiDebateController extends Controller
+class DebateController extends Controller
 {
     /**
      * 
@@ -38,7 +40,7 @@ class ApiDebateController extends Controller
     }
 
     /**
-     * 
+     *
      */
     public function showAction($id)
     {
@@ -50,6 +52,22 @@ class ApiDebateController extends Controller
         $response->headers->set('Content-Type', 'application/json');
 
         return $response;
+    }
+
+
+    /**
+     *
+     * @Rest\View
+     */
+    public function getDebateAction($id)
+    {
+        $debate = PDDebateQuery::create()->findPk($id);
+
+        if (!$debate instanceof PDDebate) {
+            throw new NotFoundHttpException('Debate not found');
+        }
+
+        return array('debate' => $debate);
     }
 
     /**

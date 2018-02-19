@@ -1,0 +1,21 @@
+# ApiDebateList:
+#     pattern:  /debates
+#     defaults: { _controller: PolitizrApiBundle:Debate:list }
+# 
+# ApiDebateShow:
+#     pattern:  /debates/{id}
+#     defaults: { _controller: PolitizrApiBundle:Debate:show }
+#     requirements:
+#         _method:        GET
+#         id: "\d+"
+# 
+# ApiDebateCreate:
+#     pattern:  /debates/create
+#     defaults: { _controller: PolitizrApiBundle:Debate:create }
+#     requirements:
+#         _method:        POST
+# 
+
+debates:
+    type:     rest
+    resource: Politizr\ApiBundle\Controller\DebateController

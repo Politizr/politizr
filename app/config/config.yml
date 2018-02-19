@@ -844,7 +844,22 @@ jms_serializer:
         directories:
             Propel:
                 namespace_prefix: ""
-                path: "@PolitizrFrontBundle/Resources/config/serializer"
-            PolitizrFrontBundle:
+                path: "@PolitizrApiBundle/Resources/config/serializer"
+            PolitizrApiBundle:
                 namespace_prefix: "Politizr\\Model\\om"
-                path: "@PolitizrFrontBundle/Resources/config/serializer"
+                path: "@PolitizrApiBundle/Resources/config/serializer"
+
+# https://symfony.com/doc/master/bundles/FOSRestBundle/configuration-reference.html
+fos_rest:
+    view:
+        formats: { json: true, xml: false, rss: false }
+        view_response_listener: true
+    serializer:
+        serialize_null: true
+    body_converter:
+        enabled: true
+    format_listener:
+        rules:
+            - { host: "%host.api%", path: '^/', priorities: ['json'], fallback_format: 'json' }
+            - { host: "%host.public%", path: '^/', stop: true }
+            - { host: "%host.admin%", path: '^/', stop: true }

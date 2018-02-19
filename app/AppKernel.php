@@ -21,6 +21,7 @@ class AppKernel extends Kernel
 
             // API
             new JMS\SerializerBundle\JMSSerializerBundle(),
+            new FOS\RestBundle\FOSRestBundle(),
 
             // Propel
             new Propel\Bundle\PropelBundle\PropelBundle(),
@@ -67,6 +68,7 @@ class AppKernel extends Kernel
             new Politizr\FrontBundle\PolitizrFrontBundle(),
             new Politizr\AdminBundle\PolitizrAdminBundle(),
             new Politizr\CommandBundle\PolitizrCommandBundle(),
+            new Politizr\ApiBundle\PolitizrApiBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 're7', 'test', 'stage', 'debug'))) {

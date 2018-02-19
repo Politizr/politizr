@@ -9,7 +9,7 @@ politizr_front:
     prefix:   /
 
 politizr_api:
-    resource: "@PolitizrFrontBundle/Resources/config/routing/Api.yml"
+    resource: "@PolitizrApiBundle/Resources/config/routing.yml"
     host:     "%host.api%"
     prefix:   /
 
