@@ -24,6 +24,7 @@
         
         "jms/security-extra-bundle": "1.5.*",
         "jms/di-extra-bundle": "1.4.*",
+        "jms/serializer-bundle": "^2.3",
         
         "propel/propel-bundle": "~1.5",
         "propel/propel-acl-bundle": "~1.5",

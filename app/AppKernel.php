@@ -19,6 +19,9 @@ class AppKernel extends Kernel
             new JMS\AopBundle\JMSAopBundle(),
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
 
+            // API
+            new JMS\SerializerBundle\JMSSerializerBundle(),
+
             // Propel
             new Propel\Bundle\PropelBundle\PropelBundle(),
             new Propel\Bundle\PropelAclBundle\PropelAclBundle(),

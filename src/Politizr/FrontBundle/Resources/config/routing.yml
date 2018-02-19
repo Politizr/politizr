@@ -35,6 +35,10 @@ Listing:
 Circle:
     resource: "./routing/Circle.yml"
 
+# Api
+Api:
+    resource: "./routing/Api.yml"
+
 
 # Feed RSS
 RssFeed:
