@@ -171,6 +171,8 @@ class PolitizrCircleExtension extends \Twig_Extension
             $templatePath = 'Circle\\full';
         } elseif ($circle->getPCircleTypeId() == CircleConstants::CIRCLE_TYPE_SPECIFIC && $circle->getId() == CircleConstants::CD09_ID_CIRCLE) {
             $templatePath = 'Circle\\cd09';
+        } elseif ($circle->getPCircleTypeId() == CircleConstants::CIRCLE_TYPE_SPECIFIC && $circle->getId() == CircleConstants::CD09THD_ID_CIRCLE) {
+            $templatePath = 'Circle\\cd09thd';
         } elseif ($circle->getPCircleTypeId() == CircleConstants::CIRCLE_TYPE_SPECIFIC && $circle->getId() == CircleConstants::LHOSPI_ID_CIRCLE) {
             $templatePath = 'Circle\\lhospi';
         } else {
@@ -268,6 +270,8 @@ class PolitizrCircleExtension extends \Twig_Extension
             $templatePath = 'Circle\\free';
         } elseif ($circle->getId() == CircleConstants::CD09_ID_CIRCLE) {
             $templatePath = 'Circle\\cd09';
+        } elseif ($circle->getId() == CircleConstants::CD09THD_ID_CIRCLE) {
+            $templatePath = 'Circle\\cd09thd';
         }
 
         // Construction du rendu du tag
@@ -322,9 +326,17 @@ class PolitizrCircleExtension extends \Twig_Extension
         // $this->logger->info('*** topicBriefing');
         // $this->logger->info('$topic = '.print_r($topic, true));
 
+        $circle = $topic->getPCircle();
+
+        // get template path > generic or dedicated
+        $templatePath = 'Topic';
+        if ($circle->getPCircleTypeId() == CircleConstants::CIRCLE_TYPE_SPECIFIC && $circle->getId() == CircleConstants::CD09THD_ID_CIRCLE) {
+            $templatePath = 'Topic\\cd09thd';
+        }
+
         // Construction du rendu du tag
         $html = $env->render(
-            'PolitizrFrontBundle:Topic:_briefing.html.twig',
+            'PolitizrFrontBundle:'.$templatePath.':_briefing.html.twig',
             array(
                 'topic' => $topic,
             )
@@ -344,9 +356,17 @@ class PolitizrCircleExtension extends \Twig_Extension
         // $this->logger->info('*** topicQuestion');
         // $this->logger->info('$topic = '.print_r($topic, true));
 
+        $circle = $topic->getPCircle();
+
+        // get template path > generic or dedicated
+        $templatePath = 'Topic';
+        if ($circle->getPCircleTypeId() == CircleConstants::CIRCLE_TYPE_SPECIFIC && $circle->getId() == CircleConstants::CD09THD_ID_CIRCLE) {
+            $templatePath = 'Topic\\cd09thd';
+        }
+
         // Construction du rendu du tag
         $html = $env->render(
-            'PolitizrFrontBundle:Topic:_question.html.twig',
+            'PolitizrFrontBundle:'.$templatePath.':_question.html.twig',
             array(
                 'circle' => $topic->getPCircle(),
                 'topic' => $topic,

@@ -8,6 +8,7 @@ use Politizr\Constant\PathConstants;
 use Politizr\Constant\ReputationConstants;
 use Politizr\Constant\TagConstants;
 use Politizr\Constant\DocumentConstants;
+use Politizr\Constant\CircleConstants;
 
 use Politizr\Model\PDocumentInterface;
 use Politizr\Model\PDDebate;
@@ -1296,6 +1297,11 @@ class PolitizrDocumentExtension extends \Twig_Extension
             } else {
                 $url = $this->router->generate('DebateDraftNew', array('topic' => $topic->getUuid()));
                 $label = "je m'exprime sur \"".$topic->getTitle()."\"";
+
+                // specific label for CD09THD
+                if ($circle->getId() == CircleConstants::CD09THD_ID_CIRCLE) {
+                    $label = "Je m'exprime sur le Plan Ariège THD";
+                }
             }
         } else {
             $url = $this->router->generate('DebateDraftNew');

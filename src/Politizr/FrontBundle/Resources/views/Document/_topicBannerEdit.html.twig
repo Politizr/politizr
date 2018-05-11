@@ -3,7 +3,12 @@
         <div class="txtTopic">
             <div class="txtTopic">
                 <i class="icon-grp"></i>{{ owner.title }}
-                <span>Rédigez ici vos opinions ou questions sur le sujet de <b>"{{ topic.title }}"</b>.</span>
+                {# specific label for CD09THD #}
+                {% if (circle.id == constant('Politizr\\Constant\\CircleConstants::CD09THD_ID_CIRCLE')) %}
+                    <span>Rédigez ici vos opinions ou questions à propos du <b>Plan Ariège THD</b>.</span>
+                {% else %}
+                    <span>Rédigez ici vos opinions ou questions sur le sujet de <b>"{{ topic.title }}"</b>.</span>
+                {% endif %}
             </div>
         </div>
     </div>

@@ -1,0 +1,7 @@
+<div class="grpCard">
+    {{ circle.description | raw }}
+    <div>
+        <a href="{{ path('DebateDraftNew', { 'topic': topics[0].uuid}) }}">Je m'esbaubis</a>
+        <a href="{{ path('TopicDetail', { 'circleSlug': circle.slug, 'slug': topics[0].slug}) }}">Voir toutes les Q/R</a>
+    </div>
+</div>

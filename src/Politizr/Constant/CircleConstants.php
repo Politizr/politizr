@@ -20,4 +20,7 @@ class CircleConstants
 
     // SPECIFIC LHOSPI
     const LHOSPI_ID_CIRCLE = 2;
+
+    // SPECIFIC CD09 THD
+    const CD09THD_ID_CIRCLE = 3;
 }
