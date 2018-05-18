@@ -66,21 +66,8 @@
         </div>
     </div>
 
-    <div id="blockMarianne">
-        <div class="center">
-            <div id="bgBlockMarianne">
-                <div id="marianne"></div>
-                <div class="conceptCol conceptLeftCol">
-                    Politizr est un site web de <b>débat politique</b> à l'échelle nationale et locale. Venez discuter et échanger vos analyses sur la campagne présidentielle française de 2018.
-                </div>
-                
-                <div class="conceptCol conceptRightCol">
-                    Nous travaillons à améliorer la <b>démocratie représentative</b> en proposant un espace de discussion qui favorise les <b>échanges structurées et argumentées</b> dans un temps long propice à la qualité du débat.
-                </div>
-            </div>
-        </div>
-    </div>
-    
+    {% include 'PolitizrFrontBundle:Public\\LandingPage:_blockMarianne.html.twig' %}
+        
     <div id="blockGraphAssembly">
         <div class="center centerCTA">
             <a href="{{ path('InscriptionChoice') }}">Inscription</a>
