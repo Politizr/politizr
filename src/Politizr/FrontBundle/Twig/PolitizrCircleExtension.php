@@ -338,6 +338,7 @@ class PolitizrCircleExtension extends \Twig_Extension
         $html = $env->render(
             'PolitizrFrontBundle:'.$templatePath.':_briefing.html.twig',
             array(
+                'circle' => $circle,
                 'topic' => $topic,
             )
         );
@@ -415,27 +416,12 @@ class PolitizrCircleExtension extends \Twig_Extension
     /**
      * Display banner if circle is in "read only" mode
      *
-     * @param PDocumentInterface|PCircle|PCTopic $subject
+     * @param PCircle $circle
      * @return string
      */
-    public function readOnlyMessage(\Twig_Environment $env, $subject)
+    public function readOnlyMessage(\Twig_Environment $env, PCircle $circle)
     {
         $html = null;
-
-        if ($subject instanceof PDocumentInterface) {
-            $topic = $subject->getPCTopic();
-            if ($topic) {
-                $circle = $topic->getPCircle();
-            } else {
-                return null;
-            }
-        } elseif ($subject instanceof PCTopic) {
-            $circle = $subject->getPCircle();
-        } elseif ($subject instanceof PCircle) {
-            $circle = $subject;
-        } else {
-            throw new InconsistentDataException('Class not managed');
-        }
 
         if (! $circle->getReadOnly()) {
             return null;

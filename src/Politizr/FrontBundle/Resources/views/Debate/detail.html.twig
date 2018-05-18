@@ -30,9 +30,9 @@
         {% if debate.PCTopicId %}
             {% set circle = debate.circle %}
             {% if (isGrantedE() or isGrantedC()) %}
-                class="grp grp-{{ circle.PCOwner.slug }}"
+                class="grp grp-{{ circle.PCOwner.slug }} grp-{{ circle.slug }}"
             {% else %}    
-                class="grp public grp-{{ circle.PCOwner.slug }}"
+                class="grp public grp-{{ circle.PCOwner.slug }} grp-{{ circle.slug }}"
             {% endif %}
         {% else %}
             {{ parent() }}
@@ -69,7 +69,6 @@
     
     {{ debate | documentOperation }}
     {{ debate | boostQuestion }}
-    {{ debate | readOnlyMessage }}
 {% endblock %}
 
 {% block content %}

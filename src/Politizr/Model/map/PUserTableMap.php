@@ -89,6 +89,7 @@ class PUserTableMap extends TableMap
         $this->addColumn('nb_connected_days', 'NbConnectedDays', 'INTEGER', false, null, 0);
         $this->addColumn('indexed_at', 'IndexedAt', 'TIMESTAMP', false, null, null);
         $this->addColumn('nb_views', 'NbViews', 'INTEGER', false, null, null);
+        $this->addColumn('organization', 'Organization', 'BOOLEAN', false, 1, false);
         $this->addColumn('qualified', 'Qualified', 'BOOLEAN', false, 1, null);
         $this->addColumn('validated', 'Validated', 'BOOLEAN', false, 1, false);
         $this->addColumn('nb_id_check', 'NbIdCheck', 'INTEGER', false, null, null);
@@ -130,6 +131,7 @@ class PUserTableMap extends TableMap
         $this->addRelation('PUCurrentQOPUser', 'Politizr\\Model\\PUCurrentQO', RelationMap::ONE_TO_MANY, array('id' => 'p_user_id', ), 'CASCADE', 'CASCADE', 'PUCurrentQOPUsers');
         $this->addRelation('PUNotificationPUser', 'Politizr\\Model\\PUNotification', RelationMap::ONE_TO_MANY, array('id' => 'p_user_id', ), 'CASCADE', 'CASCADE', 'PUNotificationPUsers');
         $this->addRelation('PUSubscribePNE', 'Politizr\\Model\\PUSubscribePNE', RelationMap::ONE_TO_MANY, array('id' => 'p_user_id', ), 'CASCADE', 'CASCADE', 'PUSubscribePNEs');
+        $this->addRelation('PUReactionPUser', 'Politizr\\Model\\PUReactionPLC', RelationMap::ONE_TO_MANY, array('id' => 'p_user_id', ), 'CASCADE', 'CASCADE', 'PUReactionPUsers');
         $this->addRelation('PDDebate', 'Politizr\\Model\\PDDebate', RelationMap::ONE_TO_MANY, array('id' => 'p_user_id', ), 'SET NULL', 'CASCADE', 'PDDebates');
         $this->addRelation('PDReaction', 'Politizr\\Model\\PDReaction', RelationMap::ONE_TO_MANY, array('id' => 'p_user_id', ), 'SET NULL', 'CASCADE', 'PDReactions');
         $this->addRelation('PDDComment', 'Politizr\\Model\\PDDComment', RelationMap::ONE_TO_MANY, array('id' => 'p_user_id', ), 'SET NULL', 'CASCADE', 'PDDComments');
@@ -163,6 +165,7 @@ class PUserTableMap extends TableMap
         $this->addRelation('PUCurrentQOPQOrganization', 'Politizr\\Model\\PQOrganization', RelationMap::MANY_TO_MANY, array(), 'CASCADE', 'CASCADE', 'PUCurrentQOPQOrganizations');
         $this->addRelation('PUNotificationPNotification', 'Politizr\\Model\\PNotification', RelationMap::MANY_TO_MANY, array(), 'CASCADE', 'CASCADE', 'PUNotificationPNotifications');
         $this->addRelation('PNEmail', 'Politizr\\Model\\PNEmail', RelationMap::MANY_TO_MANY, array(), 'CASCADE', 'CASCADE', 'PNEmails');
+        $this->addRelation('PUReactionPLCity', 'Politizr\\Model\\PLCity', RelationMap::MANY_TO_MANY, array(), 'CASCADE', 'CASCADE', 'PUReactionPLCities');
         $this->addRelation('PCircle', 'Politizr\\Model\\PCircle', RelationMap::MANY_TO_MANY, array(), 'CASCADE', 'CASCADE', 'PCircles');
         $this->addRelation('PMModerationType', 'Politizr\\Model\\PMModerationType', RelationMap::MANY_TO_MANY, array(), 'CASCADE', 'CASCADE', 'PMModerationTypes');
     } // buildRelations()

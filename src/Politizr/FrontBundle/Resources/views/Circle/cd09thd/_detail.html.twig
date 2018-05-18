@@ -1,7 +1,59 @@
 <div class="grpCard">
-    {{ circle.description | raw }}
-    <div>
-        <a href="{{ path('DebateDraftNew', { 'topic': topics[0].uuid}) }}">Je m'esbaubis</a>
-        <a href="{{ path('TopicDetail', { 'circleSlug': circle.slug, 'slug': topics[0].slug}) }}">Voir toutes les Q/R</a>
+    <div class="grpGlobalIntro">
+        <div class="grpVideo">
+            <video controls poster="{{ asset('bundles/politizrfront/images/grp-ariegeTHD/poster.jpg') }}">
+              <source src="{{ asset('bundles/politizrfront/images/grp-ariegeTHD/CD09THD.mp4') }}" type="video/mp4">
+              Votre navigateur ne supporte pas ce format de vidéo.
+            </video>
+        </div>
+        {{ circle.description | raw }}
+        <div class="grpTwitterFeed">
+            <div class="grpTwitterLogo">
+                <i class="icon-social-tw"></i><br>
+                Mentions<br>
+                <span>#AriegeTHD</span>
+            </div>
+            <a class="twitter-timeline" href="https://twitter.com/hashtag/AriegeTHD" data-widget-id="981144322858012672" data-chrome="nofooter noheader noborders noscrollbar transparent" data-width="180" data-height="680"></a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+    </div>
+    <div class="grpIHaveAQuestionFullWidth">
+        {% include 'PolitizrFrontBundle:Circle\\cd09thd:_question.html.twig' %}
+    </div>
+    <div class="grpChapterTHD09">
+        <h1>Le déploiement du Très haut débit en Ariège</h1>
+        <h2>Le plan France Très haut débit mobilise l’ensemble des acteurs du secteur, privés et publics, pour le déploiement des réseaux très haut débit sur l’ensemble du territoire.</h2>
+        <div class="grpChapterTHD09Argu">
+            <div class="grpChapterTHD09ArguCol">
+                <h3>En territoire urbain</h3>
+                <span>23% de la population ariégeoise concernée</span>
+                <p>Les opérateurs privés déploient des réseaux de FTTH* sur les zones très denses et moyennement denses (Foix, Pamiers et son agglomération). C’est l’opérateur Orange qui assure ce déploiement dans le cadre de conventions de programmation et de suivi des déploiements (Cpsd) dites “conventions AMII”.</p>
+            </div>
+            <div class="grpChapterTHD09ArguCol">
+                <h3>En territoire rural</h3>
+                <span>77% de la population ariégeoise concernée</span>
+                <p>Les collectivités déploient, avec la contribution de l’État, des réseaux FTTH* gérés par des opérateurs dans le cadre d’une délégation de service public.</p>
+                <div class="ftth">*FttH : Fiber to the Home - fibre jusqu’au domicile</div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="grpDescription">
+        <h1>Calendrier prévisionnel FTTH par communes</h1>
+        <h2>Arize-Lèze <span action="showGrpTable" class="linkShowGrpTable">Afficher</span><span action="hideGrpTable" class="linkHideGrpTable">Masquer</span></h2>
+        {% include 'PolitizrFrontBundle:Circle\\cd09thd:_tableArizeLeze.html.twig' %}
+        <h2>Couserans Est, Foix et Val d'Ariège <span action="showGrpTable" class="linkShowGrpTable">Afficher</span><span action="hideGrpTable" class="linkHideGrpTable">Masquer</span></h2>
+        {% include 'PolitizrFrontBundle:Circle\\cd09thd:_tableCouseransFoixValAriege.html.twig' %}
+        <h2>Pays de Mirepoix <span action="showGrpTable" class="linkShowGrpTable">Afficher</span><span action="hideGrpTable" class="linkHideGrpTable">Masquer</span></h2>
+        {% include 'PolitizrFrontBundle:Circle\\cd09thd:_tableMirepoix.html.twig' %}
+        <h2>Pays d'Olmes <span action="showGrpTable" class="linkShowGrpTable">Afficher</span><span action="hideGrpTable" class="linkHideGrpTable">Masquer</span></h2>
+        {% include 'PolitizrFrontBundle:Circle\\cd09thd:_tableOlmes.html.twig' %}
+        <h2>Portes d'Ariège et Pamiers <span action="showGrpTable" class="linkShowGrpTable">Afficher</span><span action="hideGrpTable" class="linkHideGrpTable">Masquer</span></h2>
+        {% include 'PolitizrFrontBundle:Circle\\cd09thd:_tablePamiers.html.twig' %}
+    </div>
+
+    <script type="text/javascript" src="{{ asset('bundles/politizrfront/js/politizr/circle/cd09thd.js') }}"></script>
+            
+    <div class="grpIHaveAQuestionFullWidth">
+        {% include 'PolitizrFrontBundle:Circle\\cd09thd:_question.html.twig' %}
     </div>
 </div>

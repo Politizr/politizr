@@ -1173,12 +1173,6 @@ class XhrUser
         $filterDate = $request->get('filterDate');
         // $this->logger->info('$filterDate = ' . print_r($filterDate, true));
 
-        // set default values if not set
-        if (empty($geoUuid)) {
-            $france = PLocalizationQuery::create()->findPk(LocalizationConstants::FRANCE_ID);
-            $geoUuid = $france->getUuid();
-            $type = LocalizationConstants::TYPE_COUNTRY;
-        }
         if (empty($filterProfile)) {
             $filterProfile = ListingConstants::FILTER_KEYWORD_ALL_USERS;
         }

@@ -2,6 +2,8 @@
     <div id="grpBriefHeader">
         <div class="center">
             {{ topic.summary | raw }}
+            <p><a href="{{ path('DebateDraftNew', { topic: topic.uuid }) }}">Je m'exprime</a></p>
+            <p><a href="{{ path('CircleDetail', { slug: circle.slug }) }}">Revenir au dossier de présentation</a></p>
         </div>
         <div id="grpBriefHeaderImg">
             <div id="grpBriefHeaderImgShadow"></div>

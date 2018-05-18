@@ -32,6 +32,8 @@ use Politizr\Model\PLCityPeer;
 use Politizr\Model\PLCityQuery;
 use Politizr\Model\PLDepartment;
 use Politizr\Model\PLDepartmentQuery;
+use Politizr\Model\PUReactionPLC;
+use Politizr\Model\PUReactionPLCQuery;
 use Politizr\Model\PUser;
 use Politizr\Model\PUserQuery;
 
@@ -254,6 +256,12 @@ abstract class BasePLCity extends BaseObject implements Persistent
     protected $collPUsersPartial;
 
     /**
+     * @var        PropelObjectCollection|PUReactionPLC[] Collection to store aggregation of PUReactionPLC objects.
+     */
+    protected $collPUReactionPLCities;
+    protected $collPUReactionPLCitiesPartial;
+
+    /**
      * @var        PropelObjectCollection|PDDebate[] Collection to store aggregation of PDDebate objects.
      */
     protected $collPDDebates;
@@ -275,6 +283,11 @@ abstract class BasePLCity extends BaseObject implements Persistent
      * @var        PropelObjectCollection|PEOperation[] Collection to store aggregation of PEOperation objects.
      */
     protected $collPEOperations;
+
+    /**
+     * @var        PropelObjectCollection|PUser[] Collection to store aggregation of PUser objects.
+     */
+    protected $collPUReactionPUsers;
 
     /**
      * @var        PropelObjectCollection|PCircle[] Collection to store aggregation of PCircle objects.
@@ -311,6 +324,12 @@ abstract class BasePLCity extends BaseObject implements Persistent
      * An array of objects scheduled for deletion.
      * @var		PropelObjectCollection
      */
+    protected $pUReactionPUsersScheduledForDeletion = null;
+
+    /**
+     * An array of objects scheduled for deletion.
+     * @var		PropelObjectCollection
+     */
     protected $pCirclesScheduledForDeletion = null;
 
     /**
@@ -324,6 +343,12 @@ abstract class BasePLCity extends BaseObject implements Persistent
      * @var		PropelObjectCollection
      */
     protected $pUsersScheduledForDeletion = null;
+
+    /**
+     * An array of objects scheduled for deletion.
+     * @var		PropelObjectCollection
+     */
+    protected $pUReactionPLCitiesScheduledForDeletion = null;
 
     /**
      * An array of objects scheduled for deletion.
@@ -1510,6 +1535,8 @@ abstract class BasePLCity extends BaseObject implements Persistent
 
             $this->collPUsers = null;
 
+            $this->collPUReactionPLCities = null;
+
             $this->collPDDebates = null;
 
             $this->collPDReactions = null;
@@ -1517,6 +1544,7 @@ abstract class BasePLCity extends BaseObject implements Persistent
             $this->collPCGroupLCs = null;
 
             $this->collPEOperations = null;
+            $this->collPUReactionPUsers = null;
             $this->collPCircles = null;
         } // if (deep)
     }
@@ -1700,6 +1728,32 @@ abstract class BasePLCity extends BaseObject implements Persistent
                 }
             }
 
+            if ($this->pUReactionPUsersScheduledForDeletion !== null) {
+                if (!$this->pUReactionPUsersScheduledForDeletion->isEmpty()) {
+                    $pks = array();
+                    $pk = $this->getPrimaryKey();
+                    foreach ($this->pUReactionPUsersScheduledForDeletion->getPrimaryKeys(false) as $remotePk) {
+                        $pks[] = array($pk, $remotePk);
+                    }
+                    PUReactionPLCQuery::create()
+                        ->filterByPrimaryKeys($pks)
+                        ->delete($con);
+                    $this->pUReactionPUsersScheduledForDeletion = null;
+                }
+
+                foreach ($this->getPUReactionPUsers() as $pUReactionPUser) {
+                    if ($pUReactionPUser->isModified()) {
+                        $pUReactionPUser->save($con);
+                    }
+                }
+            } elseif ($this->collPUReactionPUsers) {
+                foreach ($this->collPUReactionPUsers as $pUReactionPUser) {
+                    if ($pUReactionPUser->isModified()) {
+                        $pUReactionPUser->save($con);
+                    }
+                }
+            }
+
             if ($this->pCirclesScheduledForDeletion !== null) {
                 if (!$this->pCirclesScheduledForDeletion->isEmpty()) {
                     $pks = array();
@@ -1755,6 +1809,23 @@ abstract class BasePLCity extends BaseObject implements Persistent
 
             if ($this->collPUsers !== null) {
                 foreach ($this->collPUsers as $referrerFK) {
+                    if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
+                        $affectedRows += $referrerFK->save($con);
+                    }
+                }
+            }
+
+            if ($this->pUReactionPLCitiesScheduledForDeletion !== null) {
+                if (!$this->pUReactionPLCitiesScheduledForDeletion->isEmpty()) {
+                    PUReactionPLCQuery::create()
+                        ->filterByPrimaryKeys($this->pUReactionPLCitiesScheduledForDeletion->getPrimaryKeys(false))
+                        ->delete($con);
+                    $this->pUReactionPLCitiesScheduledForDeletion = null;
+                }
+            }
+
+            if ($this->collPUReactionPLCities !== null) {
+                foreach ($this->collPUReactionPLCities as $referrerFK) {
                     if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
                         $affectedRows += $referrerFK->save($con);
                     }
@@ -2256,6 +2327,9 @@ abstract class BasePLCity extends BaseObject implements Persistent
             if (null !== $this->collPUsers) {
                 $result['PUsers'] = $this->collPUsers->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
             }
+            if (null !== $this->collPUReactionPLCities) {
+                $result['PUReactionPLCities'] = $this->collPUReactionPLCities->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
+            }
             if (null !== $this->collPDDebates) {
                 $result['PDDebates'] = $this->collPDDebates->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
             }
@@ -2596,6 +2670,12 @@ abstract class BasePLCity extends BaseObject implements Persistent
                 }
             }
 
+            foreach ($this->getPUReactionPLCities() as $relObj) {
+                if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
+                    $copyObj->addPUReactionPLCity($relObj->copy($deepCopy));
+                }
+            }
+
             foreach ($this->getPDDebates() as $relObj) {
                 if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
                     $copyObj->addPDDebate($relObj->copy($deepCopy));
@@ -2732,6 +2812,9 @@ abstract class BasePLCity extends BaseObject implements Persistent
         }
         if ('PUser' == $relationName) {
             $this->initPUsers();
+        }
+        if ('PUReactionPLCity' == $relationName) {
+            $this->initPUReactionPLCities();
         }
         if ('PDDebate' == $relationName) {
             $this->initPDDebates();
@@ -3242,6 +3325,256 @@ abstract class BasePLCity extends BaseObject implements Persistent
         $query->joinWith('PUStatus', $join_behavior);
 
         return $this->getPUsers($query, $con);
+    }
+
+    /**
+     * Clears out the collPUReactionPLCities collection
+     *
+     * This does not modify the database; however, it will remove any associated objects, causing
+     * them to be refetched by subsequent calls to accessor method.
+     *
+     * @return PLCity The current object (for fluent API support)
+     * @see        addPUReactionPLCities()
+     */
+    public function clearPUReactionPLCities()
+    {
+        $this->collPUReactionPLCities = null; // important to set this to null since that means it is uninitialized
+        $this->collPUReactionPLCitiesPartial = null;
+
+        return $this;
+    }
+
+    /**
+     * reset is the collPUReactionPLCities collection loaded partially
+     *
+     * @return void
+     */
+    public function resetPartialPUReactionPLCities($v = true)
+    {
+        $this->collPUReactionPLCitiesPartial = $v;
+    }
+
+    /**
+     * Initializes the collPUReactionPLCities collection.
+     *
+     * By default this just sets the collPUReactionPLCities collection to an empty array (like clearcollPUReactionPLCities());
+     * however, you may wish to override this method in your stub class to provide setting appropriate
+     * to your application -- for example, setting the initial array to the values stored in database.
+     *
+     * @param boolean $overrideExisting If set to true, the method call initializes
+     *                                        the collection even if it is not empty
+     *
+     * @return void
+     */
+    public function initPUReactionPLCities($overrideExisting = true)
+    {
+        if (null !== $this->collPUReactionPLCities && !$overrideExisting) {
+            return;
+        }
+        $this->collPUReactionPLCities = new PropelObjectCollection();
+        $this->collPUReactionPLCities->setModel('PUReactionPLC');
+    }
+
+    /**
+     * Gets an array of PUReactionPLC objects which contain a foreign key that references this object.
+     *
+     * If the $criteria is not null, it is used to always fetch the results from the database.
+     * Otherwise the results are fetched from the database the first time, then cached.
+     * Next time the same method is called without $criteria, the cached collection is returned.
+     * If this PLCity is new, it will return
+     * an empty collection or the current collection; the criteria is ignored on a new object.
+     *
+     * @param Criteria $criteria optional Criteria object to narrow the query
+     * @param PropelPDO $con optional connection object
+     * @return PropelObjectCollection|PUReactionPLC[] List of PUReactionPLC objects
+     * @throws PropelException
+     */
+    public function getPUReactionPLCities($criteria = null, PropelPDO $con = null)
+    {
+        $partial = $this->collPUReactionPLCitiesPartial && !$this->isNew();
+        if (null === $this->collPUReactionPLCities || null !== $criteria  || $partial) {
+            if ($this->isNew() && null === $this->collPUReactionPLCities) {
+                // return empty collection
+                $this->initPUReactionPLCities();
+            } else {
+                $collPUReactionPLCities = PUReactionPLCQuery::create(null, $criteria)
+                    ->filterByPUReactionPLCity($this)
+                    ->find($con);
+                if (null !== $criteria) {
+                    if (false !== $this->collPUReactionPLCitiesPartial && count($collPUReactionPLCities)) {
+                      $this->initPUReactionPLCities(false);
+
+                      foreach ($collPUReactionPLCities as $obj) {
+                        if (false == $this->collPUReactionPLCities->contains($obj)) {
+                          $this->collPUReactionPLCities->append($obj);
+                        }
+                      }
+
+                      $this->collPUReactionPLCitiesPartial = true;
+                    }
+
+                    $collPUReactionPLCities->getInternalIterator()->rewind();
+
+                    return $collPUReactionPLCities;
+                }
+
+                if ($partial && $this->collPUReactionPLCities) {
+                    foreach ($this->collPUReactionPLCities as $obj) {
+                        if ($obj->isNew()) {
+                            $collPUReactionPLCities[] = $obj;
+                        }
+                    }
+                }
+
+                $this->collPUReactionPLCities = $collPUReactionPLCities;
+                $this->collPUReactionPLCitiesPartial = false;
+            }
+        }
+
+        return $this->collPUReactionPLCities;
+    }
+
+    /**
+     * Sets a collection of PUReactionPLCity objects related by a one-to-many relationship
+     * to the current object.
+     * It will also schedule objects for deletion based on a diff between old objects (aka persisted)
+     * and new objects from the given Propel collection.
+     *
+     * @param PropelCollection $pUReactionPLCities A Propel collection.
+     * @param PropelPDO $con Optional connection object
+     * @return PLCity The current object (for fluent API support)
+     */
+    public function setPUReactionPLCities(PropelCollection $pUReactionPLCities, PropelPDO $con = null)
+    {
+        $pUReactionPLCitiesToDelete = $this->getPUReactionPLCities(new Criteria(), $con)->diff($pUReactionPLCities);
+
+
+        $this->pUReactionPLCitiesScheduledForDeletion = $pUReactionPLCitiesToDelete;
+
+        foreach ($pUReactionPLCitiesToDelete as $pUReactionPLCityRemoved) {
+            $pUReactionPLCityRemoved->setPUReactionPLCity(null);
+        }
+
+        $this->collPUReactionPLCities = null;
+        foreach ($pUReactionPLCities as $pUReactionPLCity) {
+            $this->addPUReactionPLCity($pUReactionPLCity);
+        }
+
+        $this->collPUReactionPLCities = $pUReactionPLCities;
+        $this->collPUReactionPLCitiesPartial = false;
+
+        return $this;
+    }
+
+    /**
+     * Returns the number of related PUReactionPLC objects.
+     *
+     * @param Criteria $criteria
+     * @param boolean $distinct
+     * @param PropelPDO $con
+     * @return int             Count of related PUReactionPLC objects.
+     * @throws PropelException
+     */
+    public function countPUReactionPLCities(Criteria $criteria = null, $distinct = false, PropelPDO $con = null)
+    {
+        $partial = $this->collPUReactionPLCitiesPartial && !$this->isNew();
+        if (null === $this->collPUReactionPLCities || null !== $criteria || $partial) {
+            if ($this->isNew() && null === $this->collPUReactionPLCities) {
+                return 0;
+            }
+
+            if ($partial && !$criteria) {
+                return count($this->getPUReactionPLCities());
+            }
+            $query = PUReactionPLCQuery::create(null, $criteria);
+            if ($distinct) {
+                $query->distinct();
+            }
+
+            return $query
+                ->filterByPUReactionPLCity($this)
+                ->count($con);
+        }
+
+        return count($this->collPUReactionPLCities);
+    }
+
+    /**
+     * Method called to associate a PUReactionPLC object to this object
+     * through the PUReactionPLC foreign key attribute.
+     *
+     * @param    PUReactionPLC $l PUReactionPLC
+     * @return PLCity The current object (for fluent API support)
+     */
+    public function addPUReactionPLCity(PUReactionPLC $l)
+    {
+        if ($this->collPUReactionPLCities === null) {
+            $this->initPUReactionPLCities();
+            $this->collPUReactionPLCitiesPartial = true;
+        }
+
+        if (!in_array($l, $this->collPUReactionPLCities->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
+            $this->doAddPUReactionPLCity($l);
+
+            if ($this->pUReactionPLCitiesScheduledForDeletion and $this->pUReactionPLCitiesScheduledForDeletion->contains($l)) {
+                $this->pUReactionPLCitiesScheduledForDeletion->remove($this->pUReactionPLCitiesScheduledForDeletion->search($l));
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param	PUReactionPLCity $pUReactionPLCity The pUReactionPLCity object to add.
+     */
+    protected function doAddPUReactionPLCity($pUReactionPLCity)
+    {
+        $this->collPUReactionPLCities[]= $pUReactionPLCity;
+        $pUReactionPLCity->setPUReactionPLCity($this);
+    }
+
+    /**
+     * @param	PUReactionPLCity $pUReactionPLCity The pUReactionPLCity object to remove.
+     * @return PLCity The current object (for fluent API support)
+     */
+    public function removePUReactionPLCity($pUReactionPLCity)
+    {
+        if ($this->getPUReactionPLCities()->contains($pUReactionPLCity)) {
+            $this->collPUReactionPLCities->remove($this->collPUReactionPLCities->search($pUReactionPLCity));
+            if (null === $this->pUReactionPLCitiesScheduledForDeletion) {
+                $this->pUReactionPLCitiesScheduledForDeletion = clone $this->collPUReactionPLCities;
+                $this->pUReactionPLCitiesScheduledForDeletion->clear();
+            }
+            $this->pUReactionPLCitiesScheduledForDeletion[]= clone $pUReactionPLCity;
+            $pUReactionPLCity->setPUReactionPLCity(null);
+        }
+
+        return $this;
+    }
+
+
+    /**
+     * If this collection has already been initialized with
+     * an identical criteria, it returns the collection.
+     * Otherwise if this PLCity is new, it will return
+     * an empty collection; or if this PLCity has previously
+     * been saved, it will retrieve related PUReactionPLCities from storage.
+     *
+     * This method is protected by default in order to keep the public
+     * api reasonable.  You can provide public methods for those you
+     * actually need in PLCity.
+     *
+     * @param Criteria $criteria optional Criteria object to narrow the query
+     * @param PropelPDO $con optional connection object
+     * @param string $join_behavior optional join type to use (defaults to Criteria::LEFT_JOIN)
+     * @return PropelObjectCollection|PUReactionPLC[] List of PUReactionPLC objects
+     */
+    public function getPUReactionPLCitiesJoinPUReactionPUser($criteria = null, $con = null, $join_behavior = Criteria::LEFT_JOIN)
+    {
+        $query = PUReactionPLCQuery::create(null, $criteria);
+        $query->joinWith('PUReactionPUser', $join_behavior);
+
+        return $this->getPUReactionPLCities($query, $con);
     }
 
     /**
@@ -4432,6 +4765,193 @@ abstract class BasePLCity extends BaseObject implements Persistent
     }
 
     /**
+     * Clears out the collPUReactionPUsers collection
+     *
+     * This does not modify the database; however, it will remove any associated objects, causing
+     * them to be refetched by subsequent calls to accessor method.
+     *
+     * @return PLCity The current object (for fluent API support)
+     * @see        addPUReactionPUsers()
+     */
+    public function clearPUReactionPUsers()
+    {
+        $this->collPUReactionPUsers = null; // important to set this to null since that means it is uninitialized
+        $this->collPUReactionPUsersPartial = null;
+
+        return $this;
+    }
+
+    /**
+     * Initializes the collPUReactionPUsers collection.
+     *
+     * By default this just sets the collPUReactionPUsers collection to an empty collection (like clearPUReactionPUsers());
+     * however, you may wish to override this method in your stub class to provide setting appropriate
+     * to your application -- for example, setting the initial array to the values stored in database.
+     *
+     * @return void
+     */
+    public function initPUReactionPUsers()
+    {
+        $this->collPUReactionPUsers = new PropelObjectCollection();
+        $this->collPUReactionPUsers->setModel('PUser');
+    }
+
+    /**
+     * Gets a collection of PUser objects related by a many-to-many relationship
+     * to the current object by way of the p_u_reaction_p_l_c cross-reference table.
+     *
+     * If the $criteria is not null, it is used to always fetch the results from the database.
+     * Otherwise the results are fetched from the database the first time, then cached.
+     * Next time the same method is called without $criteria, the cached collection is returned.
+     * If this PLCity is new, it will return
+     * an empty collection or the current collection; the criteria is ignored on a new object.
+     *
+     * @param Criteria $criteria Optional query object to filter the query
+     * @param PropelPDO $con Optional connection object
+     *
+     * @return PropelObjectCollection|PUser[] List of PUser objects
+     */
+    public function getPUReactionPUsers($criteria = null, PropelPDO $con = null)
+    {
+        if (null === $this->collPUReactionPUsers || null !== $criteria) {
+            if ($this->isNew() && null === $this->collPUReactionPUsers) {
+                // return empty collection
+                $this->initPUReactionPUsers();
+            } else {
+                $collPUReactionPUsers = PUserQuery::create(null, $criteria)
+                    ->filterByPUReactionPLCity($this)
+                    ->find($con);
+                if (null !== $criteria) {
+                    return $collPUReactionPUsers;
+                }
+                $this->collPUReactionPUsers = $collPUReactionPUsers;
+            }
+        }
+
+        return $this->collPUReactionPUsers;
+    }
+
+    /**
+     * Sets a collection of PUser objects related by a many-to-many relationship
+     * to the current object by way of the p_u_reaction_p_l_c cross-reference table.
+     * It will also schedule objects for deletion based on a diff between old objects (aka persisted)
+     * and new objects from the given Propel collection.
+     *
+     * @param PropelCollection $pUReactionPUsers A Propel collection.
+     * @param PropelPDO $con Optional connection object
+     * @return PLCity The current object (for fluent API support)
+     */
+    public function setPUReactionPUsers(PropelCollection $pUReactionPUsers, PropelPDO $con = null)
+    {
+        $this->clearPUReactionPUsers();
+        $currentPUReactionPUsers = $this->getPUReactionPUsers(null, $con);
+
+        $this->pUReactionPUsersScheduledForDeletion = $currentPUReactionPUsers->diff($pUReactionPUsers);
+
+        foreach ($pUReactionPUsers as $pUReactionPUser) {
+            if (!$currentPUReactionPUsers->contains($pUReactionPUser)) {
+                $this->doAddPUReactionPUser($pUReactionPUser);
+            }
+        }
+
+        $this->collPUReactionPUsers = $pUReactionPUsers;
+
+        return $this;
+    }
+
+    /**
+     * Gets the number of PUser objects related by a many-to-many relationship
+     * to the current object by way of the p_u_reaction_p_l_c cross-reference table.
+     *
+     * @param Criteria $criteria Optional query object to filter the query
+     * @param boolean $distinct Set to true to force count distinct
+     * @param PropelPDO $con Optional connection object
+     *
+     * @return int the number of related PUser objects
+     */
+    public function countPUReactionPUsers($criteria = null, $distinct = false, PropelPDO $con = null)
+    {
+        if (null === $this->collPUReactionPUsers || null !== $criteria) {
+            if ($this->isNew() && null === $this->collPUReactionPUsers) {
+                return 0;
+            } else {
+                $query = PUserQuery::create(null, $criteria);
+                if ($distinct) {
+                    $query->distinct();
+                }
+
+                return $query
+                    ->filterByPUReactionPLCity($this)
+                    ->count($con);
+            }
+        } else {
+            return count($this->collPUReactionPUsers);
+        }
+    }
+
+    /**
+     * Associate a PUser object to this object
+     * through the p_u_reaction_p_l_c cross reference table.
+     *
+     * @param  PUser $pUser The PUReactionPLC object to relate
+     * @return PLCity The current object (for fluent API support)
+     */
+    public function addPUReactionPUser(PUser $pUser)
+    {
+        if ($this->collPUReactionPUsers === null) {
+            $this->initPUReactionPUsers();
+        }
+
+        if (!$this->collPUReactionPUsers->contains($pUser)) { // only add it if the **same** object is not already associated
+            $this->doAddPUReactionPUser($pUser);
+            $this->collPUReactionPUsers[] = $pUser;
+
+            if ($this->pUReactionPUsersScheduledForDeletion and $this->pUReactionPUsersScheduledForDeletion->contains($pUser)) {
+                $this->pUReactionPUsersScheduledForDeletion->remove($this->pUReactionPUsersScheduledForDeletion->search($pUser));
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param	PUReactionPUser $pUReactionPUser The pUReactionPUser object to add.
+     */
+    protected function doAddPUReactionPUser(PUser $pUReactionPUser)
+    {
+        // set the back reference to this object directly as using provided method either results
+        // in endless loop or in multiple relations
+        if (!$pUReactionPUser->getPUReactionPLCities()->contains($this)) { $pUReactionPLC = new PUReactionPLC();
+            $pUReactionPLC->setPUReactionPUser($pUReactionPUser);
+            $this->addPUReactionPLCity($pUReactionPLC);
+
+            $foreignCollection = $pUReactionPUser->getPUReactionPLCities();
+            $foreignCollection[] = $this;
+        }
+    }
+
+    /**
+     * Remove a PUser object to this object
+     * through the p_u_reaction_p_l_c cross reference table.
+     *
+     * @param PUser $pUser The PUReactionPLC object to relate
+     * @return PLCity The current object (for fluent API support)
+     */
+    public function removePUReactionPUser(PUser $pUser)
+    {
+        if ($this->getPUReactionPUsers()->contains($pUser)) {
+            $this->collPUReactionPUsers->remove($this->collPUReactionPUsers->search($pUser));
+            if (null === $this->pUReactionPUsersScheduledForDeletion) {
+                $this->pUReactionPUsersScheduledForDeletion = clone $this->collPUReactionPUsers;
+                $this->pUReactionPUsersScheduledForDeletion->clear();
+            }
+            $this->pUReactionPUsersScheduledForDeletion[]= $pUser;
+        }
+
+        return $this;
+    }
+
+    /**
      * Clears out the collPCircles collection
      *
      * This does not modify the database; however, it will remove any associated objects, causing
@@ -4685,6 +5205,11 @@ abstract class BasePLCity extends BaseObject implements Persistent
                     $o->clearAllReferences($deep);
                 }
             }
+            if ($this->collPUReactionPLCities) {
+                foreach ($this->collPUReactionPLCities as $o) {
+                    $o->clearAllReferences($deep);
+                }
+            }
             if ($this->collPDDebates) {
                 foreach ($this->collPDDebates as $o) {
                     $o->clearAllReferences($deep);
@@ -4702,6 +5227,11 @@ abstract class BasePLCity extends BaseObject implements Persistent
             }
             if ($this->collPEOperations) {
                 foreach ($this->collPEOperations as $o) {
+                    $o->clearAllReferences($deep);
+                }
+            }
+            if ($this->collPUReactionPUsers) {
+                foreach ($this->collPUReactionPUsers as $o) {
                     $o->clearAllReferences($deep);
                 }
             }
@@ -4725,6 +5255,10 @@ abstract class BasePLCity extends BaseObject implements Persistent
             $this->collPUsers->clearIterator();
         }
         $this->collPUsers = null;
+        if ($this->collPUReactionPLCities instanceof PropelCollection) {
+            $this->collPUReactionPLCities->clearIterator();
+        }
+        $this->collPUReactionPLCities = null;
         if ($this->collPDDebates instanceof PropelCollection) {
             $this->collPDDebates->clearIterator();
         }
@@ -4741,6 +5275,10 @@ abstract class BasePLCity extends BaseObject implements Persistent
             $this->collPEOperations->clearIterator();
         }
         $this->collPEOperations = null;
+        if ($this->collPUReactionPUsers instanceof PropelCollection) {
+            $this->collPUReactionPUsers->clearIterator();
+        }
+        $this->collPUReactionPUsers = null;
         if ($this->collPCircles instanceof PropelCollection) {
             $this->collPCircles->clearIterator();
         }

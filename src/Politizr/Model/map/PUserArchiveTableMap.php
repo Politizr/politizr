@@ -89,6 +89,7 @@ class PUserArchiveTableMap extends TableMap
         $this->addColumn('nb_connected_days', 'NbConnectedDays', 'INTEGER', false, null, 0);
         $this->addColumn('indexed_at', 'IndexedAt', 'TIMESTAMP', false, null, null);
         $this->addColumn('nb_views', 'NbViews', 'INTEGER', false, null, null);
+        $this->addColumn('organization', 'Organization', 'BOOLEAN', false, 1, false);
         $this->addColumn('qualified', 'Qualified', 'BOOLEAN', false, 1, null);
         $this->addColumn('validated', 'Validated', 'BOOLEAN', false, 1, false);
         $this->addColumn('nb_id_check', 'NbIdCheck', 'INTEGER', false, null, null);

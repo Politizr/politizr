@@ -23,6 +23,7 @@ use Politizr\Model\PLCity;
 use Politizr\Model\PLCityPeer;
 use Politizr\Model\PLCityQuery;
 use Politizr\Model\PLDepartment;
+use Politizr\Model\PUReactionPLC;
 use Politizr\Model\PUser;
 
 /**
@@ -103,6 +104,10 @@ use Politizr\Model\PUser;
  * @method PLCityQuery leftJoinPUser($relationAlias = null) Adds a LEFT JOIN clause to the query using the PUser relation
  * @method PLCityQuery rightJoinPUser($relationAlias = null) Adds a RIGHT JOIN clause to the query using the PUser relation
  * @method PLCityQuery innerJoinPUser($relationAlias = null) Adds a INNER JOIN clause to the query using the PUser relation
+ *
+ * @method PLCityQuery leftJoinPUReactionPLCity($relationAlias = null) Adds a LEFT JOIN clause to the query using the PUReactionPLCity relation
+ * @method PLCityQuery rightJoinPUReactionPLCity($relationAlias = null) Adds a RIGHT JOIN clause to the query using the PUReactionPLCity relation
+ * @method PLCityQuery innerJoinPUReactionPLCity($relationAlias = null) Adds a INNER JOIN clause to the query using the PUReactionPLCity relation
  *
  * @method PLCityQuery leftJoinPDDebate($relationAlias = null) Adds a LEFT JOIN clause to the query using the PDDebate relation
  * @method PLCityQuery rightJoinPDDebate($relationAlias = null) Adds a RIGHT JOIN clause to the query using the PDDebate relation
@@ -1670,6 +1675,80 @@ abstract class BasePLCityQuery extends ModelCriteria
     }
 
     /**
+     * Filter the query by a related PUReactionPLC object
+     *
+     * @param   PUReactionPLC|PropelObjectCollection $pUReactionPLC  the related object to use as filter
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return                 PLCityQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
+     */
+    public function filterByPUReactionPLCity($pUReactionPLC, $comparison = null)
+    {
+        if ($pUReactionPLC instanceof PUReactionPLC) {
+            return $this
+                ->addUsingAlias(PLCityPeer::ID, $pUReactionPLC->getPLCityId(), $comparison);
+        } elseif ($pUReactionPLC instanceof PropelObjectCollection) {
+            return $this
+                ->usePUReactionPLCityQuery()
+                ->filterByPrimaryKeys($pUReactionPLC->getPrimaryKeys())
+                ->endUse();
+        } else {
+            throw new PropelException('filterByPUReactionPLCity() only accepts arguments of type PUReactionPLC or PropelCollection');
+        }
+    }
+
+    /**
+     * Adds a JOIN clause to the query using the PUReactionPLCity relation
+     *
+     * @param     string $relationAlias optional alias for the relation
+     * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+     *
+     * @return PLCityQuery The current query, for fluid interface
+     */
+    public function joinPUReactionPLCity($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+    {
+        $tableMap = $this->getTableMap();
+        $relationMap = $tableMap->getRelation('PUReactionPLCity');
+
+        // create a ModelJoin object for this join
+        $join = new ModelJoin();
+        $join->setJoinType($joinType);
+        $join->setRelationMap($relationMap, $this->useAliasInSQL ? $this->getModelAlias() : null, $relationAlias);
+        if ($previousJoin = $this->getPreviousJoin()) {
+            $join->setPreviousJoin($previousJoin);
+        }
+
+        // add the ModelJoin to the current object
+        if ($relationAlias) {
+            $this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
+            $this->addJoinObject($join, $relationAlias);
+        } else {
+            $this->addJoinObject($join, 'PUReactionPLCity');
+        }
+
+        return $this;
+    }
+
+    /**
+     * Use the PUReactionPLCity relation PUReactionPLC object
+     *
+     * @see       useQuery()
+     *
+     * @param     string $relationAlias optional alias for the relation,
+     *                                   to be used as main alias in the secondary query
+     * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+     *
+     * @return   \Politizr\Model\PUReactionPLCQuery A secondary query class using the current class as primary query
+     */
+    public function usePUReactionPLCityQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+    {
+        return $this
+            ->joinPUReactionPLCity($relationAlias, $joinType)
+            ->useQuery($relationAlias ? $relationAlias : 'PUReactionPLCity', '\Politizr\Model\PUReactionPLCQuery');
+    }
+
+    /**
      * Filter the query by a related PDDebate object
      *
      * @param   PDDebate|PropelObjectCollection $pDDebate  the related object to use as filter
@@ -1905,6 +1984,23 @@ abstract class BasePLCityQuery extends ModelCriteria
         return $this
             ->usePEOScopePLCQuery()
             ->filterByPEOperation($pEOperation, $comparison)
+            ->endUse();
+    }
+
+    /**
+     * Filter the query by a related PUser object
+     * using the p_u_reaction_p_l_c table as cross reference
+     *
+     * @param   PUser $pUser the related object to use as filter
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return   PLCityQuery The current query, for fluid interface
+     */
+    public function filterByPUReactionPUser($pUser, $comparison = Criteria::EQUAL)
+    {
+        return $this
+            ->usePUReactionPLCityQuery()
+            ->filterByPUReactionPUser($pUser, $comparison)
             ->endUse();
     }
 

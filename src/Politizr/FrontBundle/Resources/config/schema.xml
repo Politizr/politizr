@@ -638,6 +638,8 @@
 
         <column name="nb_views" type="integer" />
 
+        <column name="organization" type="boolean" defaultValue="false" />
+
         <column name="qualified" type="boolean" />
         <column name="validated" type="boolean" defaultValue="false" />
         <column name="nb_id_check" type="integer" />
@@ -982,6 +984,22 @@
         </foreign-key>
         <foreign-key foreignTable="p_n_email" onDelete="CASCADE" onUpdate="CASCADE">
             <reference local="p_n_email_id" foreign="id" />
+        </foreign-key>
+    </table>
+
+    <table name="p_u_reaction_p_l_c" isCrossRef="true">
+        <behavior name="timestampable" />
+        <behavior name="query_cache" />
+
+        <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
+        <column name="p_l_city_id" type="integer" required="true" />
+        <column name="p_user_id" type="integer" required="true" />
+
+        <foreign-key foreignTable="p_l_city" phpName="PUReactionPLCity" refPhpName="PUReactionPLCity" onDelete="CASCADE" onUpdate="CASCADE">
+            <reference local="p_l_city_id" foreign="id" />
+        </foreign-key>
+        <foreign-key foreignTable="p_user" phpName="PUReactionPUser" refPhpName="PUReactionPUser" onDelete="CASCADE" onUpdate="CASCADE">
+            <reference local="p_user_id" foreign="id" />
         </foreign-key>
     </table>
 

@@ -21,9 +21,9 @@
 {% block bodyClass %}
     {% spaceless %}
         {% if (isGrantedE() or isGrantedC()) %}
-            class="grp grp-{{ circle.PCOwner.slug }}"
+            class="grp grp-{{ circle.PCOwner.slug }} grp-{{ circle.slug }}"
         {% else %}    
-            class="grp public grp-{{ circle.PCOwner.slug }}"
+            class="grp public grp-{{ circle.PCOwner.slug }} grp-{{ circle.slug }}"
         {% endif %}
     {% endspaceless %}
 {% endblock bodyClass %}
@@ -40,10 +40,6 @@
     {% else %}
         {{ parent() }}
     {% endif %}
-{% endblock %}
-
-{% block headerMsg %}
-    {{ circle | readOnlyMessage }}
 {% endblock %}
 
 {% block main %}

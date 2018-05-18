@@ -16,6 +16,7 @@ use Politizr\Model\PEOScopePLCPeer;
 use Politizr\Model\PLCity;
 use Politizr\Model\PLCityPeer;
 use Politizr\Model\PLDepartmentPeer;
+use Politizr\Model\PUReactionPLCPeer;
 use Politizr\Model\PUserPeer;
 use Politizr\Model\map\PLCityTableMap;
 
@@ -517,6 +518,9 @@ abstract class BasePLCityPeer
         // Invalidate objects in PUserPeer instance pool,
         // since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
         PUserPeer::clearInstancePool();
+        // Invalidate objects in PUReactionPLCPeer instance pool,
+        // since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
+        PUReactionPLCPeer::clearInstancePool();
         // Invalidate objects in PDDebatePeer instance pool,
         // since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
         PDDebatePeer::clearInstancePool();

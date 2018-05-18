@@ -50,6 +50,7 @@ use Politizr\Model\PUFollowU;
 use Politizr\Model\PUInPC;
 use Politizr\Model\PUMandate;
 use Politizr\Model\PUNotification;
+use Politizr\Model\PUReactionPLC;
 use Politizr\Model\PUReputation;
 use Politizr\Model\PURoleQ;
 use Politizr\Model\PUStatus;
@@ -106,6 +107,7 @@ use Politizr\Model\PUserQuery;
  * @method PUserQuery orderByNbConnectedDays($order = Criteria::ASC) Order by the nb_connected_days column
  * @method PUserQuery orderByIndexedAt($order = Criteria::ASC) Order by the indexed_at column
  * @method PUserQuery orderByNbViews($order = Criteria::ASC) Order by the nb_views column
+ * @method PUserQuery orderByOrganization($order = Criteria::ASC) Order by the organization column
  * @method PUserQuery orderByQualified($order = Criteria::ASC) Order by the qualified column
  * @method PUserQuery orderByValidated($order = Criteria::ASC) Order by the validated column
  * @method PUserQuery orderByNbIdCheck($order = Criteria::ASC) Order by the nb_id_check column
@@ -163,6 +165,7 @@ use Politizr\Model\PUserQuery;
  * @method PUserQuery groupByNbConnectedDays() Group by the nb_connected_days column
  * @method PUserQuery groupByIndexedAt() Group by the indexed_at column
  * @method PUserQuery groupByNbViews() Group by the nb_views column
+ * @method PUserQuery groupByOrganization() Group by the organization column
  * @method PUserQuery groupByQualified() Group by the qualified column
  * @method PUserQuery groupByValidated() Group by the validated column
  * @method PUserQuery groupByNbIdCheck() Group by the nb_id_check column
@@ -260,6 +263,10 @@ use Politizr\Model\PUserQuery;
  * @method PUserQuery leftJoinPUSubscribePNE($relationAlias = null) Adds a LEFT JOIN clause to the query using the PUSubscribePNE relation
  * @method PUserQuery rightJoinPUSubscribePNE($relationAlias = null) Adds a RIGHT JOIN clause to the query using the PUSubscribePNE relation
  * @method PUserQuery innerJoinPUSubscribePNE($relationAlias = null) Adds a INNER JOIN clause to the query using the PUSubscribePNE relation
+ *
+ * @method PUserQuery leftJoinPUReactionPUser($relationAlias = null) Adds a LEFT JOIN clause to the query using the PUReactionPUser relation
+ * @method PUserQuery rightJoinPUReactionPUser($relationAlias = null) Adds a RIGHT JOIN clause to the query using the PUReactionPUser relation
+ * @method PUserQuery innerJoinPUReactionPUser($relationAlias = null) Adds a INNER JOIN clause to the query using the PUReactionPUser relation
  *
  * @method PUserQuery leftJoinPDDebate($relationAlias = null) Adds a LEFT JOIN clause to the query using the PDDebate relation
  * @method PUserQuery rightJoinPDDebate($relationAlias = null) Adds a RIGHT JOIN clause to the query using the PDDebate relation
@@ -386,6 +393,7 @@ use Politizr\Model\PUserQuery;
  * @method PUser findOneByNbConnectedDays(int $nb_connected_days) Return the first PUser filtered by the nb_connected_days column
  * @method PUser findOneByIndexedAt(string $indexed_at) Return the first PUser filtered by the indexed_at column
  * @method PUser findOneByNbViews(int $nb_views) Return the first PUser filtered by the nb_views column
+ * @method PUser findOneByOrganization(boolean $organization) Return the first PUser filtered by the organization column
  * @method PUser findOneByQualified(boolean $qualified) Return the first PUser filtered by the qualified column
  * @method PUser findOneByValidated(boolean $validated) Return the first PUser filtered by the validated column
  * @method PUser findOneByNbIdCheck(int $nb_id_check) Return the first PUser filtered by the nb_id_check column
@@ -443,6 +451,7 @@ use Politizr\Model\PUserQuery;
  * @method array findByNbConnectedDays(int $nb_connected_days) Return PUser objects filtered by the nb_connected_days column
  * @method array findByIndexedAt(string $indexed_at) Return PUser objects filtered by the indexed_at column
  * @method array findByNbViews(int $nb_views) Return PUser objects filtered by the nb_views column
+ * @method array findByOrganization(boolean $organization) Return PUser objects filtered by the organization column
  * @method array findByQualified(boolean $qualified) Return PUser objects filtered by the qualified column
  * @method array findByValidated(boolean $validated) Return PUser objects filtered by the validated column
  * @method array findByNbIdCheck(int $nb_id_check) Return PUser objects filtered by the nb_id_check column
@@ -567,7 +576,7 @@ abstract class BasePUserQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `id`, `uuid`, `p_u_status_id`, `p_l_city_id`, `provider`, `provider_id`, `nickname`, `realname`, `username`, `username_canonical`, `email`, `email_canonical`, `enabled`, `salt`, `password`, `last_login`, `locked`, `expired`, `expires_at`, `confirmation_token`, `password_requested_at`, `credentials_expired`, `credentials_expire_at`, `roles`, `last_activity`, `file_name`, `back_file_name`, `copyright`, `gender`, `firstname`, `name`, `birthday`, `subtitle`, `biography`, `website`, `twitter`, `facebook`, `phone`, `newsletter`, `last_connect`, `nb_connected_days`, `indexed_at`, `nb_views`, `qualified`, `validated`, `nb_id_check`, `online`, `homepage`, `support_group`, `banned`, `banned_nb_days_left`, `banned_nb_total`, `abuse_level`, `created_at`, `updated_at`, `slug` FROM `p_user` WHERE `id` = :p0';
+        $sql = 'SELECT `id`, `uuid`, `p_u_status_id`, `p_l_city_id`, `provider`, `provider_id`, `nickname`, `realname`, `username`, `username_canonical`, `email`, `email_canonical`, `enabled`, `salt`, `password`, `last_login`, `locked`, `expired`, `expires_at`, `confirmation_token`, `password_requested_at`, `credentials_expired`, `credentials_expire_at`, `roles`, `last_activity`, `file_name`, `back_file_name`, `copyright`, `gender`, `firstname`, `name`, `birthday`, `subtitle`, `biography`, `website`, `twitter`, `facebook`, `phone`, `newsletter`, `last_connect`, `nb_connected_days`, `indexed_at`, `nb_views`, `organization`, `qualified`, `validated`, `nb_id_check`, `online`, `homepage`, `support_group`, `banned`, `banned_nb_days_left`, `banned_nb_total`, `abuse_level`, `created_at`, `updated_at`, `slug` FROM `p_user` WHERE `id` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -2122,6 +2131,33 @@ abstract class BasePUserQuery extends ModelCriteria
         }
 
         return $this->addUsingAlias(PUserPeer::NB_VIEWS, $nbViews, $comparison);
+    }
+
+    /**
+     * Filter the query on the organization column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterByOrganization(true); // WHERE organization = true
+     * $query->filterByOrganization('yes'); // WHERE organization = true
+     * </code>
+     *
+     * @param     boolean|string $organization The value to use as filter.
+     *              Non-boolean arguments are converted using the following rules:
+     *                * 1, '1', 'true',  'on',  and 'yes' are converted to boolean true
+     *                * 0, '0', 'false', 'off', and 'no'  are converted to boolean false
+     *              Check on string values is case insensitive (so 'FaLsE' is seen as 'false').
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return PUserQuery The current query, for fluid interface
+     */
+    public function filterByOrganization($organization = null, $comparison = null)
+    {
+        if (is_string($organization)) {
+            $organization = in_array(strtolower($organization), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
+        }
+
+        return $this->addUsingAlias(PUserPeer::ORGANIZATION, $organization, $comparison);
     }
 
     /**
@@ -4054,6 +4090,80 @@ abstract class BasePUserQuery extends ModelCriteria
     }
 
     /**
+     * Filter the query by a related PUReactionPLC object
+     *
+     * @param   PUReactionPLC|PropelObjectCollection $pUReactionPLC  the related object to use as filter
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return                 PUserQuery The current query, for fluid interface
+     * @throws PropelException - if the provided filter is invalid.
+     */
+    public function filterByPUReactionPUser($pUReactionPLC, $comparison = null)
+    {
+        if ($pUReactionPLC instanceof PUReactionPLC) {
+            return $this
+                ->addUsingAlias(PUserPeer::ID, $pUReactionPLC->getPUserId(), $comparison);
+        } elseif ($pUReactionPLC instanceof PropelObjectCollection) {
+            return $this
+                ->usePUReactionPUserQuery()
+                ->filterByPrimaryKeys($pUReactionPLC->getPrimaryKeys())
+                ->endUse();
+        } else {
+            throw new PropelException('filterByPUReactionPUser() only accepts arguments of type PUReactionPLC or PropelCollection');
+        }
+    }
+
+    /**
+     * Adds a JOIN clause to the query using the PUReactionPUser relation
+     *
+     * @param     string $relationAlias optional alias for the relation
+     * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+     *
+     * @return PUserQuery The current query, for fluid interface
+     */
+    public function joinPUReactionPUser($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+    {
+        $tableMap = $this->getTableMap();
+        $relationMap = $tableMap->getRelation('PUReactionPUser');
+
+        // create a ModelJoin object for this join
+        $join = new ModelJoin();
+        $join->setJoinType($joinType);
+        $join->setRelationMap($relationMap, $this->useAliasInSQL ? $this->getModelAlias() : null, $relationAlias);
+        if ($previousJoin = $this->getPreviousJoin()) {
+            $join->setPreviousJoin($previousJoin);
+        }
+
+        // add the ModelJoin to the current object
+        if ($relationAlias) {
+            $this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
+            $this->addJoinObject($join, $relationAlias);
+        } else {
+            $this->addJoinObject($join, 'PUReactionPUser');
+        }
+
+        return $this;
+    }
+
+    /**
+     * Use the PUReactionPUser relation PUReactionPLC object
+     *
+     * @see       useQuery()
+     *
+     * @param     string $relationAlias optional alias for the relation,
+     *                                   to be used as main alias in the secondary query
+     * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+     *
+     * @return   \Politizr\Model\PUReactionPLCQuery A secondary query class using the current class as primary query
+     */
+    public function usePUReactionPUserQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+    {
+        return $this
+            ->joinPUReactionPUser($relationAlias, $joinType)
+            ->useQuery($relationAlias ? $relationAlias : 'PUReactionPUser', '\Politizr\Model\PUReactionPLCQuery');
+    }
+
+    /**
      * Filter the query by a related PDDebate object
      *
      * @param   PDDebate|PropelObjectCollection $pDDebate  the related object to use as filter
@@ -5751,6 +5861,23 @@ abstract class BasePUserQuery extends ModelCriteria
         return $this
             ->usePUSubscribePNEQuery()
             ->filterByPNEmail($pNEmail, $comparison)
+            ->endUse();
+    }
+
+    /**
+     * Filter the query by a related PLCity object
+     * using the p_u_reaction_p_l_c table as cross reference
+     *
+     * @param   PLCity $pLCity the related object to use as filter
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return   PUserQuery The current query, for fluid interface
+     */
+    public function filterByPUReactionPLCity($pLCity, $comparison = Criteria::EQUAL)
+    {
+        return $this
+            ->usePUReactionPUserQuery()
+            ->filterByPUReactionPLCity($pLCity, $comparison)
             ->endUse();
     }
 
