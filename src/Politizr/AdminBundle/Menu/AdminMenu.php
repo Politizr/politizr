@@ -140,7 +140,7 @@ class AdminMenu extends AdmingeneratorMenuBuilder
             'Politizr_AdminBundle_PMEmailing_list'
         );
         $this->addLinkRoute(
-            $reputation,
+            $monitoring,
             'Message direct',
             'Politizr_AdminBundle_PDDirect_list'
         );

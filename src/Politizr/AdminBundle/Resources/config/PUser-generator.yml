@@ -65,6 +65,8 @@ params:
             label:          Dernière activité
         p_r_badges:
             label:          Badges
+        organization:
+            label:          Compte Collectivité
         qualified:
             label:          Profil élu
         validated:
@@ -203,7 +205,7 @@ builders:
                     "Rôles":                    [ roles ]
                 "Attributs":
                     "Identifiants":             [ [ id, uuid, slug ] ]
-                    "Type":                     [ qualified ]
+                    "Type":                     [ qualified, organization ]
                     "En ligne":                 [ [ online, homepage] ]
                     "Groupe":                   [ support_group ]
                     "Validé":                   [ validated, nb_id_check ]
@@ -333,7 +335,7 @@ builders:
             title:                              "Visualisation de l'utilisateur {{ PUser.firstname }} {{ PUser.name }}"
             tabs:
                 "Identité":
-                    "Type":                     [ qualified ]
+                    "Type":                     [ qualified, organization ]
                     "Civilité":                 [ [ block_file_name ], [ gender, firstname, name ], [ birthday ], [ block_localization ] ]
                     "Contacts":                 [ [ phone, email ], [ website ], [ twitter, facebook ] ]
                     "Validation IdCheck":       [ block_id_check ]
