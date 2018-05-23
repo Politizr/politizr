@@ -10,6 +10,8 @@
 /bin/
 /composer.phar
 
+/src/Politizr/FrontBundle/Resources/public/images/grp-ariegeTHD/CD09THD.mp4
+
 /web/uploads/
 /web/assetic/js/compiled
 /web/assetic/css/compiled
