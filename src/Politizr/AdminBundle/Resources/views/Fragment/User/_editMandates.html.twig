@@ -1,7 +1,5 @@
-{# beta #}
 {% for formMandate in formMandateViews %}
     <div class="mandateItem myMandate withLoaderInside">
-        {% include 'PolitizrFrontBundle:Navigation\\Xhr:_xhrLocalLoader.html.twig' %}
         <form method="POST" name="formMandateUpdate" id="formMandateUpdate">
             {{ form_errors(formMandate) }}
             <label>Fonction</label>
@@ -21,6 +19,7 @@
                 <br><br>
                 <a class="editMandateDeleteItem btn btn-danger" action="mandateDelete" uuid="{{ formMandate.vars.value.uuid }}"><i class="icon-remove"></i>Supprimer ce mandat</a>
                 <a class="editMandateCreate btn btn-primary" action="mandateUpdate"></i>Mettre à jour</a>
+                <br><br>
             </div>    
             {{ form_rest(formMandate) }}
         </form>

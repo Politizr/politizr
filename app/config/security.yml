@@ -27,6 +27,12 @@ security:
         FOS\UserBundle\Model\UserInterface: sha512
         Politizr\Model\PUser:               sha512
 
+    role_hierarchy:
+        ROLE_CITIZEN:     ROLE_PROFILE_COMPLETED
+        ROLE_ELECTED:     [ ROLE_PROFILE_COMPLETED, ROLE_CITIZEN ]
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SYSTEM:      ROLE_ADMIN
+
     firewalls:
         # Firewall zone admin
         admin_area:

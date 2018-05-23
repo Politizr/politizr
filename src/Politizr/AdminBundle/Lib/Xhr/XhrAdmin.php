@@ -689,7 +689,7 @@ class XhrAdmin
 
         // Rendering
         $newMandate = $this->templating->render(
-            'PolitizrFrontBundle:User:_newMandate.html.twig',
+            'PolitizrAdminBundle:Fragment\\User:_newMandate.html.twig',
             array(
                 'formMandate' => $form->createView(),
                 'user' => $user,
@@ -698,7 +698,7 @@ class XhrAdmin
 
         // Rendering
         $editMandates = $this->templating->render(
-            'PolitizrFrontBundle:User:_editMandates.html.twig',
+            'PolitizrAdminBundle:Fragment\\User:_editMandates.html.twig',
             array(
                 'formMandateViews' => $formMandateViews
             )
@@ -745,7 +745,7 @@ class XhrAdmin
 
         // Rendering
         $editMandates = $this->templating->render(
-            'PolitizrFrontBundle:User:_editMandates.html.twig',
+            'PolitizrAdminBundle:Fragment\\User:_editMandates.html.twig',
             array(
                 'formMandateViews' => $formMandateViews
             )
@@ -783,7 +783,7 @@ class XhrAdmin
 
         // Rendering
         $editMandates = $this->templating->render(
-            'PolitizrFrontBundle:User:_editMandates.html.twig',
+            'PolitizrAdminBundle:Fragment\\User:_editMandates.html.twig',
             array(
                 'formMandateViews' => $formMandateViews
             )
@@ -833,6 +833,7 @@ class XhrAdmin
 
     /**
      * Create new user's moderation + update reputation
+     * @deprecated cf ModerationService
      */
     public function userModeratedNew(Request $request)
     {

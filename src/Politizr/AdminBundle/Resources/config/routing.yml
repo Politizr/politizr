@@ -51,6 +51,12 @@ Politizr_AdminBundle_POrder_mail:
     pattern:  /POrder/{pk}/mail
     defaults: { _controller: PolitizrAdminBundle:POrder/Actions:mail }
 
+# Utilisateurs
+Politizr_AdminBundle_PUser_moderation_update:
+    pattern:  /Puser/{pk}/moderation/update
+    defaults: { _controller: PolitizrAdminBundle:PUser/Actions:moderationUpdate }
+    requirements:
+        _method:        POST
 
 # Débats
 Politizr_AdminBundle_PDDebate_Comments:

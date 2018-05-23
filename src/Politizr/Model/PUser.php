@@ -93,6 +93,26 @@ class PUser extends BasePUser implements UserInterface
     }
 
     /**
+     * Check if profile is active
+     *
+     * @return boolean
+     */
+    public function isActive()
+    {
+        $active = PUserQuery::create()
+                    ->online()
+                    ->filterById($this->getId())
+                    ->count()
+                    ;
+
+        if ($active) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
      *
      */
     public function getFullName()

@@ -106,3 +106,12 @@ services:
             - @politizr.manager.circle
             - @event_dispatcher
             - @logger
+
+    politizr.functional.moderation:
+        class: Politizr\FrontBundle\Lib\Functional\ModerationService
+        arguments:
+            - @event_dispatcher
+            - @politizr.manager.user
+            - @politizr.tools.global
+            - @logger
+

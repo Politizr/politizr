@@ -1,12 +1,5 @@
 {% extends_admingenerated "PolitizrAdminBundle:PUserEdit:index.html.twig" %}
 
-{% block javascripts %}
-    {{ parent() }}
-
-    {# TinyMCE #}
-    {% include "PolitizrAdminBundle::tinymce-full.html.twig" %}
-{% endblock %}
-
 {% block generic_actions_script_container %}
     <script>
         var nbZones = 2;
