@@ -39,7 +39,7 @@
                                 <label class="control-label">Nom</label><br/>
                                 {{ user.name }}<br/><br/>
                                 <label class="control-label">Date de naissance</label><br/>
-                                {{ user.birthday }}<br/><br/>
+                                {{ user.birthday | date() }}<br/><br/>
                             </div>
                             <i class="fa fa-exclamation-triangle" aria-hidden="true">
                                 Ces informations doivent être remplies et valides avant de pouvoir procéder au contrôle de l'identité.
