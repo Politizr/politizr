@@ -204,16 +204,17 @@ builders:
                 "Réputation":
                     "Score":                    [ block_reputation ]
                     "Badges":                   [ badges ]
-                "Abonnement":
-                    "Liste des personnes qui suivent l utilisateur":    [ followers ]
-                    "Liste des personnes que l utilisateur suit":       [ subscribers ]
-                "Rôles":
-                    "Liste des rôles de l utilisateur":                 [ roles ]
+                "Listes":
+                    "Liste des personnes qui suivent":  [ followers ]
+                    "Liste des personnes suivies":      [ subscribers ]
+                    "Liste des organisations":          [ current_organizations ]
+                    "Liste des rôles":                  [ roles ]
                 "Attributs":
                     "Identifiants":             [ [ id, uuid, slug ] ]
                     "État":                     [ online, banned, p_u_status, abuse_level ]
                     "Type":                     [ qualified, organization, validated, nb_id_check, support_group ]
-                    "Dates":                    [ [ last_login, last_activity ], [ created_at, updated_at ], [ indexed_at ] ]
+                    "Abonnements notifications": [ p_n_emails ]
+                    "Dates":                    [ [ created_at, updated_at ], [ last_activity, indexed_at ] ]
             fields:
                 block_file_name:
                     label:                      "Image"
@@ -240,6 +241,23 @@ builders:
                         required:               false
                         class:                  Politizr\Model\PUser
                 #         query:                  \Politizr\Model\PUserQuery::create()->orderByName() 
+                current_organizations:
+                    label:                      Organisations
+                    dbType:                     model
+                    addFormOptions:
+                        multiple:               true
+                        required:               false
+                        property:               title
+                        class:                  Politizr\Model\PQOrganization
+                p_n_emails:
+                    label:                      Notifications mail
+                    dbType:                     model
+                    addFormOptions:
+                        multiple:               true
+                        expanded:               true
+                        required:               false
+                        property:               title
+                        class:                  Politizr\Model\PNEmail
                 uploadedFileName:
                     dbType:                     VARCHAR
                     label:                      Photo
@@ -281,10 +299,6 @@ builders:
                     dbType:                     VARCHAR
                     addFormOptions:
                         mapped:                 false
-                last_login:
-                    label:                      Date de dernière connexion
-                    addFormOptions:
-                        widget:                 single_text
                 last_activity:
                     label:                      Date de dernière activité
                     addFormOptions:
@@ -328,14 +342,29 @@ builders:
                 "Modération":
                     "Situation":                [ banned, abuse_level ]
                     "Historique de l utilisateur":  [ block_moderation_alert_listing ]
+                "Listes":
+                    "Liste des personnes qui suivent":  [ followers ]
+                    "Liste des personnes suivies":      [ subscribers ]
+                    "Liste des organisations":          [ current_organizations ]
+                    "Liste des rôles":                  [ roles ]
                 "Attributs":
                     "Identifiants":             [ [ id, uuid, slug ] ]
                     "État":                     [ active, p_u_status ]
                     "Type":                     [ qualified, organization, validated, nb_id_check, support_group ]
-                    "Dates":                    [ [ last_login, last_activity ], [ created_at, updated_at ], [ indexed_at ] ]
+                    "Dates":                    [ [ created_at, updated_at ], [ last_activity, indexed_at ] ]
                 "Front":
                     "Rendu":                    [ block_front ]
             fields:
+                followers:
+                    credentials:                ROLE_SYSTEM
+                    label:                      Abonnés
+                subscribers:
+                    credentials:                ROLE_SYSTEM
+                    label:                      Abonnements
+                current_organizations:
+                    label:                      Organisations
+                p_n_emails:
+                    label:                      Notifications mail
                 block_file_name:
                     label:                      "Image"
                 block_localization:
@@ -348,8 +377,6 @@ builders:
                     label:                      "Rendu front"
                 nb_id_check:
                     credentials:                ROLE_SYSTEM
-                last_login:
-                    label:                      Date de dernière connexion
                 last_activity:
                     label:                      Date de dernière activité
             actions:

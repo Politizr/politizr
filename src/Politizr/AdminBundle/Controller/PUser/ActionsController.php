@@ -6,6 +6,7 @@ use Admingenerated\PolitizrAdminBundle\BasePUserController\ActionsController as 
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 use Politizr\Constant\PathConstants;
 use Politizr\Constant\QualificationConstants;
@@ -119,7 +120,6 @@ class ActionsController extends BaseActionsController
         if ($form->isSubmitted() && $form->isValid()) {
             try {
                 $data = $form->getData();
-                dump($data);
                 $moderationType = $data['p_m_moderation_type'];
 
                 $this->get('politizr.functional.moderation')->archiveUser($user);
@@ -131,7 +131,6 @@ class ActionsController extends BaseActionsController
                     $user->getId(),
                     $data['score_evolution']
                 );
-                dump($userModerated);
 
                 $this->get('politizr.functional.moderation')->updateUserReputation($user, $data['score_evolution']);
 
@@ -197,5 +196,88 @@ class ActionsController extends BaseActionsController
         }
 
         return new RedirectResponse($this->generateUrl("Politizr_AdminBundle_PUser_edit", array('pk' => $pk)));
+    }
+
+    /**
+     * XHR Dropzone file upload
+     *
+     * @param $request
+     * @param $pk
+     * @return JsonResponse
+     */
+    public function filenameUploadAction(Request $request, $pk)
+    {
+        try {
+            $user = PUserQuery::create()->findPk($pk);
+            if (!$user) {
+                throw new InconsistentDataException('PUserQuery pk-'.$pk.' not found.');
+            }
+
+            // Chemin des images
+            $uploadWebPath = PathConstants::USER_UPLOAD_WEB_PATH;
+            $path = $this->get('kernel')->getRootDir() . '/../web' . $uploadWebPath;
+
+            // Appel du service d'upload ajax
+            $fileName = $this->get('politizr.tools.global')->uploadXhrImage(
+                $request,
+                'file',
+                $path,
+                250,
+                250
+            );
+
+            $user->setFileName($fileName);
+            $user->save();
+
+            // Rendering
+            $html = $this->get('templating')->render(
+                'PolitizrAdminBundle:Fragment:_image.html.twig',
+                array(
+                    'path' => $uploadWebPath . $fileName,
+                )
+            );
+
+            $data = ['success' => true, 'html' => $html, 'path' => $uploadWebPath . $fileName, 'filename' => $fileName];
+        } catch(\Exception $e) {
+            $data = ['success' => false, 'error' => $e->getMessage()];
+            return new JsonResponse($data, 500);
+        }
+
+        return new JsonResponse($data);
+    }
+
+    /**
+     * XHR Dropzone file upload delete
+     *
+     * @param $request
+     * @param $pk
+     * @return JsonResponse
+     */
+    public function filenameDeleteAction(Request $request, $pk)
+    {
+        try {
+            $user = PUserQuery::create()->findPk($pk);
+            if (!$user) {
+                throw new InconsistentDataException('PUserQuery pk-'.$pk.' not found.');
+            }
+
+            // File syst deletion
+            $fileName = $user->getFileName();
+            if ($fileName) {
+                $uploadWebPath = PathConstants::USER_UPLOAD_WEB_PATH;
+                $path = $this->get('kernel')->getRootDir() . '/../web' . $uploadWebPath;
+                unlink($path . $fileName);
+            }
+
+            $user->setFileName(null);
+            $user->save();
+
+            $data = ['success' => true];
+        } catch(\Exception $e) {
+            $data = ['success' => false, 'error' => 'Une erreur s\'est produite! Msg = '.$e->getMessage()];
+            return new JsonResponse($data, 500);
+        }
+
+        return new JsonResponse($data);
     }
 }

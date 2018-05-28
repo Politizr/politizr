@@ -4,12 +4,19 @@
 {% block form_row_block_file_name %}
     <div class="form-group">
         <label class="control-label">Image</label>
-        <div class="show-image">
-            {% if PUser.FileName %}
-                {% include 'PolitizrAdminBundle:Fragment:_image.html.twig' with {'path': constant('Politizr\\Constant\\PathConstants::USER_UPLOAD_WEB_PATH') ~ PUser.FileName} %}
-            {% else %}
-                Aucune image
-            {% endif %}
+        <div id="dropzone" class="dropzone" path="{{ path('Politizr_AdminBundle_PUser_filename_upload', {'pk': PUser.id}) }}" deletePath="{{ path('Politizr_AdminBundle_PUser_filename_delete', {'pk': PUser.id}) }}" {% if PUser.FileName %}currentFileName="{{ PUser.FileName }}" uploadPath="{{ constant('Politizr\\Constant\\PathConstants::USER_UPLOAD_WEB_PATH') }}" fileSize="{{ PUser | userFileSize }}"{% endif %}></div>
+        <div id="dz-preview-container">
+        </div>
+        <div class="dz-preview dz-file-preview">
+          <div class="dz-details">
+            <div class="dz-filename"><span data-dz-name></span></div>
+            <div class="dz-size" data-dz-size></div>
+            <img data-dz-thumbnail />
+          </div>
+          <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+          <div class="dz-success-mark"><span>✔</span></div>
+          <div class="dz-error-mark"><span>✘</span></div>
+          <div class="dz-error-message"><span data-dz-errormessage></span></div>
         </div>
     </div>
 {% endblock %}

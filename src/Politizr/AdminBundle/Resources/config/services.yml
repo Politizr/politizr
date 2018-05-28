@@ -90,6 +90,7 @@ services:
     politzr_admin.twig.user:
         class: Politizr\AdminBundle\Twig\PolitizrAdminUserExtension
         arguments:
+            - @kernel
             - @politizr.functional.document
             - @politizr.tools.global
             - @form.factory

@@ -58,6 +58,16 @@ Politizr_AdminBundle_PUser_moderation_update:
     requirements:
         _method:        POST
 
+Politizr_AdminBundle_PUser_filename_upload:
+    pattern:  /Puser/{pk}/filename/upload
+    defaults: { _controller: PolitizrAdminBundle:PUser/Actions:filenameUpload }
+    requirements:
+        _method:        POST
+
+Politizr_AdminBundle_PUser_filename_delete:
+    pattern:  /Puser/{pk}/filename/delete
+    defaults: { _controller: PolitizrAdminBundle:PUser/Actions:filenameDelete }
+
 # Débats
 Politizr_AdminBundle_PDDebate_Comments:
     pattern:  /PDDebate/{pk}/comments

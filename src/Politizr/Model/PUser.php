@@ -649,6 +649,27 @@ class PUser extends BasePUser implements UserInterface
     // ************************************************************************************ //
 
     /**
+     *
+     * @param PUser $user
+     * @return PUser
+     */
+    public function addCurrentOrganization(PQOrganization $organization)
+    {
+        return parent::addPUCurrentQOPQOrganization($organization);
+    }
+
+    /**
+     *
+     * @param PUser $user
+     * @return PUser
+     */
+    public function removeCurrentOrganization(PQOrganization $organization)
+    {
+        return parent::removePUCurrentQOPQOrganization($organization);
+    }
+
+
+    /**
      * User's current organizations
      *
      * @param int $typeId Organization type

@@ -30,6 +30,32 @@
     </div>
 {% endblock %}
 
+{# Listes #}
+{% block show_column_followers %}
+    <ul>
+        {% for user in PUser.followers %}
+            <li>{{ user }}</li>
+        {% endfor %}
+    </ul>
+{% endblock show_column_followers %}
+
+{% block show_column_subscribers %}
+    <ul>
+        {% for user in PUser.subscribers %}
+            <li>{{ user }}</li>
+        {% endfor %}
+    </ul>
+{% endblock show_column_subscribers %}
+
+{% block show_column_current_organizations %}
+    <ul>
+        {% for organization in PUser.currentOrganizations %}
+            <li>{{ organization.title }}</li>
+        {% endfor %}
+    </ul>
+{% endblock show_column_current_organizations %}
+
+
 {# Block front link #}
 {% block show_column_block_front %}
     {% if PUser.online %}
@@ -38,25 +64,3 @@
         Hors ligne
     {% endif %}
 {% endblock %}
-
-
-{% block object_actions_script_container %}
-    {# tag js actions & lib #}
-    <script>
-        var nbZones = 2;
-        var service = 'admin';
-        var xhrRoute = ADMIN_ROUTE_TAG_LISTING;
-
-        var uploadZones = 2;
-    </script>
-
-    <script type="text/javascript" src="{{ asset('bundles/politizrfront/js/politizr/autocomplete-tools') }}"></script>    
-    <script type="text/javascript" src="{{ asset('bundles/politizrfront/js/politizr/tag/editTags.js') }}"></script>  
-
-    {# upload js #}
-    <script type="text/javascript" src="{{ asset('bundles/politizradmin/js/jquery.form.min.js') }}"></script>  
-    <script type="text/javascript" src="{{ asset('bundles/politizradmin/js/politizr/uploadImage.js') }}"></script>  
-
-    {# moderation js #}
-    <script type="text/javascript" src="{{ asset('bundles/politizradmin/js/politizr/moderation/notification.js') }}"></script>
-{% endblock object_actions_script_container %}
