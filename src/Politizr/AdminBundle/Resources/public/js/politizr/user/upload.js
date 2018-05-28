@@ -1,15 +1,15 @@
 Dropzone.autoDiscover = false;
 var filePreviewHtml = $('.dz-file-preview').html();
-$('.dz-file-preview').remove();
+$('.dz-file-preview').hide();
 $("#dropzone").dropzone({
     paramName: "file",
     maxFiles: 1,
     acceptedFiles: 'image/*',
     url: $('#dropzone').attr('path'),
-    addRemoveLinks: true,
-    dictDefaultMessage: 'Télécharger une image',
-    dictCancelUpload: 'Annuler',
-    dictRemoveFile: 'Supprimer',
+    // addRemoveLinks: true,
+    // dictDefaultMessage: 'Télécharger une image',
+    // dictCancelUpload: 'Annuler',
+    // dictRemoveFile: 'Supprimer',
     previewTemplate: filePreviewHtml,
     previewsContainer: "#dz-preview-container",
     init: function() {
@@ -17,6 +17,9 @@ $("#dropzone").dropzone({
             this.emit('thumbnail', file, response.path);
             // upd file name with new one (for removedfile)
             file.previewElement.id = response.filename;
+
+            $('.dz-progress').hide();
+            $('.uploadLink').hide();
         });
         this.on("error", function(file, response) {
             msg = response;
@@ -29,6 +32,8 @@ $("#dropzone").dropzone({
             $(file.previewElement).remove();
             $('#dropzone').removeClass('dz-max-files-reached');
             this.removeFile(file);
+
+            $('.dz-progress').hide();
         });
         this.on("removedfile", function(file) {
             // upd file name (rename in upload process)
@@ -37,9 +42,7 @@ $("#dropzone").dropzone({
                 url: $('#dropzone').attr('deletePath'),
             });
             $('#dropzone').removeClass('dz-max-files-reached');
-        });
-        this.on("maxfilesreached", function(file) {
-            // console.log('maxfilesreached');
+            $('.uploadLink').show();
         });
         // preload existing file image cf https://github.com/enyo/dropzone/wiki/FAQ#how-to-show-files-already-stored-on-server
         var currentFileName = $('#dropzone').attr('currentFileName');
@@ -58,6 +61,8 @@ $("#dropzone").dropzone({
 
             // @info pb w. new upload, bad maxFiles management from dropzone
             $('#dropzone').addClass('dz-max-files-reached');
+            $('.dz-progress').hide();
+            $('.uploadLink').hide();
         }
     }
 });
