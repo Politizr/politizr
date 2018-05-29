@@ -36,6 +36,8 @@ use Politizr\AdminBundle\Form\Type\PMUserModeratedType;
 use Politizr\AdminBundle\Form\Type\AdminPUserLocalizationType;
 use Politizr\AdminBundle\Form\Type\PUsersFiltersType;
 use Politizr\AdminBundle\Form\Type\PCirclePUsersSelectListType;
+use Politizr\AdminBundle\Form\Type\PDReaction\SelectDebateType;
+use Politizr\AdminBundle\Form\Type\PDReaction\SelectReactionType;
 
 use Politizr\FrontBundle\Form\Type\PUMandateType;
 
@@ -1207,10 +1209,6 @@ class XhrAdmin
         return true;
     }
 
-    /* ######################################################################################################## */
-    /*                                               OPERATION                                                  */
-    /* ######################################################################################################## */
-
     /**
      * Apply a filter to a circle's users select list
      */
@@ -1252,6 +1250,61 @@ class XhrAdmin
         // Renvoi de l'ensemble des blocs HTML maj
         return array(
             'html' => $html
+        );
+    }
+
+    /* ######################################################################################################## */
+    /*                                               DOCUMENT                                                   */
+    /* ######################################################################################################## */
+
+    /**
+     * Update debate form list by topic
+     */
+    public function updateFormDebatesByTopic(Request $request)
+    {
+        $this->logger->info('*** updateFormDebatesByTopic');
+
+        $topicId = $request->get('topicId');
+        if (empty($topicId)) {
+            $topicId = null;
+        }
+
+        $form = $this->formFactory->create(new SelectDebateType($topicId));
+        $formView = $form->createView();
+
+        $selectRendering = $this->templating->render(
+            'PolitizrAdminBundle:PDReactionNew:_p_d_debate.html.twig',
+            array(
+                'form' => $form->createView()
+            )
+        );
+
+        return array(
+            'p_d_debate' => $selectRendering
+        );
+    }
+
+    /**
+     * Update reaction form list by debate
+     */
+    public function updateFormReactionsByDebate(Request $request)
+    {
+        $this->logger->info('*** updateFormReactionsByDebate');
+
+        $debateId = $request->get('debateId');
+
+        $form = $this->formFactory->create(new SelectReactionType($debateId));
+        $formView = $form->createView();
+
+        $selectRendering = $this->templating->render(
+            'PolitizrAdminBundle:PDReactionNew:_parent_reaction.html.twig',
+            array(
+                'form' => $form->createView()
+            )
+        );
+
+        return array(
+            'parent_reaction' => $selectRendering
         );
     }
 }

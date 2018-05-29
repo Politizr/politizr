@@ -11,6 +11,8 @@ use Politizr\Constant\TagConstants;
 use Politizr\Model\PDDebate;
 use Politizr\Model\PDReaction;
 use Politizr\Model\PDMedia;
+use Politizr\Model\PMDebateHistoric;
+use Politizr\Model\PMReactionHistoric;
 
 use Politizr\Model\PDRTaggedT;
 
@@ -2202,5 +2204,79 @@ GROUP BY p_d_debate_id
         $media->save();
 
         return $media;
+    }
+
+    /**
+     * Create an archive of input debate
+     *
+     * @param PDDebate $debate
+     * @return PMDebateHistoric
+     */
+    public function createDebateArchive(PDDebate $debate) {
+        if ($debate == null) {
+            return null;
+        }
+
+        $mDebate = new PMDebateHistoric();
+
+        $mDebate->setPUserId($debate->getPUserId());
+        $mDebate->setPDDebateId($debate->getId());
+        $mDebate->setPObjectId($debate->getId());
+        $mDebate->setTitle($debate->getTitle());
+        $mDebate->setDescription($debate->getDescription());
+        $mDebate->setCopyright($debate->getCopyright());
+
+        // File copy
+        // @deprecated w. Media management
+        if ($debate->getFileName()) {
+            $destFileName = $this->get('politizr.tools.global')->copyFile(
+                $this->get('kernel')->getRootDir() .
+                PathConstants::KERNEL_PATH_TO_WEB .
+                PathConstants::DEBATE_UPLOAD_WEB_PATH .
+                $debate->getFileName()
+            );
+            $mDebate->setFileName($destFileName);
+        }
+
+        $mDebate->save();
+
+        return $mDebate;
+    }
+
+    /**
+     * Create an archive of input reaction
+     *
+     * @param PDReaction $reaction
+     * @return PMReactionHistoric
+     */
+    public function createReactionArchive(PDReaction $reaction) {
+        if ($reaction == null) {
+            return null;
+        }
+
+        $mReaction = new PMReactionHistoric();
+
+        $mReaction->setPUserId($reaction->getPUserId());
+        $mReaction->setPDReactionId($reaction->getId());
+        $mReaction->setPObjectId($reaction->getId());
+        $mReaction->setTitle($reaction->getTitle());
+        $mReaction->setDescription($reaction->getDescription());
+        $mReaction->setCopyright($reaction->getCopyright());
+
+        // File copy
+        // @deprecated w. Media management
+        if ($reaction->getFileName()) {
+            $destFileName = $this->get('politizr.tools.global')->copyFile(
+                $this->get('kernel')->getRootDir() .
+                PathConstants::KERNEL_PATH_TO_WEB .
+                PathConstants::REACTION_UPLOAD_WEB_PATH .
+                $reaction->getFileName()
+            );
+            $mReaction->setFileName($destFileName);
+        }
+
+        $mReaction->save();
+
+        return $mReaction;
     }
 }

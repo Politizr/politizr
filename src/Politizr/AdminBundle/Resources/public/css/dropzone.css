@@ -45,3 +45,8 @@
   left: 50%;
   margin-left: -27px;
 }
+
+.dz-max-files-reached {
+      pointer-events: none;
+      cursor: default;
+}

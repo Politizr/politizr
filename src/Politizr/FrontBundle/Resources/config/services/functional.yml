@@ -112,6 +112,7 @@ services:
         arguments:
             - @event_dispatcher
             - @politizr.manager.user
+            - @politizr.manager.document
             - @politizr.tools.global
             - @logger
 

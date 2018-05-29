@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 use Propel\Bundle\PropelBundle\Form\Type\ModelType;
 
@@ -17,32 +18,32 @@ use Symfony\Component\Validator\Constraints\Range;
 
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-use Politizr\Model\PUser;
+use Politizr\Model\PDocumentInterface;
 
 use Politizr\Model\PMModerationTypeQuery;
 
 /**
- * User moderation
+ * Document moderation
  * beta
  *
  * @author Lionel Bouzonville
  */
-class AdminPUserModerationType extends AbstractType
+class AdminPDocumentModerationType extends AbstractType
 {
-    protected $user;
+    protected $document;
 
     /**
      *
      */
-    public function __construct(PUser $user)
+    public function __construct(PDocumentInterface $document)
     {
-        $this->user = $user;
+        $this->document = $document;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('p_user_id', HiddenType::class, array(
-            'data' => $this->user->getId(),
+        $builder->add('document_id', HiddenType::class, array(
+            'data' => $this->document->getId(),
         ));
 
         // Moderation type list
@@ -71,40 +72,27 @@ class AdminPUserModerationType extends AbstractType
             'required' => false,
         ));
 
-        $builder->add('firstname', TextType::class, array(
-            'label'    => 'Prénom',
-            'required' => false,
-            'data' => $this->user->getFirstname(),
+        $builder->add('moderation_level', ChoiceType::class, array(
+            'label'    => 'Niveau',
+            'required' => true,
+            'choices'  => array(
+                'Modération partielle' => 1,
+                'Modération totale' => 2,
+            ),
+            'choices_as_values' => true,
         ));
 
-        $builder->add('name', TextType::class, array(
-            'label'    => 'Nom',
+        $builder->add('title', TextType::class, array(
+            'label'    => 'Titre',
             'required' => false,
-            'data' => $this->user->getName(),
+            'data' => $this->document->getTitle(),
         ));
 
-        $builder->add('biography', TextareaType::class, array(
-            'label'    => 'Biographie',
+        $builder->add('description', TextareaType::class, array(
+            'label'    => 'Description',
             'required' => false,
-            'data' => $this->user->getBiography(),
-        ));
-
-        $builder->add('website', TextType::class, array(
-            'label'    => 'Site web',
-            'required' => false,
-            'data' => $this->user->getWebsite(),
-        ));
-
-        $builder->add('twitter', TextType::class, array(
-            'label'    => 'Twitter',
-            'required' => false,
-            'data' => $this->user->getTwitter(),
-        ));
-
-        $builder->add('facebook', TextType::class, array(
-            'label'    => 'Facebook',
-            'required' => false,
-            'data' => $this->user->getFacebook(),
+            'data' => $this->document->getDescription(),
+            'attr' => array('class' => 'tinymce'),
         ));
 
         $builder->add('send_email', CheckboxType::class, array(
@@ -119,6 +107,6 @@ class AdminPUserModerationType extends AbstractType
      */
     public function getName()
     {
-        return 'admin_user_moderation';
+        return 'admin_document_moderation';
     }
 }

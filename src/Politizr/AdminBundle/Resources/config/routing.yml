@@ -30,13 +30,6 @@ AdminXhrGeneric:
         xhrRoute:       ".+"
         xhrType:        \d
 
-# ADMIN DEDICATED XHR
-Politizr_AdminBundle_New_UpdPDDebate:
-    pattern:  /PDReaction/xhr/updatePDDebate.json
-    defaults: { _controller: PolitizrAdminBundle:PDReaction\Actions:updatePDReaction }
-    requirements:
-        _method:        POST
-
 # Accueil
 PolitizrAdminHomepage:
     pattern:  /
@@ -73,15 +66,22 @@ Politizr_AdminBundle_PDDebate_Comments:
     pattern:  /PDDebate/{pk}/comments
     defaults: { _controller: PolitizrAdminBundle:PDDebate/Actions:comments }
 
+Politizr_AdminBundle_PDDebate_moderation_update:
+    pattern:  /PDDebate/{pk}/moderation/update
+    defaults: { _controller: PolitizrAdminBundle:PDDebate/Actions:moderationUpdate }
+    requirements:
+        _method:        POST
 
 # Réactions
-# Politizr_AdminBundle_PDReaction_NewNode:
-#     pattern:  /PDReaction/{pk}/new_node
-#     defaults: { _controller: PolitizrAdminBundle:PDReaction/Actions:newNode }
-
 Politizr_AdminBundle_PDReaction_Comments:
     pattern:  /PDReaction/{pk}/comments
     defaults: { _controller: PolitizrAdminBundle:PDReaction/Actions:comments }
+
+Politizr_AdminBundle_PDReaction_moderation_update:
+    pattern:  /PDReaction/{pk}/moderation/update
+    defaults: { _controller: PolitizrAdminBundle:PDReaction/Actions:moderationUpdate }
+    requirements:
+        _method:        POST
 
 # Archivage
 Politizr_AdminBundle_PDDComment_archive:

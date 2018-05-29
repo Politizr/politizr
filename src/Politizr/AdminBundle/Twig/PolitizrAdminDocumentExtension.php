@@ -77,6 +77,11 @@ class PolitizrAdminDocumentExtension extends \Twig_Extension
                 array($this, 'adminDebateReactions'),
                 array('is_safe' => array('html'), 'needs_environment' => true)
             ),
+            'adminReactionReactions'  => new \Twig_SimpleFunction(
+                'adminReactionReactions',
+                array($this, 'adminReactionReactions'),
+                array('is_safe' => array('html'), 'needs_environment' => true)
+            ),
             'adminDebateComments'  => new \Twig_SimpleFunction(
                 'adminDebateComments',
                 array($this, 'adminDebateComments'),
@@ -206,7 +211,7 @@ class PolitizrAdminDocumentExtension extends \Twig_Extension
     /**
      * Display debate's reactions
      *
-     * @param PDDDebate $debate
+     * @param PDDebate $debate
      * @return string
      */
     public function adminDebateReactions(\Twig_Environment $env, PDDebate $debate)
@@ -226,6 +231,28 @@ class PolitizrAdminDocumentExtension extends \Twig_Extension
         return $html;
     }
 
+    /**
+     * Display reaction's reactions
+     *
+     * @param PDReaction $reaction
+     * @return string
+     */
+    public function adminReactionReactions(\Twig_Environment $env, PDReaction $reaction)
+    {
+        $this->logger->info('*** adminReactionReactions');
+        // $this->logger->info('$pUser = '.print_r($pUser, true));
+
+        // Construction du rendu du tag
+        $html = $env->render(
+            'PolitizrAdminBundle:Fragment\\Reaction:_reactionReactions.html.twig',
+            array(
+                'reaction' => $reaction,
+                'reactions' => $reaction->getDescendantsReactions(true, true),
+            )
+        );
+
+        return $html;
+    }
 
     /**
      * Debate's comments

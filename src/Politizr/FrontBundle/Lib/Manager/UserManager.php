@@ -1291,7 +1291,6 @@ LIMIT :offset, :limit
         $mUser->setCopyright($user->getCopyright());
 
         // File copy
-        // @deprecated w. Media management
         if ($user->getFileName()) {
             $destFileName = $this->get('politizr.tools.global')->copyFile(
                 $this->get('kernel')->getRootDir() .

@@ -10,6 +10,8 @@ use Politizr\Constant\UserConstants;
 use Politizr\Constant\ReputationConstants;
 
 use Politizr\Model\PUser;
+use Politizr\Model\PDDebate;
+use Politizr\Model\PDReaction;
 use Politizr\Model\PUReputation;
 use Politizr\Model\PMUserModerated;
 
@@ -24,6 +26,7 @@ class ModerationService
     private $eventDispatcher;
 
     private $userManager;
+    private $documentManager;
 
     private $globalTools;
 
@@ -33,18 +36,21 @@ class ModerationService
      *
      * @param @event_dispatcher
      * @param @politizr.manager.user
+     * @param @politizr.manager.document
      * @param @politizr.tools.global
      * @param @logger
      */
     public function __construct(
         $eventDispatcher,
         $userManager,
+        $documentManager,
         $globalTools,
         $logger
     ) {
         $this->eventDispatcher = $eventDispatcher;
 
         $this->userManager = $userManager;
+        $this->documentManager = $documentManager;
 
         $this->globalTools = $globalTools;
 
@@ -184,5 +190,43 @@ class ModerationService
         $user->save();
 
         return $user;
+    }
+
+    // **************************************************************************************** //
+    //                                    DOCUMENT MODERATION                                   //
+    // **************************************************************************************** //
+
+    /**
+     * Create an archive of input debate
+     *
+     * @param PDDebate $debate
+     * @return PMUserHistoric
+     */
+    public function archiveDebate(PDDebate $debate)
+    {
+        if (!$debate) {
+            throw new InconsistentDataException('Debate null');
+        }
+        
+        $mDebate = $this->documentManager->createDebateArchive($debate);
+
+        return $mDebate;
+    }
+
+    /**
+     * Create an archive of input reaction
+     *
+     * @param PDReaction $reaction
+     * @return PMUserHistoric
+     */
+    public function archiveReaction(PDReaction $reaction)
+    {
+        if (!$reaction) {
+            throw new InconsistentDataException('Reaction null');
+        }
+        
+        $mReaction = $this->documentManager->createReactionArchive($reaction);
+
+        return $mReaction;
     }
 }

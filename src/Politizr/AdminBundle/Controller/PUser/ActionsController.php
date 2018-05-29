@@ -12,8 +12,6 @@ use Politizr\Constant\PathConstants;
 use Politizr\Constant\QualificationConstants;
 use Politizr\Constant\ObjectTypeConstants;
 
-use Politizr\Model\PMUserHistoric;
-
 use Politizr\AdminBundle\Form\Type\AdminPUserLocalizationType;
 use Politizr\AdminBundle\Form\Type\AdminPUserModerationType;
 

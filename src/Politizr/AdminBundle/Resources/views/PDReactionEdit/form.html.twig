@@ -1,45 +1,8 @@
 {% extends_admingenerated "PolitizrAdminBundle:PDReactionEdit:form.html.twig" %}
 
-{# Image block #}
-{% block form_row_block_file_name %}
-    <div class="form-group">
-        <label class="controle-label">Image</label>
-        <div class="show-image">
-            {% if PDReaction.FileName %}
-                {% include 'PolitizrAdminBundle:Fragment:_image.html.twig' with {'path': constant('Politizr\\Constant\\PathConstants::REACTION_UPLOAD_WEB_PATH') ~ PDReaction.fileName} %}
-            {% else %}
-                Aucune image
-            {% endif %}
-        </div>
-        <i>Note: gestion de l'upload depuis l'écran "Montrer"</i>
-    </div>
-{% endblock %}
-
 {# Bloc tags #}
 {% block form_row_block_tags %}
     {{ adminReactionTags(PDReaction, null, 1, true) }}
-{% endblock %}
-
-{# Bloc loc #}
-{% block form_row_block_loc %}
-    <div class="form-group">
-        <label class="control-label">Localisation</label>
-        <div>
-            {% if (PDReaction.PLCityId) %}
-                {{ PDReaction.PLCity }}
-            {% elseif (PDReaction.PLDepartmentId) %}
-                {{ PDReaction.PLDepartment }}
-            {% elseif (PDReaction.PLRegionId) %}
-                {{ PDReaction.PLRegion }}
-            {% elseif (PDReaction.PLCountryId) %}
-                {{ PDReaction.PLCountry }}
-            {% else %}
-                Aucune localisation renseignée
-            {% endif %}
-            <br/>
-            <i>Note: gestion de la localisation depuis l'écran "Montrer"</i>
-        </div>
-    </div>
 {% endblock %}
 
 {# Bloc notifications #}
