@@ -12,6 +12,8 @@ use Politizr\Constant\ReputationConstants;
 use Politizr\Model\PUser;
 use Politizr\Model\PDDebate;
 use Politizr\Model\PDReaction;
+use Politizr\Model\PDDComment;
+use Politizr\Model\PDRComment;
 use Politizr\Model\PUReputation;
 use Politizr\Model\PMUserModerated;
 
@@ -228,5 +230,39 @@ class ModerationService
         $mReaction = $this->documentManager->createReactionArchive($reaction);
 
         return $mReaction;
+    }
+
+    /**
+     * Create an archive of input debate's comment
+     *
+     * @param PDDComment $comment
+     * @return PMDCommentHistoric
+     */
+    public function archiveDComment(PDDComment $comment)
+    {
+        if (!$comment) {
+            throw new InconsistentDataException('Comment null');
+        }
+        
+        $mComment = $this->documentManager->createDCommentArchive($comment);
+
+        return $mComment;
+    }
+
+    /**
+     * Create an archive of input reaction's comment
+     *
+     * @param PDRComment $comment
+     * @return PMDCommentHistoric
+     */
+    public function archiveRComment(PDRComment $comment)
+    {
+        if (!$comment) {
+            throw new InconsistentDataException('Comment null');
+        }
+        
+        $mComment = $this->documentManager->createRCommentArchive($comment);
+
+        return $mComment;
     }
 }

@@ -94,6 +94,18 @@ Politizr_AdminBundle_PDMedia_filename_delete:
     pattern:  /PDMedia/{pk}/filename/delete
     defaults: { _controller: PolitizrAdminBundle:PDMedia/Actions:filenameDelete }
 
+# Comments
+Politizr_AdminBundle_PDDComment_moderation_update:
+    pattern:  /PDDComment/{pk}/moderation/update
+    defaults: { _controller: PolitizrAdminBundle:PDDComment/Actions:moderationUpdate }
+    requirements:
+        _method:        POST
+
+Politizr_AdminBundle_PDRComment_moderation_update:
+    pattern:  /PDRComment/{pk}/moderation/update
+    defaults: { _controller: PolitizrAdminBundle:PDRComment/Actions:moderationUpdate }
+    requirements:
+        _method:        POST
 
 # Archivage
 Politizr_AdminBundle_PDDComment_archive:

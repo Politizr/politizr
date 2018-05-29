@@ -10,9 +10,13 @@ use Politizr\Constant\TagConstants;
 
 use Politizr\Model\PDDebate;
 use Politizr\Model\PDReaction;
+use Politizr\Model\PDDComment;
+use Politizr\Model\PDRComment;
 use Politizr\Model\PDMedia;
 use Politizr\Model\PMDebateHistoric;
 use Politizr\Model\PMReactionHistoric;
+use Politizr\Model\PMDCommentHistoric;
+use Politizr\Model\PMRCommentHistoric;
 
 use Politizr\Model\PDRTaggedT;
 
@@ -2278,5 +2282,51 @@ GROUP BY p_d_debate_id
         $mReaction->save();
 
         return $mReaction;
+    }
+
+    /**
+     * Create an archive of input comment
+     *
+     * @param PDDComment $comment
+     * @return PMDCommentHistoric
+     */
+    public function createDCommentArchive(PDDComment $comment) {
+        if ($comment == null) {
+            return null;
+        }
+
+        $mComment = new PMDCommentHistoric();
+
+        $mComment->setPUserId($comment->getPUserId());
+        $mComment->setPDDCommentId($comment->getId());
+        $mComment->setPObjectId($comment->getId());
+        $mComment->setDescription($comment->getDescription());
+
+        $mComment->save();
+
+        return $mComment;
+    }
+
+    /**
+     * Create an archive of input comment
+     *
+     * @param PDRComment $comment
+     * @return PMDCommentHistoric
+     */
+    public function createRCommentArchive(PDRComment $comment) {
+        if ($comment == null) {
+            return null;
+        }
+
+        $mComment = new PMRCommentHistoric();
+
+        $mComment->setPUserId($comment->getPUserId());
+        $mComment->setPDRCommentId($comment->getId());
+        $mComment->setPObjectId($comment->getId());
+        $mComment->setDescription($comment->getDescription());
+
+        $mComment->save();
+
+        return $mComment;
     }
 }
