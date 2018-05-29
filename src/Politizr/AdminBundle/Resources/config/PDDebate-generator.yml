@@ -264,10 +264,11 @@ builders:
                 "Contenu":
                     "Auteur":                   [ [ block_p_user, published_by ] ]
                     "Texte":                    [ title, description ]
+                    "Médias":                   [ block_p_d_medias ]
                 "Contexte":
                     "Publications":             [ [ block_p_c_topic, p_e_operation ] ]
                     "Liste des thématiques":    [ block_tags ]
-                    "Réactions":                [ block_reactions ]
+                    "Réponses":                [ block_reactions ]
                     "Commentaires":             [ block_comments ]
                 "Modération":
                     "Situation":                [ moderated, moderated_partial ]
@@ -285,14 +286,14 @@ builders:
                 block_want_boost:
                     credentials:                ROLE_SYSTEM
                     label:                      "Boost demandé"
-                block_file_name:
-                    label:                      "Image"
+                block_p_d_medias:
+                    label:                      "Images"
                 block_p_user:
                     label:                      "Auteur"
                 block_p_c_topic:
                     label:                      "Discussions"
                 block_reactions:
-                    label:                      "Réactions"
+                    label:                      "Réponses"
                 block_comments:
                     label:                      "Commentaires"
                 block_tags:

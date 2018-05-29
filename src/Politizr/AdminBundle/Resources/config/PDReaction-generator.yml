@@ -23,15 +23,15 @@ params:
         p_user:
             label:          Utilisateur
         p_d_debate_id:
-            label:          ID Débat associé
+            label:          ID Sujet associé
         p_d_debate:
-            label:          Débat associé
+            label:          Sujet associé
         parent_reaction_id:
-            label:          ID Réaction associée
+            label:          ID Réponse associée
         parent_reaction:
-            label:          Réaction associée
+            label:          Réponse associée
         parent:
-            label:          Réaction associée
+            label:          Réponse associée
         p_l_city_id:
             label:          Ville
         p_l_city:
@@ -298,10 +298,11 @@ builders:
                 "Contenu":
                     "Auteur":                   [ [ block_p_user, published_by ] ]
                     "Texte":                    [ title, description ]
+                    "Médias":                   [ block_p_d_medias ]
                 "Contexte":
                     "Publications":             [ [ block_p_c_topic, block_p_d_debate, block_parent ] ]
                     "Liste des thématiques":    [ block_tags ]
-                    "Réactions":                [ block_reactions ]
+                    "Réponses":                [ block_reactions ]
                     "Commentaires":             [ block_comments ]
                 "Modération":
                     "Situation":                [ moderated, moderated_partial ]
@@ -319,16 +320,18 @@ builders:
                 block_want_boost:
                     credentials:                ROLE_SYSTEM
                     label:                      "Boost demandé"
+                block_p_d_medias:
+                    label:                      "Images"
                 block_file_name:
                     label:                      "Image"
                 block_p_user:
                     label:                      "Auteur"
                 block_p_d_debate:
-                    label:                      "Débat"
+                    label:                      "Sujet"
                 block_parent:
-                    label:                      "Réaction parente"
+                    label:                      "Réponse parente"
                 block_reactions:
-                    label:                      "Réactions"
+                    label:                      "Réponses"
                 block_comments:
                     label:                      "Commentaires"
                 block_p_c_topic:

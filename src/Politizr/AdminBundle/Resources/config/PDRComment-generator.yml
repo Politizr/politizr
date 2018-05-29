@@ -15,9 +15,9 @@ params:
         p_user:
             label:          Utilisateur
         p_d_reaction_id:
-            label:          ID Réaction
+            label:          ID Réponse
         p_d_reaction:
-            label:          Réaction
+            label:          Réponse
         description:
             label:          Description
         paragraph_no:

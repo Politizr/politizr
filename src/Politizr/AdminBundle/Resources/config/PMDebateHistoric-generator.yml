@@ -49,7 +49,7 @@ builders:
                     "Images":                   [ block_file_name ]
                     "Texte":                    [ title, description, copyright ]
                 "Objets":
-                    "Débat":                    [ block_p_d_debate ]
+                    "Sujet":                    [ block_p_d_debate ]
                     "Utilisateur":              [ block_p_user ]
                 "Attributs":
                     "Création":                 [ [ created_at, updated_at ] ]
@@ -57,7 +57,7 @@ builders:
                 block_file_name:
                     label:                      "Image"
                 block_p_d_debate:
-                    label:                      "Débat"
+                    label:                      "Sujet"
                 block_p_user:
                     label:                      "Auteur"
             actions:

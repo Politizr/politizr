@@ -74,9 +74,9 @@ builders:
             filters:                            [ title, p_t_tag_type_id, p_t_tag_type, online, created_at ]
             fields:
                 countDebates:
-                    label:                      Débats
+                    label:                      Sujets
                 countReactions:
-                    label:                      Réactions
+                    label:                      Réponses
                 countUsers:
                     label:                      Profils
             actions:
@@ -165,8 +165,8 @@ builders:
                     "Utilisateur":              [ block_p_user ]
                     "Propriétaire":             [ block_p_owner ]
                 "Publication":
-                    "Débats":                   [ block_debates ]
-                    "Réactions":                [ block_reactions ]
+                    "Sujets":                   [ block_debates ]
+                    "Réponses":                [ block_reactions ]
                 "Modération":
                     "Portée":                   [ [ moderated, moderated_at ] ]
                 "Utilisateurs":

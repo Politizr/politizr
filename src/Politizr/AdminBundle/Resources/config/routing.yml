@@ -61,7 +61,7 @@ Politizr_AdminBundle_PUser_filename_delete:
     pattern:  /PUser/{pk}/filename/delete
     defaults: { _controller: PolitizrAdminBundle:PUser/Actions:filenameDelete }
 
-# Débats
+# Sujets
 Politizr_AdminBundle_PDDebate_Comments:
     pattern:  /PDDebate/{pk}/comments
     defaults: { _controller: PolitizrAdminBundle:PDDebate/Actions:comments }
@@ -72,7 +72,7 @@ Politizr_AdminBundle_PDDebate_moderation_update:
     requirements:
         _method:        POST
 
-# Réactions
+# Réponses
 Politizr_AdminBundle_PDReaction_Comments:
     pattern:  /PDReaction/{pk}/comments
     defaults: { _controller: PolitizrAdminBundle:PDReaction/Actions:comments }

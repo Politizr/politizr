@@ -1,6 +1,5 @@
 {% extends_admingenerated "PolitizrAdminBundle:PDDebateShow:index.html.twig" %}
 
-{# Objets #}
 {% block show_column_block_p_user %}
     {{ adminCreatePath(constant('Politizr\\Constant\\ObjectTypeConstants::TYPE_USER'), PDDebate.PUserId) }}
 {% endblock %}
@@ -16,6 +15,19 @@
 
 {% block show_column_description %}
     {{ PDDebate.getDescription | purify }}
+{% endblock %}
+
+{% block show_column_block_p_d_medias %}
+    {% if PDDebate.countPDMedias > 0 %}
+        <ol>
+            {% for media in PDDebate.PDMedias %}
+                <li>{{ adminCreatePath(constant('Politizr\\Constant\\ObjectTypeConstants::TYPE_MEDIA'), media.id) }}</li>
+            {% endfor %}
+        </ol>
+        <i class="fa fa-exclamation-triangle" aria-hidden="true">&nbsp;Note: suivez les liens pour mettre à jour les images du document.</i>
+    {% else %}
+        Aucune
+    {% endif %}
 {% endblock %}
 
 {# Bloc réactions #}

@@ -15,9 +15,9 @@ params:
         p_user:
             label:          Utilisateur
         p_d_debate_id:
-            label:          ID Débat
+            label:          ID Sujet
         p_d_debate:
-            label:          Débat
+            label:          Sujet
         description:
             label:          Description
         paragraph_no:

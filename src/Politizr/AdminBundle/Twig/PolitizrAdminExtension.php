@@ -13,6 +13,7 @@ use Politizr\Model\PUserQuery;
 use Politizr\Model\PCircleQuery;
 use Politizr\Model\PCTopicQuery;
 use Politizr\Model\PCOwnerQuery;
+use Politizr\Model\PDMediaQuery;
 
 /**
  * Generic admin twig extension
@@ -119,6 +120,24 @@ class PolitizrAdminExtension extends \Twig_Extension
                 if ($subject) {
                     $title = $subject->getTitle();
                     $url = $this->router->generate('Politizr_AdminBundle_PDReaction_show', array('pk' => $subject->getId()));
+
+                    $html = sprintf('<a href="%s">%sid-%s %s</a>', $url, $label, $subject->getId(), $title);
+                } else {
+                    // $html = sprintf('%sid-%s non trouvé', $label, $objectId);
+                    $html = 'non trouvé';
+                }
+                break;
+            case ObjectTypeConstants::TYPE_MEDIA:
+                ($displayWithType)?$label = 'Média ':$label = '';
+                if ($idType == 'id') {
+                    $subject = PDMediaQuery::create()->findPk($objectId);
+                } elseif ($idType == 'uuid') {
+                    $subject = PDMediaQuery::create()->filterByUuid($objectId)->findOne();
+                }
+
+                if ($subject) {
+                    $title = $subject->getFileName();
+                    $url = $this->router->generate('Politizr_AdminBundle_PDMedia_show', array('pk' => $subject->getId()));
 
                     $html = sprintf('<a href="%s">%sid-%s %s</a>', $url, $label, $subject->getId(), $title);
                 } else {
