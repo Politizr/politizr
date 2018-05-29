@@ -109,7 +109,7 @@ class ActionsController extends BaseActionsController
     {
         $user = PUserQuery::create()->findPk($pk);
         if (!$user) {
-            throw new InconsistentDataException('PUserQuery pk-'.$pk.' not found.');
+            throw new InconsistentDataException('PUser pk-'.$pk.' not found.');
         }
 
         $form = $this->createForm(new AdminPUserModerationType($user));
@@ -182,7 +182,7 @@ class ActionsController extends BaseActionsController
     {
         $user = PUserQuery::create()->findPk($pk);
         if (!$user) {
-            throw new InconsistentDataException('PUserQuery pk-'.$pk.' not found.');
+            throw new InconsistentDataException('PUser pk-'.$pk.' not found.');
         }
 
         try {
@@ -208,7 +208,7 @@ class ActionsController extends BaseActionsController
         try {
             $user = PUserQuery::create()->findPk($pk);
             if (!$user) {
-                throw new InconsistentDataException('PUserQuery pk-'.$pk.' not found.');
+                throw new InconsistentDataException('PUser pk-'.$pk.' not found.');
             }
 
             // Chemin des images
@@ -235,7 +235,7 @@ class ActionsController extends BaseActionsController
                 )
             );
 
-            $data = ['success' => true, 'html' => $html, 'path' => $uploadWebPath . $fileName, 'filename' => $fileName];
+            $data = ['success' => true, 'fileName' => $fileName, 'thbFileName' => $fileName, 'filePath' => $uploadWebPath ];
         } catch(\Exception $e) {
             $data = ['success' => false, 'error' => $e->getMessage()];
             return new JsonResponse($data, 500);
@@ -256,7 +256,7 @@ class ActionsController extends BaseActionsController
         try {
             $user = PUserQuery::create()->findPk($pk);
             if (!$user) {
-                throw new InconsistentDataException('PUserQuery pk-'.$pk.' not found.');
+                throw new InconsistentDataException('PUser pk-'.$pk.' not found.');
             }
 
             // File syst deletion

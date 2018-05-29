@@ -81,6 +81,7 @@ services:
     politzr_admin.twig.document:
         class: Politizr\AdminBundle\Twig\PolitizrAdminDocumentExtension
         arguments:
+            - @kernel
             - @politizr.functional.document
             - @form.factory
             - @router

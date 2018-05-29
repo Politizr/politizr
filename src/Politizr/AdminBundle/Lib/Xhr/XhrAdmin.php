@@ -1010,6 +1010,7 @@ class XhrAdmin
             $path,
             5000,
             5000,
+            null,
             20971520,
             [ 'image/jpeg', 'image/pjpeg', 'image/jpeg', 'image/pjpeg' ]
         );

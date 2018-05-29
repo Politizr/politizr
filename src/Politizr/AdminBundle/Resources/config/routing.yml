@@ -46,19 +46,19 @@ Politizr_AdminBundle_POrder_mail:
 
 # Utilisateurs
 Politizr_AdminBundle_PUser_moderation_update:
-    pattern:  /Puser/{pk}/moderation/update
+    pattern:  /PUser/{pk}/moderation/update
     defaults: { _controller: PolitizrAdminBundle:PUser/Actions:moderationUpdate }
     requirements:
         _method:        POST
 
 Politizr_AdminBundle_PUser_filename_upload:
-    pattern:  /Puser/{pk}/filename/upload
+    pattern:  /PUser/{pk}/filename/upload
     defaults: { _controller: PolitizrAdminBundle:PUser/Actions:filenameUpload }
     requirements:
         _method:        POST
 
 Politizr_AdminBundle_PUser_filename_delete:
-    pattern:  /Puser/{pk}/filename/delete
+    pattern:  /PUser/{pk}/filename/delete
     defaults: { _controller: PolitizrAdminBundle:PUser/Actions:filenameDelete }
 
 # Débats
@@ -82,6 +82,18 @@ Politizr_AdminBundle_PDReaction_moderation_update:
     defaults: { _controller: PolitizrAdminBundle:PDReaction/Actions:moderationUpdate }
     requirements:
         _method:        POST
+
+# Medias
+Politizr_AdminBundle_PDMedia_filename_upload:
+    pattern:  /PDMedia/{pk}/filename/upload
+    defaults: { _controller: PolitizrAdminBundle:PDMedia/Actions:filenameUpload }
+    requirements:
+        _method:        POST
+
+Politizr_AdminBundle_PDMedia_filename_delete:
+    pattern:  /PDMedia/{pk}/filename/delete
+    defaults: { _controller: PolitizrAdminBundle:PDMedia/Actions:filenameDelete }
+
 
 # Archivage
 Politizr_AdminBundle_PDDComment_archive:
