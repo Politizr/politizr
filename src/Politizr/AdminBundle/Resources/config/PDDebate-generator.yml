@@ -181,28 +181,20 @@ builders:
                     "Auteur":                   [ [ p_user, published_by ] ]
                     "Texte":                    [ title, description ]
                 "Contexte":
-                    "Publications associées":   [ [ p_c_topic, p_e_operation ] ]
-                    "Liste des thématiques associées":  [ block_tags ]
+                    "Publications":             [ p_e_operation ]
+                    "Liste des thématiques":    [ block_tags ]
                 "Attributs":
                     "Identifiants":             [ [ id, uuid, slug ] ]
                     "État":                     [ online, published, moderated ]
                     "Popularité":               [ nb_views, [ note_pos, note_neg ] ]
                     "Notification":             [ block_notifications ]
                     "Branchement avec Facebook":    [ [ want_boost, fb_ad_id ] ]
-                    "Dates":                    [ [ created_at, updated_at ], [ published_at ], [ indexed_at ] ]
+                    "Dates":                    [ [ created_at, updated_at, published_at ], [ indexed_at ] ]
             fields:
                 p_user:
                     addFormOptions:
                         disabled:               true
                         read_only:              true
-                p_c_topic:
-                    dbType:                     model
-                    formType:                   Admingenerator\FormExtensionsBundle\Form\Type\Select2ModelType
-                    addFormOptions:
-                        multiple:               false
-                        required:               false
-                        class:                  Politizr\Model\PCTopic
-                        query:                  \Politizr\Model\PCTopicQuery::create()->orderByPCircleId()
                 p_e_operation:
                     dbType:                     model
                     formType:                   Admingenerator\FormExtensionsBundle\Form\Type\Select2ModelType
@@ -273,10 +265,10 @@ builders:
                     "Auteur":                   [ [ block_p_user, published_by ] ]
                     "Texte":                    [ title, description ]
                 "Contexte":
-                    "Publications associées":   [ [ block_p_c_topic, p_e_operation ] ]
-                    "Liste des thématiques associées":  [ block_tags ]
-                    "Réactions associées":      [ block_reactions ]
-                    "Commentaires associés":    [ block_comments ]
+                    "Publications":             [ [ block_p_c_topic, p_e_operation ] ]
+                    "Liste des thématiques":    [ block_tags ]
+                    "Réactions":                [ block_reactions ]
+                    "Commentaires":             [ block_comments ]
                 "Modération":
                     "Situation":                [ moderated, moderated_partial ]
                     "Historique de l utilisateur":  [ block_moderation_alert_listing ]
@@ -286,7 +278,7 @@ builders:
                     "Localisation":             [ localizations ]
                     "Popularité":               [ nb_views, [ note_pos, note_neg ] ]
                     "Branchement avec Facebook":    [ [ block_want_boost, fb_ad_id ] ]
-                    "Dates":                    [ [ created_at, updated_at ], [ published_at ], [ indexed_at ] ]
+                    "Dates":                    [ [ created_at, updated_at, published_at ], [ indexed_at ] ]
                 "Front":
                     "Rendu":                    [ block_front ]
             fields:
