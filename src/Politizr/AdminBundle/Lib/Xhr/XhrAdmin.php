@@ -31,6 +31,7 @@ use Politizr\Model\PUMandateQuery;
 use Politizr\Model\PLCityQuery;
 use Politizr\Model\PEOPresetPTQuery;
 use Politizr\Model\PEOperationQuery;
+use Politizr\Model\PCircleQuery;
 
 use Politizr\AdminBundle\Form\Type\PMUserModeratedType;
 use Politizr\AdminBundle\Form\Type\AdminPUserLocalizationType;
@@ -1221,6 +1222,11 @@ class XhrAdmin
         $formNo = $request->get('no');
         $circleId = $request->get('circleId');
 
+        $circle = PCircleQuery::create()->findPk($circleId);
+        if (!$circle) {
+            throw new InconsistentDataException('Circle not found');
+        }
+
         $formFilter = $this->formFactory->create(new PUsersFiltersType());
         $formFilter->handleRequest($request);
         $filtersData = $formFilter->getData();
@@ -1240,9 +1246,9 @@ class XhrAdmin
         );
 
         $html = $this->templating->render(
-            'PolitizrAdminBundle:Fragment\\Circle:_circleUsersForms'.$formNo.'.html.twig',
+            'PolitizrAdminBundle:PCircleActions:_circleUsersForms'.$formNo.'.html.twig',
             array(
-                'circleId' => $circleId,
+                'circle' => $circle,
                 'formFilter'.$formNo => $formFilter->createView(),
                 'formUsers'.$formNo => $formUsers->createView(),
             )

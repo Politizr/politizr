@@ -32,7 +32,7 @@ builders:
             title:                              Liste des clients
             max_per_page:                       50
             sort:                               [ created_at, DESC ]
-            display:                            [ title, id, created_at ]
+            display:                            [ id, title, created_at ]
             filtersMode:                        modal
             filters:                            [ id, uuid, title, created_at ]
             object_actions:

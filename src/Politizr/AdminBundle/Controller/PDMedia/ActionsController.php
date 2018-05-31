@@ -64,14 +64,6 @@ class ActionsController extends BaseActionsController
             // update media
             $media = $this->get('politizr.functional.document')->updateMediaFile($media, $path . $fileName);
 
-            // Rendering
-            $html = $this->get('templating')->render(
-                'PolitizrAdminBundle:Fragment:_image.html.twig',
-                array(
-                    'path' => $uploadWebPath . $fileName,
-                )
-            );
-
             $data = ['success' => true, 'fileName' => $fileName, 'thbFileName' => $thbFileName, 'filePath' => $uploadWebPath ];
         } catch(\Exception $e) {
             $data = ['success' => false, 'error' => $e->getMessage()];

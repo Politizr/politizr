@@ -33,7 +33,7 @@ class PolitizrAdminUserExtension extends \Twig_Extension
 
     /**
      *
-       @param @kernel
+     * @param @kernel
      * @param politizr.functional.document
      * @param politizr.tools.global
      * @param form.factory
@@ -133,17 +133,19 @@ class PolitizrAdminUserExtension extends \Twig_Extension
     /* ######################################################################################################## */
 
     /**
-     * Compute right interact links between user and circle: join or consult/quit
+     * Compute user's file size
      *
-     * @param PCircle $circle
+     * @param PUser $user
      * @return html
      */
     public function userFileSize(\Twig_Environment $env, PUser $user)
     {
         if ($fileName = $user->getFileName()) {
-            $fileSize = fileSize($this->kernel->getRootDir() . '/../web' . PathConstants::USER_UPLOAD_WEB_PATH.$fileName);
+            if (file_exists($this->kernel->getRootDir() . '/../web' . PathConstants::USER_UPLOAD_WEB_PATH.$fileName)) {
+                $fileSize = fileSize($this->kernel->getRootDir() . '/../web' . PathConstants::USER_UPLOAD_WEB_PATH.$fileName);
 
-            return $fileSize;
+                return $fileSize;
+            }
         }
 
         return null;

@@ -118,6 +118,16 @@ services:
             - @logger
         tags:
             - { name: twig.extension }
+    politzr_admin.twig.circle:
+        class: Politizr\AdminBundle\Twig\PolitizrAdminCircleExtension
+        arguments:
+            - @kernel
+            - @politizr.tools.global
+            - @router
+            - @logger
+        tags:
+            - { name: twig.extension }
+
 
     # FORM TYPE
     politizr_admin.form.type.date_range:

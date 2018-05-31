@@ -227,14 +227,6 @@ class ActionsController extends BaseActionsController
             $user->setFileName($fileName);
             $user->save();
 
-            // Rendering
-            $html = $this->get('templating')->render(
-                'PolitizrAdminBundle:Fragment:_image.html.twig',
-                array(
-                    'path' => $uploadWebPath . $fileName,
-                )
-            );
-
             $data = ['success' => true, 'fileName' => $fileName, 'thbFileName' => $fileName, 'filePath' => $uploadWebPath ];
         } catch(\Exception $e) {
             $data = ['success' => false, 'error' => $e->getMessage()];
