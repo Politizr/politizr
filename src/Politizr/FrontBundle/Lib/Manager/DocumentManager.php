@@ -7,6 +7,7 @@ use Politizr\Constant\ObjectTypeConstants;
 use Politizr\Constant\ReputationConstants;
 use Politizr\Constant\ListingConstants;
 use Politizr\Constant\TagConstants;
+use Politizr\Constant\PathConstants;
 
 use Politizr\Model\PDDebate;
 use Politizr\Model\PDReaction;
@@ -52,7 +53,7 @@ class DocumentManager
         $logger
     ) {
         $this->kernel = $kernel;
-        
+
         $this->tagManager = $tagManager;
 
         $this->globalTools = $globalTools;

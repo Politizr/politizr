@@ -12,6 +12,7 @@ services:
     politizr.manager.document:
         class: Politizr\FrontBundle\Lib\Manager\DocumentManager
         arguments:
+            - @kernel
             - @politizr.manager.tag
             - @politizr.tools.global
             - @logger
