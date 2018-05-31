@@ -66,7 +66,7 @@ builders:
                     "Réponse":                  [ p_d_reaction ]
                 "Attributs":
                     "Identifiants":             [ [ id, uuid ] ]
-                    "Création":                 [ [ created_at, updated_at ] ]
+                    "Dates":                 [ [ created_at, updated_at ] ]
             fields:
                 block_file_name:
                     label:                      "Image"
@@ -114,7 +114,7 @@ builders:
                     "Réponse":                  [ block_p_d_reaction ]
                 "Attributs":
                     "Identifiants":             [ [ id, uuid ] ]
-                    "Création":                 [ [ created_at, updated_at ] ]
+                    "Dates":                 [ [ created_at, updated_at ] ]
             fields:
                 block_file_name:
                     label:                      "Image"

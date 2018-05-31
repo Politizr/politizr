@@ -48,11 +48,11 @@ builders:
                 "Contenu":
                     "Images":                   [ block_file_name ]
                     "Texte":                    [ title, description, copyright ]
-                "Objets":
+                "Contexte":
                     "Sujet":                    [ block_p_d_debate ]
                     "Utilisateur":              [ block_p_user ]
                 "Attributs":
-                    "Création":                 [ [ created_at, updated_at ] ]
+                    "Dates":                 [ [ created_at, updated_at ] ]
             fields:
                 block_file_name:
                     label:                      "Image"

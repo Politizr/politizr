@@ -53,7 +53,7 @@ builders:
                 "Contenu":
                     "Texte":                    [ [ title ], [ description ] ]
                 "Attributs":
-                    "Création":                 [ [ created_at, updated_at ] ]
+                    "Dates":                 [ [ created_at, updated_at ] ]
             fields:
                 created_at:
                     addFormOptions:
@@ -73,7 +73,7 @@ builders:
                 "Tags":
                     "Tags associés":            [ block_tags ]
                 "Attributs":
-                    "Création":                 [ [ created_at, updated_at ] ]
+                    "Dates":                 [ [ created_at, updated_at ] ]
             fields:
                 block_tags:
                     label:                      "Tags"

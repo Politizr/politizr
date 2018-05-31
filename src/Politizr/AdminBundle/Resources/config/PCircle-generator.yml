@@ -149,8 +149,8 @@ builders:
                     "Restrictions":             [ only_elected ]
                 "Attributs":
                     "Identifiants":             [ [ id, uuid, slug ] ]
-                    "En ligne":                 [ read_only, online ]
-                    "Création":                 [ [ created_at, updated_at ] ]
+                    "État":                     [ read_only, online ]
+                    "Dates":                    [ [ created_at, updated_at ] ]
                 "Front":
                     "Rendu":                    [ block_front ]
             fields:

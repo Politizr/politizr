@@ -53,7 +53,7 @@ builders:
                 "Contenu":
                     "Texte":                    [ [ title ], [ description ] ]
                 "Attributs":
-                    "Création":                 [ [ created_at, updated_at ] ]
+                    "Dates":                 [ [ created_at, updated_at ] ]
             fields:
                 created_at:
                     addFormOptions:
@@ -71,7 +71,7 @@ builders:
                 "Contenu":
                     "Texte":                    [ [ title ], [ description ] ]
                 "Attributs":
-                    "Création":                 [ [ created_at, updated_at ] ]
+                    "Dates":                 [ [ created_at, updated_at ] ]
             actions:
               list:                             ~
               delete:                           ~

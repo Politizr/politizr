@@ -10,6 +10,7 @@ use Politizr\Model\PDReactionQuery;
 use Politizr\Model\PDDCommentQuery;
 use Politizr\Model\PDRCommentQuery;
 use Politizr\Model\PUserQuery;
+use Politizr\Model\PTagQuery;
 use Politizr\Model\PCircleQuery;
 use Politizr\Model\PCTopicQuery;
 use Politizr\Model\PCOwnerQuery;
@@ -199,6 +200,24 @@ class PolitizrAdminExtension extends \Twig_Extension
                     $html = 'non trouvé';
                 }
                 break;
+            case ObjectTypeConstants::TYPE_TAG:
+                ($displayWithType)?$label = 'Tag ':$label = '';
+                if ($idType == 'id') {
+                    $subject = PTagQuery::create()->findPk($objectId);
+                } elseif ($idType == 'uuid') {
+                    $subject = PTagQuery::create()->filterByUuid($objectId)->findOne();
+                }
+
+                if ($subject) {
+                    $title = $subject->getTitle();
+                    $url = $this->router->generate('Politizr_AdminBundle_PTag_show', array('pk' => $subject->getId()));
+
+                    $html = sprintf('<a href="%s">%sid-%s %s</a>', $url, $label, $subject->getId(), $title);
+                } else {
+                    // $html = sprintf('%sid-%s non trouvé', $label, $objectId);
+                    $html = 'non trouvé';
+                }
+                break;
             case ObjectTypeConstants::TYPE_CIRCLE:
                 ($displayWithType)?$label = 'Groupe ':$label = '';
                 if ($idType == 'id') {
@@ -254,7 +273,7 @@ class PolitizrAdminExtension extends \Twig_Extension
                 }
                 break;
             default:
-                throw new InconsistentDataException(sprintf('Object class %s not managed.'), $objectClass);
+                throw new InconsistentDataException(sprintf('Object class %s not managed.', $objectClass));
         }
 
         return $html;

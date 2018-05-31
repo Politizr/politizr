@@ -151,6 +151,13 @@ Politizr_AdminBundle_PCTopic_localization_update:
     requirements:
         _method:        POST
 
+# Tags
+Politizr_AdminBundle_PTag_moderation_update:
+    pattern:  /PTag/{pk}/moderation/update
+    defaults: { _controller: PolitizrAdminBundle:PTag/Actions:moderationUpdate }
+    requirements:
+        _method:        POST
+
 
 # Archivage
 Politizr_AdminBundle_PDDComment_archive:
