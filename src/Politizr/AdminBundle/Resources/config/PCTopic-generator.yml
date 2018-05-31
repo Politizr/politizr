@@ -136,11 +136,15 @@ builders:
                     "Localisation":             [ [ force_geoloc_type, force_geoloc_id ]]
                     "État":                     [ online ]
                     "Dates":                    [ [ created_at, updated_at ] ]
+                "Front":
+                    "Rendu":                    [ block_front ]
             fields:
                 block_file_name:
                     label:                      "Image"
                 block_p_circle:
                     label:                      "Groupe"
+                block_front:
+                    label:                      "Rendu front"
             actions:
                 list:                           ~
                 edit:                           ~

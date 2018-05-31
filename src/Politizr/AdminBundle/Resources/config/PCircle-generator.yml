@@ -151,6 +151,8 @@ builders:
                     "Identifiants":             [ [ id, uuid, slug ] ]
                     "En ligne":                 [ read_only, online ]
                     "Création":                 [ [ created_at, updated_at ] ]
+                "Front":
+                    "Rendu":                    [ block_front ]
             fields:
                 block_logo_file_name:
                     label:                      "Image"
@@ -160,6 +162,8 @@ builders:
                     credentials:                ROLE_SYSTEM
                 only_elected:
                     credentials:                ROLE_SYSTEM
+                block_front:
+                    label:                      "Rendu front"
             actions:
                 list:                           ~
                 edit:                           ~

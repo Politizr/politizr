@@ -19,3 +19,12 @@
 {% block show_column_block_p_circle %}
     {{ adminCreatePath(constant('Politizr\\Constant\\ObjectTypeConstants::TYPE_CIRCLE'), PCTopic.PCircleId) }}
 {% endblock %}
+
+{# Block front link #}
+{% block show_column_block_front %}
+    {% if PCTopic.online and PCTopic.PCircle.online %}
+        <a href="{{ path('TopicDetail', {'slug': PCTopic.slug, 'circleSlug': PCTopic.PCircle.slug}) }}" target="_blank">Consulter</a>
+    {% else %}
+        Hors ligne
+    {% endif %}
+{% endblock %}
