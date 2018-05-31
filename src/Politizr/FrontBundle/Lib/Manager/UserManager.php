@@ -28,6 +28,8 @@ use Politizr\Model\PNotificationQuery;
  */
 class UserManager
 {
+    private $kernel;
+
     private $encoderFactory;
     private $usernameCanonicalizer;
     private $emailCanonicalizer;
@@ -37,14 +39,17 @@ class UserManager
 
     /**
      *
+     * @param @kernel
      * @param @security.encoder_factory
      * @param @fos_user.util.username_canonicalizer
      * @param @fos_user.util.email_canonicalizer
      * @param @politizr.tools.global
      * @param @logger
      */
-    public function __construct($encoderFactory, $usernameCanonicalizer, $emailCanonicalizer, $globalTools, $logger)
+    public function __construct($kernel, $encoderFactory, $usernameCanonicalizer, $emailCanonicalizer, $globalTools, $logger)
     {
+        $this->kernel = $kernel;
+        
         $this->encoderFactory = $encoderFactory;
         $this->usernameCanonicalizer = $usernameCanonicalizer;
         $this->emailCanonicalizer = $emailCanonicalizer;
@@ -1292,8 +1297,8 @@ LIMIT :offset, :limit
 
         // File copy
         if ($user->getFileName()) {
-            $destFileName = $this->get('politizr.tools.global')->copyFile(
-                $this->get('kernel')->getRootDir() .
+            $destFileName = $this->globalTools->copyFile(
+                $this->kernel->getRootDir() .
                 PathConstants::KERNEL_PATH_TO_WEB .
                 PathConstants::USER_UPLOAD_WEB_PATH .
                 $user->getFileName()
