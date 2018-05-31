@@ -44,10 +44,6 @@ SET FOREIGN_KEY_CHECKS = 0;
 
 DROP TABLE IF EXISTS `p_u_affinity_q_o`;
 
-DROP INDEX `p_u_current_q_o_FI_1` ON `p_u_current_q_o`;
-
-DROP INDEX `p_u_subscribe_p_n_e_FI_1` ON `p_u_subscribe_p_n_e`;
-
 # This restores the fkey checks, after having unset them earlier
 SET FOREIGN_KEY_CHECKS = 1;
 ',
