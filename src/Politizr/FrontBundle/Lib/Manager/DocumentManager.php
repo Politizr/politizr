@@ -30,6 +30,8 @@ use Politizr\Model\PDReactionQuery;
  */
 class DocumentManager
 {
+    private $kernel;
+
     private $tagManager;
 
     private $globalTools;
@@ -38,15 +40,19 @@ class DocumentManager
 
     /**
      *
+     * @param @kernel
      * @param @politizr.manager.tag
      * @param @politizr.tools.global
      * @param @logger
      */
     public function __construct(
+        $kernel,
         $tagManager,
         $globalTools,
         $logger
     ) {
+        $this->kernel = $kernel;
+        
         $this->tagManager = $tagManager;
 
         $this->globalTools = $globalTools;
@@ -2233,8 +2239,8 @@ GROUP BY p_d_debate_id
         // File copy
         // @deprecated w. Media management
         if ($debate->getFileName()) {
-            $destFileName = $this->get('politizr.tools.global')->copyFile(
-                $this->get('kernel')->getRootDir() .
+            $destFileName = $this->globalTools->copyFile(
+                $this->kernel->getRootDir() .
                 PathConstants::KERNEL_PATH_TO_WEB .
                 PathConstants::DEBATE_UPLOAD_WEB_PATH .
                 $debate->getFileName()
@@ -2270,8 +2276,8 @@ GROUP BY p_d_debate_id
         // File copy
         // @deprecated w. Media management
         if ($reaction->getFileName()) {
-            $destFileName = $this->get('politizr.tools.global')->copyFile(
-                $this->get('kernel')->getRootDir() .
+            $destFileName = $this->globalTools->copyFile(
+                $this->kernel->getRootDir() .
                 PathConstants::KERNEL_PATH_TO_WEB .
                 PathConstants::REACTION_UPLOAD_WEB_PATH .
                 $reaction->getFileName()
