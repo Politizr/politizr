@@ -70,6 +70,9 @@ twig:
             client_id:          %facebook_client_id%
             client_secret:      %facebook_client_secret%
             scope:              %facebook_scope%
+        google:
+            client_id:          %google_client_id%
+            ga_view_id:         %google_ga_view_id%
         pagerfanta_opts:
             previous_message:   '< page précédente'
             next_message:       'page suivante >'
