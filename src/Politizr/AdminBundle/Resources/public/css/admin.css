@@ -70,6 +70,6 @@
 	filter:alpha(opacity=80);
 }
 
-#auth-button, #timeline, #trafficsource {
-	width: 50%;
+.gaContainer {
+	width: 70%;
 }

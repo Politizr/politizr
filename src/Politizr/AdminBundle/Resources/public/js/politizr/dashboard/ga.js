@@ -34,41 +34,61 @@ gapi.analytics.ready(function() {
     }
   });
 
-  // Create the trafficsource chart.
-  var trafficsource = new gapi.analytics.googleCharts.DataChart({
+  // Create the bouncerate chart.
+  var bouncerate = new gapi.analytics.googleCharts.DataChart({
     reportType: 'ga',
     query: {
-      metrics: 'ga:organicSearches',
-      dimensions: 'ga:source',
+      metrics: 'ga:bounceRate',
+      dimensions: 'ga:date',
       'ids': 'ga:' + VIEW_ID,
       'start-date': '30daysAgo',
       'end-date': 'yesterday'
     },
     chart: {
-      container: 'trafficsource',
-      type: 'PIE',
+      container: 'bouncerate',
+      type: 'LINE',
       options: {
         width: '100%'
       }
     }
   });
 
+//   // Create the trafficsource chart.
+//   var trafficsource = new gapi.analytics.googleCharts.DataChart({
+//     reportType: 'ga',
+//     query: {
+//       metrics: 'ga:organicSearches',
+//       dimensions: 'ga:hasSocialSourceReferral',
+//       'ids': 'ga:' + VIEW_ID,
+//       'start-date': '30daysAgo',
+//       'end-date': 'yesterday'
+//     },
+//     chart: {
+//       container: 'trafficsource',
+//       type: 'PIE',
+//       options: {
+//         width: '100%'
+//       }
+//     }
+//   });
+
   timeline.execute();
-  trafficsource.execute();
+  bouncerate.execute();
+//   trafficsource.execute();
 
   // Logout
   gapi.analytics.auth.on('signIn', function() {
-    console.log('signin ga');
+    // console.log('signin ga');
     $('#gaLogout').show();
   });
 
   gapi.analytics.auth.on('signOut', function() {
-    console.log('signout ga');
+    // console.log('signout ga');
     $('#gaLogout').hide();
   });
 
   $("body").on("click", "span[action='gaLogout']", function(e) {
-    console.log('*** logout ga');
+    // console.log('*** logout ga');
     gapi.analytics.auth.signOut();
   });
 });
