@@ -53,17 +53,19 @@
         </div>
     </div>
 
+    <div id="bannerPromo" class="inscriptionHome">
+        <div class="center">
+            <div class="column column280">
+                {% include 'PolitizrFrontBundle:Public:_cardAdvantagesCitizen.html.twig' %}
+            </div><!-- keep comment mark this way : they prevent unwanted space between cols
+            --><div class="column column280">
+                {% include 'PolitizrFrontBundle:Public:_cardAdvantagesElected.html.twig' %}
+            </div>
+        </div>
+    </div>
+
     <div id="bannerPromo" class="bannerPromoSenatoriales">
         <div class="center">
-            <div id="inscriptionHome">
-                <div class="column column280">
-                    {% include 'PolitizrFrontBundle:Public:_cardAdvantagesCitizen.html.twig' %}
-                </div><!-- keep comment mark this way : they prevent unwanted space between cols
-                --><div class="column column280">
-                    {% include 'PolitizrFrontBundle:Public:_cardAdvantagesElected.html.twig' %}
-                </div>
-            </div>
-
             <div class="txtBannerPromo">
                 <h1>Collectivités</h1>
                 <b>PLU/PLUi, aménagement urbain, budget participatif...</b><br><br>
@@ -77,6 +79,31 @@ Communiquez autour de vos projets et faîtes réagir vos administrés sur les su
     </div>
 
     <div id="bannerPromo" class="bannerPress">
+        <div class="center">
+            <div class="press">
+                <h1>Ils parlent de nous</h1>
+                <img src="{{ asset('bundles/politizrfront/images/f-press.jpg') }}">
+            </div>
+            <div class="trophy">
+                <h1>Récompences</h1>
+                <div class="trophyItem">
+                    <img src="{{ asset('bundles/politizrfront/images/f-trophy1.jpg') }}">
+                    <div class="trophyItemText">Lauréat Prix du jury Occistart 2017.</div>
+                </div>
+                <div class="trophyItem">
+                    <img src="{{ asset('bundles/politizrfront/images/f-trophy2.jpg') }}">
+                    <div class="trophyItemText">Sélection "Les 1000 qui font l'économie française de demain" par Génération French Tech.</div>
+                </div>
+                <div class="trophyItem">
+                    <img src="{{ asset('bundles/politizrfront/images/f-trophy3.jpg') }}">
+                    <div class="trophyItemText">Lauréat Synerthon 2016, organisation & management pour notre <a href="https://www.politizr.com/lp/dialogue-entreprise-public">offre business</a>.</div>
+                </div>
+                <div class="trophyItem">
+                    <img src="{{ asset('bundles/politizrfront/images/f-trophy4.jpg') }}">
+                    <div class="trophyItemText">Finaliste Trophée de l’Economie Numérique 2016, catégorie numérique et citoyenneté.</div>
+                </div>
+            </div>
+        </div>
     </div>
 
     {#
