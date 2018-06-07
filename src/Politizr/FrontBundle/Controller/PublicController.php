@@ -484,7 +484,7 @@ class PublicController extends Controller
         }
 
         // landing pages
-        $keywords = [ 'civic-tech', 'elu-local', 'dialogue-citoyen', 'democratie-locale', 'democratie-participative', 'reseau-social-politique', 'primaires-presidentielle-2017', 'charlotte-marchandise-franquet'];
+        $keywords = [ 'civic-tech', 'elu-locaux', 'dialogue-citoyen', 'democratie-locale', 'democratie-participative', 'reseau-social-politique', 'concertation-publique', 'budget-participatif', 'offres-collectivites', 'boite-a-idees-numerique', 'actus-ariege', 'actus-toulouse', 'actus-paris', 'actus-bordeaux', 'actus-bretagne', 'actus-normandie', 'actus-hauts-de-france' ];
         foreach ($keywords as $keyword) {
             $url = $this->generateUrl('LandingPage', array(
                 'theme' => $keyword
