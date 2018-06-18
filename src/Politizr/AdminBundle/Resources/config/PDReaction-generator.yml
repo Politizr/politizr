@@ -208,6 +208,7 @@ builders:
                     "Texte":                    [ title, description ]
                 "Contexte":
                     "Liste des thématiques":    [ block_tags ]
+                    "Publications":             [ p_c_topic ]
                 "Attributs":
                     "Identifiants":             [ [ id, uuid, slug ] ]
                     "État":                     [ online, published, moderated ]
@@ -227,6 +228,14 @@ builders:
                     addFormOptions:
                         disabled:               true
                         read_only:              true
+                p_c_topic:
+                    dbType:                     model
+                    formType:                   Admingenerator\FormExtensionsBundle\Form\Type\Select2ModelType
+                    addFormOptions:
+                        multiple:               false
+                        required:               false
+                        class:                  Politizr\Model\PCTopic
+                        query:                  \Politizr\Model\PCTopicQuery::create()->orderByPCircleId()->orderByRank()
                 block_tags:
                     label:                      "Tags"
                     grid_class:                 "col-md-12"
