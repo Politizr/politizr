@@ -85,7 +85,7 @@ VALUES (4, 3, 'Charte de la consultation Plan Ariège THD sur Politizr', 'v1.0',
 INSERT INTO `p_c_topic` (`id`, `p_circle_id`, `title`, `summary`, `description`, `online`, `created_at`, `updated_at`, `slug`, `sortable_rank`) 
 VALUES (14, 3, 'Vos Questions', '
 <h1>Posez ici vos questions sur le Plan Ari&egrave;ge THD</h1>
-<p>Le service Communication du D&eacute;partement de l\'Ari&egrave;ge vous r&eacute;pond!</p>
+<p>Le Conseil D&eacute;partemental de l\'Ari&egrave;ge vous r&eacute;pond!</p>
 ', null, 1, '2017-09-08 14:38:56', '2017-09-08 14:38:56', 'vos-questions', 1);
 
 # app/console politizr:uuids:populate PCTopic
