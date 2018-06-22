@@ -362,7 +362,7 @@ class CircleService
      *
      * @param PUser $user
      * @param array|PUser $users
-     * @return PropelCollection[PCircle]
+     * @return PropelCollection[PUser]
      */
     public function getAuthorizedReactionUsersByCircle(PCircle $circle, $users = null)
     {
@@ -384,6 +384,25 @@ class CircleService
             ->find();
 
         return $users;
+    }
+
+    /**
+     * Get authorized reaction users ids by circle
+     *
+     * @param PUser $user
+     * @param array|PUser $users
+     * @return array
+     */
+    public function getAuthorizedReactionUsersIdsByCircle(PCircle $circle, $users = null)
+    {
+        $users = $this->getAuthorizedReactionUsersByCircle($circle, $users);
+
+        $ids = array();
+        foreach ($users as $user) {
+            $ids[] = $user->getId();
+        }
+
+        return $ids;
     }
 
     /* ######################################################################################################## */

@@ -53,6 +53,7 @@ class PolitizrDocumentExtension extends \Twig_Extension
     private $documentService;
     private $timelineService;
     private $userService;
+    private $circleService;
 
     private $formFactory;
 
@@ -67,6 +68,7 @@ class PolitizrDocumentExtension extends \Twig_Extension
      * @politizr.functional.document
      * @politizr.functional.timeline
      * @politizr.functional.user
+     * @politizr.functional.circle
      * @form.factory
      * @politizr.tools.global
      * @logger
@@ -78,6 +80,7 @@ class PolitizrDocumentExtension extends \Twig_Extension
         $documentService,
         $timelineService,
         $userService,
+        $circleService,
         $formFactory,
         $globalTools,
         $logger
@@ -90,6 +93,7 @@ class PolitizrDocumentExtension extends \Twig_Extension
         $this->documentService = $documentService;
         $this->timelineService = $timelineService;
         $this->userService = $userService;
+        $this->circleService = $circleService;
 
         $this->formFactory = $formFactory;
 
@@ -409,29 +413,40 @@ class PolitizrDocumentExtension extends \Twig_Extension
         // $this->logger->info('$document = '.print_r($document, true));
 
         $nbElectedPublications = 0;
+
+        $authorizedUsersIds = null;
+        $onlyElected = true;
+        $labelSuffix = 'd\'élu-e';
+        if ($circle = $document->getCircle()) {
+            // group context > check for authorized users publications
+            $authorizedUsersIds = $this->circleService->getAuthorizedReactionUsersIdsByCircle($circle);
+            $onlyElected = false;
+            $labelSuffix = 'd\'animateur';
+        }
+
         switch ($document->getType()) {
             case ObjectTypeConstants::TYPE_DEBATE:
-                $nbElectedPublications = $document->countReactions(true, true, true);
+                $nbElectedPublications = $document->countReactions(true, true, $onlyElected, $authorizedUsersIds);
 
                 // add elected's debate's comments + descendants
-                $nbElectedPublications += $document->countComments(true, null, true);
-                $reactions = $document->getChildrenReactions(true, true);
+                $nbElectedPublications += $document->countComments(true, null, $onlyElected, $authorizedUsersIds);
+                $reactions = $document->getChildrenReactions(true, $onlyElected, $authorizedUsersIds);
                 if ($reactions) {
                     foreach ($reactions as $reaction) {
-                        $nbElectedPublications += $reaction->countComments(true, null, true);
+                        $nbElectedPublications += $reaction->countComments(true, null, $onlyElected, $authorizedUsersIds);
                     }
                 }
 
                 break;
             case ObjectTypeConstants::TYPE_REACTION:
-                $nbElectedPublications = $document->countDescendantsReactions(true, true, true);
+                $nbElectedPublications = $document->countDescendantsReactions(true, true, $onlyElected, $authorizedUsersIds);
 
                 // add elected's debate's comments + descendants
-                $nbElectedPublications += $document->countComments(true, null, true);
-                $reactions = $document->getChildrenReactions(true, true);
+                $nbElectedPublications += $document->countComments(true, null, $onlyElected, $authorizedUsersIds);
+                $reactions = $document->getChildrenReactions(true, $onlyElected, $authorizedUsersIds);
                 if ($reactions) {
                     foreach ($reactions as $reaction) {
-                        $nbElectedPublications += $reaction->countComments(true, null, true);
+                        $nbElectedPublications += $reaction->countComments(true, null, $onlyElected, $authorizedUsersIds);
                     }
                 }
 
@@ -441,10 +456,11 @@ class PolitizrDocumentExtension extends \Twig_Extension
         }
 
         // compute labels
+        $labelElectedPublications = null;
         if (1 === $nbElectedPublications) {
-            $labelElectedPublications = '1 réaction d\'élu-e';
+            $labelElectedPublications = '1 réaction ' . $labelSuffix;
         } else {
-            $labelElectedPublications = $this->globalTools->readeableNumber($nbElectedPublications).' réactions d\'élu-e-s';
+            $labelElectedPublications = $this->globalTools->readeableNumber($nbElectedPublications).' réactions '.$labelSuffix;
         }
 
         // Construction du rendu du tag

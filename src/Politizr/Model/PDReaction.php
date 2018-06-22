@@ -315,20 +315,24 @@ class PDReaction extends BasePDReaction implements PDocumentInterface
     /* ######################################################################################################## */
 
     /**
-     * @see ObjectTypeConstants::countComments
+     * @see PDocumentInterface::countComments
      */
-    public function countComments($online = true, $paragraphNo = null, $onlyElected = null)
+    public function countComments($online = true, $paragraphNo = null, $onlyElected = null, $usersIds = null)
     {
         $query = PDRCommentQuery::create()
             ->filterIfOnline($online)
             ->filterIfOnlyElected($onlyElected)
             ->filterIfParagraphNo($paragraphNo);
+
+        if ($usersIds) {
+            $query = $query->filterByPUserId($usersIds);
+        }
         
         return parent::countPDRComments($query);
     }
 
     /**
-     * @see ObjectTypeConstants::getComments
+     * @see PDocumentInterface::getComments
      */
     public function getComments($online = true, $paragraphNo = null, $orderBy = null)
     {
@@ -410,13 +414,18 @@ class PDReaction extends BasePDReaction implements PDocumentInterface
      *
      * @param boolean $online
      * @param boolean $published
+     * @param array $usersIds
      * @return PropelCollection[PDReaction]
      */
-    public function getChildrenReactions($online = null, $published = null)
+    public function getChildrenReactions($online = null, $published = null, $usersIds = null)
     {
         $query = PDReactionQuery::create()
             ->filterIfOnline($online)
             ->filterIfPublished($published);
+
+        if ($usersIds) {
+            $query = $query->filterByPUserId($usersIds);
+        }
 
         return parent::getChildren($query);
     }
@@ -464,9 +473,11 @@ class PDReaction extends BasePDReaction implements PDocumentInterface
      *
      * @param boolean $online
      * @param boolean $published
+     * @param boolean $onlyElected
+     * @param array $usersIds   Users ids
      * @return int
      */
-    public function countChildrenReactions($online = null, $published = null, $onlyElected = false)
+    public function countChildrenReactions($online = null, $published = null, $onlyElected = false, $usersIds = null)
     {
         $query = PDReactionQuery::create()
             ->filterIfOnline($online)
@@ -477,14 +488,18 @@ class PDReaction extends BasePDReaction implements PDocumentInterface
             $query = $query->onlyElected();
         }
 
+        if ($usersIds) {
+            $query = $query->filterByPUserId($usersIds);
+        }
+
         return parent::countChildren($query);
     }
 
     /**
      * @see PDReaction::countChildrenReactions
      */
-    public function countReactions($online = null, $published = null, $onlyElected = false)
+    public function countReactions($online = null, $published = null, $onlyElected = false, $usersIds = null)
     {
-        return $this->countChildrenReactions($online, $published, $onlyElected);
+        return $this->countChildrenReactions($online, $published, $onlyElected, $usersIds);
     }
 }

@@ -304,20 +304,24 @@ class PDDebate extends BasePDDebate implements PDocumentInterface
     /* ######################################################################################################## */
 
     /**
-     * @see ObjectTypeConstants::countComments
+     * @see PDocumentInterface::countComments
      */
-    public function countComments($online = true, $paragraphNo = null, $onlyElected = null)
+    public function countComments($online = true, $paragraphNo = null, $onlyElected = null, $usersIds = null)
     {
         $query = PDDCommentQuery::create()
             ->filterIfOnline($online)
             ->filterIfOnlyElected($onlyElected)
             ->filterIfParagraphNo($paragraphNo);
-        
+
+        if ($usersIds) {
+            $query = $query->filterByPUserId($usersIds);
+        }
+
         return parent::countPDDComments($query);
     }
 
     /**
-     * @see ObjectTypeConstants::getComments
+     * @see PDocumentInterface::getComments
      */
     public function getComments($online = true, $paragraphNo = null, $orderBy = null)
     {
@@ -517,14 +521,15 @@ class PDDebate extends BasePDDebate implements PDocumentInterface
      *
      * @param boolean $online
      * @param boolean $published
+     * @param array $usersIds
      * @return PropelCollection[PDReaction]
      */
-    public function getChildrenReactions($online = null, $published = null)
+    public function getChildrenReactions($online = null, $published = null, $usersIds = null)
     {
         $rootNode = PDReactionQuery::create()->findRoot($this->getId());
         
         if ($rootNode) {
-            $children = $rootNode->getChildrenReactions($online, $published);
+            $children = $rootNode->getChildrenReactions($online, $published, $usersIds = null);
             return $children;
         }
 
@@ -536,9 +541,11 @@ class PDDebate extends BasePDDebate implements PDocumentInterface
      *
      * @param boolean $online
      * @param boolean $published
+     * @param boolean $onlyElected
+     * @param array $usersIds   Users ids
      * @return int
      */
-    public function countReactions($online = null, $published = null, $onlyElected = false)
+    public function countReactions($online = null, $published = null, $onlyElected = false, $usersIds = null)
     {
         $query = PDReactionQuery::create()
             ->filterByTreeLevel(0, \Criteria::NOT_EQUAL) // no root node
@@ -549,9 +556,12 @@ class PDDebate extends BasePDDebate implements PDocumentInterface
             $query = $query->onlyElected();
         }
 
+        if ($usersIds) {
+            $query = $query->filterByPUserId($usersIds);
+        }
+
         return parent::countPDReactions($query);
     }
-
 
     /**
      * Last debate's published reaction
