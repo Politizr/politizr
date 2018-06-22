@@ -529,7 +529,7 @@ class PDDebate extends BasePDDebate implements PDocumentInterface
         $rootNode = PDReactionQuery::create()->findRoot($this->getId());
         
         if ($rootNode) {
-            $children = $rootNode->getChildrenReactions($online, $published, $usersIds = null);
+            $children = $rootNode->getChildrenReactions($online, $published, $usersIds);
             return $children;
         }
 
