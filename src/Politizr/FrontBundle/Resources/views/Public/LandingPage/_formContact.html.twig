@@ -4,9 +4,9 @@
     <form name="directMessage" id="formDirectMessage">
         {{ form_errors(form) }}
 
-        {{ form_row(form.name, { 'attr': { 'placeholder': 'Votre nom (ou pseudo)' }}) }}
+        {{ form_row(form.name, { 'attr': { 'placeholder': 'Votre nom' }}) }}
         {{ form_row(form.email, { 'attr': { 'placeholder': 'Votre email' }}) }}
-        {{ form_row(form.city, { 'attr': { 'placeholder': 'Votre ville' }}) }}
+        {{ form_row(form.city, { 'attr': { 'placeholder': 'Votre téléphone' }}) }}
         {{ form_row(form.description, { 'attr': { 'placeholder': 'Votre avis ou question' }}) }}
 
         {{ form_rest(form) }}

@@ -34,7 +34,7 @@ class PDDirectType extends AbstractType
         
         $builder->add('city', 'text', array(
             'required' => false,
-            'label' => 'Ville',
+            'label' => 'Téléphone',
             // 'constraints' => array(
             //     new NotBlank(array('message' => 'Lieu obligatoire.')),
             // ),

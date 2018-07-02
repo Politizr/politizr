@@ -28,8 +28,8 @@
         </div>
         <div id="lpUnderHero">
             <div class="center">
-                Communiquez autour de vos projets et faîtes réagir vos administré.e.s sur les sujets de votre choix, de façon ponctuelle ou sur le long terme. Quelle que soit la taille de votre collectivité, nos services de démocratie participative vous permettront d'associer plus de citoyen.ne.s aux décisions qui façonnent votre territoire.<br/><br/><b>Disponible à partir d’une ​offre gratuite et sans engagement!</b><br/><br/>
-                A tester sur <a href="https://demo.politizr.com" target="_blank">https://demo.politizr.com</a>
+                Communiquez autour de vos projets et faîtes réagir vos administré.e.s sur les sujets de votre choix, de façon ponctuelle ou sur le long terme. Quelle que soit la taille de votre collectivité, nos services de démocratie participative vous permettront d'associer plus de citoyen.ne.s aux décisions qui façonnent votre territoire.<br/><br/><br/><b>Disponible à partir d’une ​offre gratuite et sans engagement!</b><br/><br/>
+                <i>Contactez-nous pour programmer une démo!</i>
             </div>
         </div>
         <div id="lpArgu">
@@ -69,25 +69,7 @@
                     ou par téléphone au <b>09. 50. 42. 09. 34</b>
                 </div>
                 <div class="lpRightCol">
-                    <div class="formBlock withLoaderInside">
-                        {% include 'PolitizrFrontBundle:Navigation\\Xhr:_xhrLocalLoader.html.twig' %}
-
-                        <form name="directMessage" id="formDirectMessage">
-                            {{ form_errors(form) }}
-
-                            {{ form_row(form.name, { 'attr': { 'placeholder': 'Prénom et Nom' }}) }}
-                            {{ form_row(form.email, { 'attr': { 'placeholder': 'Email' }}) }}
-                            {{ form_row(form.city, { 'attr': { 'placeholder': 'Téléphone' }}) }}
-                            {{ form_row(form.description, { 'attr': { 'placeholder': 'Question' }}) }}
-
-                            {{ form_rest(form) }}
-                            <div class="buttonDirectMessage">
-                                <button type="button" action="submitDirectMessage">
-                                    Envoyer
-                                </button>
-                            </div>
-                        </form>
-                    </div>
+                    {% include 'PolitizrFrontBundle:Public\\LandingPage:_formContact.html.twig' %}
                 </div>
             </div>
         </div>

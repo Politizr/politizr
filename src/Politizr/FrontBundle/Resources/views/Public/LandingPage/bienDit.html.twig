@@ -1,0 +1,114 @@
+{% set layout = 'PolitizrFrontBundle::layoutPublic.html.twig' %}
+{% extends layout %}
+{% set headerRight = false %}
+
+{% set metaTitle = 'Bien Dit, le réseau social de la citoyenneté' %}
+{% set metaDescription = 'POLITIZR propose aux collectivités et aux associations BIEN DIT, son réseau social de la citoyenneté pour créer des consultations et faire réagir leurs concitoyennes et concitoyens aux projets qu\'elles portent.' %}
+
+{% block title %}{{ metaTitle }} - {{ parent() }}{% endblock title %}
+{% block description %}{{ metaDescription }}{% endblock description %}
+
+{% block ogTitle %}{{ metaTitle }} - {{ parent() }}{% endblock ogTitle %}
+{% block ogDescription %}{{ metaDescription }}{% endblock ogDescription %}
+
+{% block tcTitle %}{{ metaTitle }} - {{ parent() }}{% endblock tcTitle %}
+{% block tcDescription %}{{ metaDescription }}{% endblock tcDescription %}
+
+{% block bodyClass %} class="public visitor noHeaderTrigger"{% endblock %}
+
+{% block main %}
+    <div id="lpGeneric">
+        <div id="lpHero">
+            <div class="center">
+                <h1>BIEN DIT, le réseau social citoyen à votre image !</h1>
+                <h2>Maximisez l’engagement de vos concitoyen.ne.s sur le long terme</h2>
+                <div id="f-display"><img src="{{ asset('bundles/politizrfront/images/f-display.png') }}" alt="Collectivités publiques"></div>
+                <div id="f-accessories"><img src="{{ asset('bundles/politizrfront/images/f-accessories.png') }}"></div>
+            </div>
+            <div id="lpHeroFader"></div>
+        </div>
+        <div id="lpUnderHero">
+            <div class="center">
+                <h3>BIEN DIT est un réseau social destiné à récolter l’expression citoyenne de vos concitoyen.ne.s. BIEN DIT est tout à la fois simple, constructif, respectueux et paramétrable!</h3>
+                BIEN DIT est une plateforme SaaS sécurisée, configurée à vos couleurs et suivant vos besoins, et disponible depuis une adresse web personnalisée. Ce service a été conçu par POLITIZR, acteur majeur et historique de la citoyenneté sur Internet, qui utilise son savoir-faire pour le développer et le mettre à disposition à destination de toutes les structures (collectivités, associations, etc.) désireuses d’ouvrir un canal de discussion adapté, respectueux et constructif avec leurs concitoyen.ne.s et/ou des membres de leurs réseaux.
+                <br/><br/>
+                <i>La plateforme BIEN DIT est disponible à partir de 100€HT/mois, sans engagements.</i>
+            </div>
+        </div>
+        <div id="lpArgu">
+            <div class="center">
+                <div class="lpLeftCol">
+                    <p>
+                        BIEN DIT vous permet de faire dialoguer efficacement votre propre équipe d’animateurs (élus, services techniques, etc.) avec les utilisateurs en générant des consultations à la volée sur des thématiques de votre choix: vous créez autant de consultations que vous le souhaitez et les organisez librement en différentes thématiques de discussions. Vous pouvez aussi choisir de n’ouvrir des consultations qu’à un certain groupe de personnes.
+                        <br/><br/>
+                        En mettant à disposition BIEN DIT auprès de vos concitoyen.ne.s, vous permettrez à chacun.e de s’exprimer et de faire remonter ses questions et ses arguments. La mise en discussion des sujets vous permettra de démontrer votre ouverture au dialogue, de prendre en compte les remarques et questions pertinentes et de favoriser l’acceptation de vos prises de décisions.
+                    </p>
+                    <img src="{{ asset('bundles/politizrfront/images/f-illustr01.jpg') }}">
+                </div>
+                <div class="lpRightCol">
+                    <h3>BIEN DIT est SIMPLE</h3>
+                    <div class="lpCheckLi"><i class="icon-check"></i><p>Inscription en 2 clics</p></div>
+                    <div class="lpCheckLi"><i class="icon-check"></i><p>Bouton "Je m'exprime sur..." associé à chaque consultation</div>
+                    <div class="lpCheckLi"><i class="icon-check"></i><p>Commentez directement les publications</p></div>
+                    <div class="lpCheckLi"><i class="icon-check"></i><p>Votez + ou - sur les publications et commentaires</p></div>
+                    <div class="lpCheckLi"><i class="icon-check"></i><p>Abonnez-vous en 1 clic à des publications, des utilisateurs et des thématiques</p></div>
+                    <div class="lpCheckLi"><i class="icon-check"></i><p>Notifications automatiques sur les nouveautés et vos centres d’intérêt</p></div>
+                    <div class="lpCheckLi"><i class="icon-check"></i><p>Classements, filtres et fil d’actualité personnalisé</p></div>
+                    <h3>BIEN DIT est CONSTRUCTIF</h3>
+                    <div class="lpCheckLi"><i class="icon-check"></i><p>Éditeur permettant une expression très simple ou plus complexe</p></div>
+                    <div class="lpCheckLi"><i class="icon-check"></i><p>Contextualisation et découpage thématique des consultations</p></div>
+                    <div class="lpCheckLi"><i class="icon-check"></i><p>Gain de badges pour favoriser les comportements vertueux</p></div>
+                    <div class="lpCheckLi"><i class="icon-check"></i><p>Émulation communautaire</p></div>
+                    <h3>BIEN DIT est RESPECTUEUX</h3>
+                    <div class="lpCheckLi"><i class="icon-check"></i><p>Dialogue protégé avec l’équipe d’animateurs</p></div>
+                    <div class="lpCheckLi"><i class="icon-check"></i><p>Charte de bonne conduite</p></div>
+                    <div class="lpCheckLi"><i class="icon-check"></i><p>Gestion d’une réputation</p></div>
+                    <div class="lpCheckLi"><i class="icon-check"></i><p>Données protégées</p></div>
+                    <div class="lpCheckLi"><i class="icon-check"></i><p>Sans publicité</p></div>
+                    <h3>BIEN DIT est PARAMÉTRABLE</h3>
+                    <div class="lpCheckLi"><i class="icon-check"></i><p>Réseau privé ou public</p></div>
+                    <div class="lpCheckLi"><i class="icon-check"></i><p>Gestion libre des consultations, privées ou publiques</p></div>
+                    <div class="lpCheckLi"><i class="icon-check"></i><p>Activation possible d’une gestion géographique</p></div>
+                    <div class="lpCheckLi"><i class="icon-check"></i><p>Expression libre ou limitée à des consultations</p></div>
+                    <div class="lpCheckLi"><i class="icon-check"></i><p>Gestion complète de pages de contenus</p></div>
+                    <h3>&nbsp;</h3>
+                </div>
+            </div>
+        </div>
+
+        {% include 'PolitizrFrontBundle:Public\\LandingPage:_blockMarianne.html.twig' %}
+        
+        <div id="lpContact">
+            <div class="center">
+                <div class="lpLeftCol">
+                    Contactez-nous pour en savoir plus :<br/> <a href="mailto:contact@politizr.com">contact@politizr.com</a><br>
+                    <br/>ou par téléphone au <b>09. 50. 42. 09. 34</b>
+                </div>
+                <div class="lpRightCol">
+                    {% include 'PolitizrFrontBundle:Public\\LandingPage:_formContact.html.twig' %}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+{% endblock main %}
+
+{% block postMain %}
+    {% include 'PolitizrFrontBundle:Navigation\\Footer:_publicFooter.html.twig' %}
+{% endblock postMain %}
+
+{% block javascriptFooter %}
+    {{ parent() }}
+
+    {% if (app.environment == 'prod') %}
+        <script type="text/javascript">
+            mixpanel.track("LP Concertation Publique");
+        </script>
+    {% endif %}
+
+    {% javascripts
+        '@PolitizrFrontBundle/Resources/public/js/politizr/pages/landingPage.js'
+        filter='uglifyjs2' %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock javascriptFooter %}

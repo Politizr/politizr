@@ -128,6 +128,8 @@ class PublicController extends Controller
             $template = 'offresCollectivites.html.twig';
         } elseif ($theme == 'boite-a-idees-numerique')  {
             $template = 'boiteAIdees.html.twig';
+        } elseif ($theme == 'bien-dit')  {
+            $template = 'bienDit.html.twig';
         } elseif ($theme == 'actus-ariege')  {
             $documents = $this->get('politizr.functional.document')->getPublicationsByFilters(
                 null,

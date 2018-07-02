@@ -70,25 +70,7 @@
                     ou par téléphone au <b>09. 50. 42. 09. 34</b>
                 </div>
                 <div class="lpRightCol">
-                    <div class="formBlock withLoaderInside">
-                        {% include 'PolitizrFrontBundle:Navigation\\Xhr:_xhrLocalLoader.html.twig' %}
-
-                        <form name="directMessage" id="formDirectMessage">
-                            {{ form_errors(form) }}
-
-                            {{ form_row(form.name, { 'attr': { 'placeholder': 'Prénom et Nom' }}) }}
-                            {{ form_row(form.email, { 'attr': { 'placeholder': 'Email' }}) }}
-                            {{ form_row(form.city, { 'attr': { 'placeholder': 'Téléphone' }}) }}
-                            {{ form_row(form.description, { 'attr': { 'placeholder': 'Question' }}) }}
-
-                            {{ form_rest(form) }}
-                            <div class="buttonDirectMessage">
-                                <button type="button" action="submitDirectMessage">
-                                    Envoyer
-                                </button>
-                            </div>
-                        </form>
-                    </div>
+                    {% include 'PolitizrFrontBundle:Public\\LandingPage:_formContact.html.twig' %}
                 </div>
             </div>
         </div>
