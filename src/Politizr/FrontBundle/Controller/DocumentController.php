@@ -71,27 +71,6 @@ class DocumentController extends Controller
     }
 
     /**
-     * Common document edit "check" validity
-     * beta
-     *
-     * @param PDocument
-     * @param integer $userId
-     * @param boolean
-     */
-    private function checkDocumentEditable(PDocumentInterface $document = null, $userId)
-    {
-        if (!$document) {
-            throw new NotFoundHttpException(sprintf('Document not found.'));
-        }
-        if (!$document->isOwner($userId)) {
-            throw new InconsistentDataException(sprintf('Document not found.'));
-        }
-        if ($document->getPublished()) {
-            throw new InconsistentDataException(sprintf('Document already published.'));
-        }
-    }
-
-    /**
      * Build-in Medium editor delete image XHR action
      *
      * @return JsonResponse
@@ -335,7 +314,10 @@ class DocumentController extends Controller
         $user = $this->getUser();
 
         $debate = PDDebateQuery::create()->filterByUuid($uuid)->findOne();
-        $this->checkDocumentEditable($debate, $user->getId());
+
+        if (!$this->get('politizr.functional.document')->isDocumentEditable($debate)) {
+            throw new InconsistentDataException('Document can\'t be updated anymore.');
+        }
         
         $form = $this->createForm(new PDDebateType(), $debate, array('user' => $user));
 
@@ -448,7 +430,10 @@ class DocumentController extends Controller
         $user = $this->getUser();
 
         $reaction = PDReactionQuery::create()->filterByUuid($uuid)->findOne();
-        $this->checkDocumentEditable($reaction, $user->getId());
+
+        if (!$this->get('politizr.functional.document')->isDocumentEditable($reaction)) {
+            throw new InconsistentDataException('Document can\'t be updated anymore.');
+        }
 
         // parent document for compared edition
         if (null === $reaction->getParentReactionId()) {

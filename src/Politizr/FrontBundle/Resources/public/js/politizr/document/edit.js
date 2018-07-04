@@ -1,7 +1,14 @@
 // beta
+$(function() {
+    // auto resize text area
+    autosize($('.formBlock textarea'));
 
-// auto resize text area
-autosize($('.formBlock textarea'));
+    // auto save > create mode only
+    var mode = $('.editionPostCard').attr('mode');
+    if (mode == 'create') {
+        $('#debate_title, #reaction_title, .editable.description').on('keyup', delayRequest);
+    }
+});
 
 /**
  * Auto save
@@ -15,8 +22,6 @@ autosize($('.formBlock textarea'));
 function dataRequest() {
     return triggerSaveDocument();
 }
-
-$('#debate_title, #reaction_title, .editable.description').on('keyup', delayRequest);
 
 /**
  *
@@ -42,22 +47,13 @@ function delayRequest(ev) {
 $('.editable.description').on('dblclick', function() {
     // console.log('dblclick event');
     $('.actionSave').removeClass('saved');
-    // delayRequest(this);
 });
 
 // mouseup editor event
 $('.editable.description').on('mouseup', function() {
     // console.log('mouseup event');
     $('.actionSave').removeClass('saved');
-    // delayRequest(this);
 });
-
-// // change checkbox type event
-// $('#formTagType :checkbox').on('change', function() {
-//     // console.log('checkbox change');
-//     delayRequest(this);
-// });
-
 
 function triggerSaveDocument()
 {

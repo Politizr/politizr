@@ -84,7 +84,7 @@ $("body").on("click", "[action='reactionSave']", function(e) {
 $('body').on('click', "[action='reactionDelete']", function(e){
     // console.log('*** click delete reaction');
 
-    var confirmMsg = "Êtes-vous sûr de vouloir supprimer votre brouillon?";
+    var confirmMsg = "Êtes-vous sûr de vouloir supprimer?";
     smoke.confirm(confirmMsg, function(e) {
         if (e) {
             return deleteReaction(uuid);            
