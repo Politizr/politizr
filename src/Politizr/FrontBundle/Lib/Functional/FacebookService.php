@@ -348,11 +348,15 @@ class FacebookService
             $graphEdge = $response->getGraphEdge();
             foreach ($graphEdge as $node) {
                 $fromNode = $node->getField('from');
-                $fbUserId = $fromNode->getField('id');
 
-                $name = $fromNode->getField('name');
-                $picture = $this->getUserPicture($fbUserId);
-                $fbAuthor = [ 'name' => $name, 'picture' => $picture ];
+                if ($fromNode) {
+                    $fbUserId = $fromNode->getField('id');
+                    $name = $fromNode->getField('name');
+                    $picture = $this->getUserPicture($fbUserId);
+                    $fbAuthor = [ 'name' => $name, 'picture' => $picture ];
+                } else {
+                    $fbAuthor = [ 'name' => 'undefined', 'picture' => null ];
+                }
 
                 $comments[] = ['author' => $fbAuthor, 'message' => $node->getField('message')];
             }
