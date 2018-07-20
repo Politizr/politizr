@@ -246,43 +246,30 @@ class SecurityService
         try {
             // Get the Facebook\GraphNodes\GraphUser object for the current user.
             // If you provided a 'default_access_token', the '{access-token}' is optional.
-
-            // id,name,email,birthday,picture.type(square)
             $response = $facebookClient->get(
-                sprintf('/%s?fields=gender,first_name,last_name,email,link,birthday,about,location,website,is_verified', $providerId)
+                sprintf('/%s?fields=first_name,last_name,email,link,about,location,is_verified', $providerId)
             );
         } catch (FacebookResponseException $e) {
             // When Graph returns an error
-            $this->logger->error(sprintf('FacebookResponseException - msg = %s', $e->getMessage()));
+            $this->logger->err(sprintf('FacebookResponseException - msg = %s', $e->getMessage()));
             return false;
         } catch (FacebookSDKException $e) {
             // When validation fails or other local issues
-            $this->logger->error(sprintf('FacebookSDKException - msg = %s', $e->getMessage()));
+            $this->logger->err(sprintf('FacebookSDKException - msg = %s', $e->getMessage()));
             return false;
         }
 
         $graphUser = $response->getGraphUser();
 
-        $gender = $graphUser->getField('gender');
         $firstName = $graphUser->getField('first_name');
         $lastName = $graphUser->getField('last_name');
         $email = $graphUser->getField('email');
         $fbLink = $graphUser->getField('link');
-        $birthday = $graphUser->getField('birthday');
         $about = $graphUser->getField('about');
         $bio = $graphUser->getField('bio');
         $address = $graphUser->getField('address');
         $location = $graphUser->getField('location');
-        $website = $graphUser->getField('website');
         $isVerified = $graphUser->getField('is_verified');
-
-        if (null !== $gender) {
-            if ('male' === $gender) {
-                $user->setGender('Monsieur');
-            } elseif ('female' === $gender) {
-                $user->setGender('Madame');
-            }
-        }
 
         if (null !== $firstName) {
             $user->setFirstName($firstName);
@@ -300,20 +287,12 @@ class SecurityService
             $user->setFacebook($fbLink);
         }
 
-        if (null !== $birthday) {
-            $user->setBirthday($birthday);
-        }
-
         if (null !== $about) {
             $user->setSubtitle($about);
         }
 
         if (null !== $bio) {
             $user->setBiography($bio);
-        }
-
-        if (null !== $website) {
-            $user->setWebsite($website);
         }
 
         if (null !== $isVerified) {
@@ -355,7 +334,7 @@ class SecurityService
                 ->performRequest();
             $twitterResult = json_decode($twitterResult);
         } catch (\Exception $e) {
-            $this->logger->error(sprintf('Exception - msg = %s', $e->getMessage()));
+            $this->logger->err(sprintf('Exception - msg = %s', $e->getMessage()));
             return false;
         }
 
@@ -426,7 +405,7 @@ class SecurityService
             $googleResult = $googlePlus->userinfo->get();
             // dump($googleResult);
         } catch (\Exception $e) {
-            $this->logger->error(sprintf('Exception - msg = %s', $e->getMessage()));
+            $this->logger->err(sprintf('Exception - msg = %s', $e->getMessage()));
             return false;
         }
 

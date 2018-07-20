@@ -2,10 +2,10 @@
 
 /**
  * Data object containing the SQL and PHP code to migrate the database
- * up to version 1527239687.
- * Generated on 2018-05-25 11:14:47 by lionel
+ * up to version 1532095596.
+ * Generated on 2018-07-20 16:06:36 by lionel
  */
-class PropelMigration_1527239687
+class PropelMigration_1532095596
 {
 
     public function preUp($manager)
@@ -42,7 +42,17 @@ class PropelMigration_1527239687
 # It "suspends judgement" for fkey relationships until are tables are set.
 SET FOREIGN_KEY_CHECKS = 0;
 
-DROP TABLE IF EXISTS `p_u_affinity_q_o`;
+ALTER TABLE `p_user` CHANGE `website` `website` VARCHAR(250);
+
+ALTER TABLE `p_user` CHANGE `twitter` `twitter` VARCHAR(250);
+
+ALTER TABLE `p_user` CHANGE `facebook` `facebook` VARCHAR(250);
+
+ALTER TABLE `p_user_archive` CHANGE `website` `website` VARCHAR(250);
+
+ALTER TABLE `p_user_archive` CHANGE `twitter` `twitter` VARCHAR(250);
+
+ALTER TABLE `p_user_archive` CHANGE `facebook` `facebook` VARCHAR(250);
 
 # This restores the fkey checks, after having unset them earlier
 SET FOREIGN_KEY_CHECKS = 1;
@@ -70,27 +80,17 @@ CREATE INDEX `p_u_current_q_o_FI_1` ON `p_u_current_q_o` (`p_user_id`);
 
 CREATE INDEX `p_u_subscribe_p_n_e_FI_1` ON `p_u_subscribe_p_n_e` (`p_user_id`);
 
-CREATE TABLE `p_u_affinity_q_o`
-(
-    `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `p_user_id` INTEGER NOT NULL,
-    `p_q_organization_id` INTEGER NOT NULL,
-    `created_at` DATETIME,
-    `updated_at` DATETIME,
-    PRIMARY KEY (`id`),
-    INDEX `p_u_affinity_q_o_FI_1` (`p_user_id`),
-    INDEX `p_u_affinity_q_o_FI_2` (`p_q_organization_id`),
-    CONSTRAINT `p_u_affinity_q_o_FK_1`
-        FOREIGN KEY (`p_user_id`)
-        REFERENCES `p_user` (`id`)
-        ON UPDATE CASCADE
-        ON DELETE CASCADE,
-    CONSTRAINT `p_u_affinity_q_o_FK_2`
-        FOREIGN KEY (`p_q_organization_id`)
-        REFERENCES `p_q_organization` (`id`)
-        ON UPDATE CASCADE
-        ON DELETE CASCADE
-) ENGINE=InnoDB;
+ALTER TABLE `p_user` CHANGE `website` `website` VARCHAR(150);
+
+ALTER TABLE `p_user` CHANGE `twitter` `twitter` VARCHAR(150);
+
+ALTER TABLE `p_user` CHANGE `facebook` `facebook` VARCHAR(150);
+
+ALTER TABLE `p_user_archive` CHANGE `website` `website` VARCHAR(150);
+
+ALTER TABLE `p_user_archive` CHANGE `twitter` `twitter` VARCHAR(150);
+
+ALTER TABLE `p_user_archive` CHANGE `facebook` `facebook` VARCHAR(150);
 
 # This restores the fkey checks, after having unset them earlier
 SET FOREIGN_KEY_CHECKS = 1;

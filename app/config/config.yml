@@ -633,10 +633,9 @@ hwi_oauth:
             client_secret:              %facebook_client_secret%
             scope:                      %facebook_scope%
             # https://developers.facebook.com/docs/graph-api/reference
-            infos_url:                  "https://graph.facebook.com/me?fields=id,name,email,birthday,picture.type(large)"
+            infos_url:                  "https://graph.facebook.com/me?fields=id,name,email,picture.type(large)"
             paths:
                 email:                  email
-                birthday:               birthday
                 profilepicture:         picture.data.url
             # options:        
             #     display:                popup               #dialog is optimized for popup window
