@@ -39,6 +39,7 @@ class PublicController extends Controller
      */
     public function homepageAction()
     {
+
         $logger = $this->get('logger');
         $logger->info('*** homepageAction');
 
@@ -46,6 +47,12 @@ class PublicController extends Controller
         if ($profileSuffix = $this->get('politizr.tools.global')->computeProfileSuffix()) {
             return $this->redirect($this->generateUrl(sprintf('Homepage%s', $profileSuffix)));
         }
+
+        // NEW HOME = OLD "CONCEPT"
+        return $this->render('PolitizrFrontBundle:Public:concept.html.twig', array(
+        ));
+
+        // OLD HOME
 
         // 9 debates / reactions
         $documents = $this->get('politizr.functional.document')->getHomepagePublicationsListing(ListingConstants::LISTING_HOMEPAGE_DOCUMENTS_LIMIT);
