@@ -1,12 +1,14 @@
 // beta
 $(function() {
     currentUuid = $('#localizationPreload').attr('uuid');
-    userUuid = $("#linkMyRegion").attr('uuid');
+    // userUuid = $("#linkMyRegion").attr('uuid');
+    userUuid = $("#linkFrance").attr('uuid');
     
     if (currentUuid) {
         $("#localizationPreload").trigger("click");
     } else if (userUuid) {
-        $("#linkMyRegion").trigger("click");
+        // $("#linkMyRegion").trigger("click");
+        $("#linkFrance").trigger("click");
     } else {
         publicationsByFiltersListing();
     }
