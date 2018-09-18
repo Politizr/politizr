@@ -1651,17 +1651,30 @@ class XhrDocument
             );
         }
 
+        $impressions = $interactions = $nbEmotions = $nbComments = $nbShares = 0;
         try {
             $impressions = $this->facebookService->getImpressions($fbAdId);
+        } catch (\Exception $e) {
+        }
+
+        try {
             $interactions = $this->facebookService->getInteractions($fbAdId);
+        } catch (\Exception $e) {
+        }
+
+        try {
             $nbEmotions = $this->facebookService->getNbEmotions($fbAdId);
+        } catch (\Exception $e) {
+        }
+
+        try {
             $nbComments = $this->facebookService->getNbComments($fbAdId);
+        } catch (\Exception $e) {
+        }
+
+        try {
             $nbShares = $this->facebookService->getNbShares($fbAdId);
         } catch (\Exception $e) {
-            $this->logger->error('Exception FB - msg = '.print_r($e->getMessage(), true));
-            return array(
-                'html' => ''
-            );
         }
 
         // Construction du rendu du tag
