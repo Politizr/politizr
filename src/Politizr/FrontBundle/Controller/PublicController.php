@@ -332,6 +332,8 @@ class PublicController extends Controller
         $logger = $this->get('logger');
         $logger->info('*** conceptAction');
 
+        return $this->redirect($this->generateUrl('Homepage'));
+
         return $this->render('PolitizrFrontBundle:Public:concept.html.twig', array(
         ));
     }

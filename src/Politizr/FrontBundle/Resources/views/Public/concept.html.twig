@@ -4,6 +4,9 @@
 {% endif %}
 {% extends layout %}
 
+{% block title %}Politizr, réseau social d'échanges constructifs entre les citoyens, les élus et les collectivités{% endblock title %}
+
+{#
 {% set metaTitle = 'Le concept' %}
 {% set metaDescription = 'Le concept de Politizr: une nouvelle idée de la démocratie participative s\'invente ici: digitale, participative, concrète, locale et sans frontière.' %}
 
@@ -15,6 +18,7 @@
 
 {% block tcTitle %}{{ metaTitle }} - {{ parent() }}{% endblock tcTitle %}
 {% block tcDescription %}{{ metaDescription }}{% endblock tcDescription %}
+#}
 
 {% block bodyClass %} class="public visitor noHeaderTrigger"{% endblock %}
 
