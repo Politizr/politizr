@@ -104,3 +104,11 @@ InscriptionElectedFinishSuccess:
     pattern:  /-v/inscription/elu/inscription-terminee
     defaults: { _controller: PolitizrFrontBundle:Security:inscriptionElectedFinishSuccess }
 
+
+################################################################################
+#               ROUTING EMAIL SECURITY
+################################################################################
+UnsubscribeNotifLink:
+    pattern:  /desinscription/notifications/{email}/{uuid}
+    defaults: { _controller: PolitizrFrontBundle:Security:unsubscribeNotifLink }
+
