@@ -145,7 +145,7 @@ class PolitizrReputationExtension extends \Twig_Extension
                     $title = $subject->getFirstname().' '.$subject->getName();
                     $url = $this->router->generate('UserDetail', array('slug' => $subject->getSlug()));
                 } else {
-                    $title = 'Utilisateur supprimé';
+                    $title = 'Inconnu';
                     $url = '#';
                 }
                 break;
