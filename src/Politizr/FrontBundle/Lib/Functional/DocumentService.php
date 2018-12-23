@@ -363,7 +363,7 @@ class DocumentService
      * @param înteger $count
      * @return PropelCollection PDocument
      */
-    public function getDocumentsByTagsPaginated($tagIds, $currentUserId = null, $orderBy = null, $offset = 0, $count = ListingConstants::LISTING_CLASSIC_PAGINATION)
+    public function getDocumentsByTagsPaginated($tagIds, $currentUserId = null, $orderBy = ListingConstants::ORDER_BY_KEYWORD_LAST, $offset = 0, $count = ListingConstants::LISTING_CLASSIC_PAGINATION)
     {
         $inQueryTopicIds = null;
         if ($currentUserId) {

@@ -173,6 +173,8 @@ class PolitizrCircleExtension extends \Twig_Extension
             $templatePath = 'Circle\\cd09';
         } elseif ($circle->getPCircleTypeId() == CircleConstants::CIRCLE_TYPE_SPECIFIC && $circle->getId() == CircleConstants::CD09THD_ID_CIRCLE) {
             $templatePath = 'Circle\\cd09thd';
+        } elseif ($circle->getPCircleTypeId() == CircleConstants::CIRCLE_TYPE_SPECIFIC && $circle->getId() == CircleConstants::CD09DOB_ID_CIRCLE) {
+            $templatePath = 'Circle\\cd09dob';
         } elseif ($circle->getPCircleTypeId() == CircleConstants::CIRCLE_TYPE_SPECIFIC && $circle->getId() == CircleConstants::LHOSPI_ID_CIRCLE) {
             $templatePath = 'Circle\\lhospi';
         } else {
@@ -272,6 +274,8 @@ class PolitizrCircleExtension extends \Twig_Extension
             $templatePath = 'Circle\\cd09';
         } elseif ($circle->getId() == CircleConstants::CD09THD_ID_CIRCLE) {
             $templatePath = 'Circle\\cd09thd';
+        } elseif ($circle->getId() == CircleConstants::CD09DOB_ID_CIRCLE) {
+            $templatePath = 'Circle\\cd09dob';
         }
 
         // Construction du rendu du tag
@@ -332,6 +336,8 @@ class PolitizrCircleExtension extends \Twig_Extension
         $templatePath = 'Topic';
         if ($circle->getPCircleTypeId() == CircleConstants::CIRCLE_TYPE_SPECIFIC && $circle->getId() == CircleConstants::CD09THD_ID_CIRCLE) {
             $templatePath = 'Topic\\cd09thd';
+        } elseif ($circle->getPCircleTypeId() == CircleConstants::CIRCLE_TYPE_SPECIFIC && $circle->getId() == CircleConstants::CD09DOB_ID_CIRCLE) {
+            $templatePath = 'Topic\\cd09dob';
         }
 
         // Construction du rendu du tag
@@ -363,6 +369,8 @@ class PolitizrCircleExtension extends \Twig_Extension
         $templatePath = 'Topic';
         if ($circle->getPCircleTypeId() == CircleConstants::CIRCLE_TYPE_SPECIFIC && $circle->getId() == CircleConstants::CD09THD_ID_CIRCLE) {
             $templatePath = 'Topic\\cd09thd';
+        } elseif ($circle->getPCircleTypeId() == CircleConstants::CIRCLE_TYPE_SPECIFIC && $circle->getId() == CircleConstants::CD09DOB_ID_CIRCLE) {
+            $templatePath = 'Topic\\cd09dob';
         }
 
         // Construction du rendu du tag

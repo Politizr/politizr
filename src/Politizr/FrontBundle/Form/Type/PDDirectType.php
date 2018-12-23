@@ -32,7 +32,19 @@ class PDDirectType extends AbstractType
             )
         ));
         
-        $builder->add('city', 'text', array(
+        $builder->add('email', 'text', array(
+            'required' => true,
+            'label' => 'Email',
+            'constraints' => array(
+                new NotBlank(array('message' => 'Email obligatoire.')),
+                new Email(array('message' => 'Le format de l\'email n\'est pas valide.')),
+            ),
+            'attr' => array(
+                'maxlength' => 250
+            )
+        ));
+        
+        $builder->add('phone', 'text', array(
             'required' => false,
             'label' => 'Téléphone',
             // 'constraints' => array(
@@ -43,13 +55,12 @@ class PDDirectType extends AbstractType
             )
         ));
         
-        $builder->add('email', 'text', array(
-            'required' => true,
-            'label' => 'Email',
-            'constraints' => array(
-                new NotBlank(array('message' => 'Email obligatoire.')),
-                new Email(array('message' => 'Le format de l\'email n\'est pas valide.')),
-            ),
+        $builder->add('city', 'text', array(
+            'required' => false,
+            'label' => 'Ville',
+            // 'constraints' => array(
+            //     new NotBlank(array('message' => 'Lieu obligatoire.')),
+            // ),
             'attr' => array(
                 'maxlength' => 250
             )

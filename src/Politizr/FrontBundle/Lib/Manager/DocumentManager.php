@@ -1112,7 +1112,7 @@ LIMIT :offset, :limit
         } elseif ($orderBy == ListingConstants::ORDER_BY_KEYWORD_LAST) {
             $orderBy = "ORDER BY published_at DESC, note_pos DESC, note_neg ASC";
         } else {
-            throw new InconsistentDataException(sprintf('OrderBy keyword %s not found'), $keyword);
+            throw new InconsistentDataException(sprintf('OrderBy keyword %s not found', $keyword));
         }
 
         // Topic subrequest

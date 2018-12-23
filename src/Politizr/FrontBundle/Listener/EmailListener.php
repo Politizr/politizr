@@ -223,6 +223,7 @@ class EmailListener
                     'notif' => $puNotifications,
                     'pnEmailId' => $pnEmailId,
                     'qualified' => $user->isQualified(),
+                    'user' => $user,
                 )
             );
             $txtBody = $this->templating->render(
@@ -231,6 +232,7 @@ class EmailListener
                     'notif' => $puNotifications,
                     'pnEmailId' => $pnEmailId,
                     'qualified' => $user->isQualified(),
+                    'user' => $user,
                 )
             );
 

@@ -23,4 +23,7 @@ class CircleConstants
 
     // SPECIFIC CD09 THD
     const CD09THD_ID_CIRCLE = 3;
+
+    // SPECIFIC CD09 DOB 2018
+    const CD09DOB_ID_CIRCLE = 4;
 }

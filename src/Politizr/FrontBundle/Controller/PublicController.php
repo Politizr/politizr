@@ -299,6 +299,24 @@ class PublicController extends Controller
             );
 
             $template = 'actusHautsDeFrance.html.twig';
+        } elseif ($theme == 'gilets-jaunes')  {
+            $documents = $this->get('politizr.functional.document')->getDocumentsByTagsPaginated(
+                [ 1121 ],
+                null,
+                ListingConstants::ORDER_BY_KEYWORD_LAST,
+                0, ListingConstants::LISTING_LP_RESULTS
+            );
+
+            $template = 'giletsJaunes.html.twig';
+        } elseif ($theme == 'cahier-de-doleances')  {
+            $documents = $this->get('politizr.functional.document')->getDocumentsByTagsPaginated(
+                [ 1126 ],
+                null,
+                ListingConstants::ORDER_BY_KEYWORD_LAST,
+                0, ListingConstants::LISTING_LP_RESULTS
+            );
+
+            $template = 'cahierDeDoleances.html.twig';
         } else {
             return $this->redirect($this->generateUrl('Homepage'));
         }

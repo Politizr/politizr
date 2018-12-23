@@ -13,6 +13,7 @@ class ListingConstants
     //              Pagination Constants                            //
     // ************************************************************ //
 
+    const LISTING_LP_RESULTS = 6;
     const LISTING_CLASSIC_PAGINATION = 20;
     const TIMELINE_CLASSIC_PAGINATION = 20;
     const TIMELINE_USER_CLASSIC_PAGINATION = 20;

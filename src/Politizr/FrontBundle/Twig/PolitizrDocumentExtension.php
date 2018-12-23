@@ -1325,6 +1325,8 @@ class PolitizrDocumentExtension extends \Twig_Extension
                 // specific label for CD09THD
                 if ($circle->getId() == CircleConstants::CD09THD_ID_CIRCLE) {
                     $label = "Je m'exprime sur le Plan Ariège THD";
+                } elseif ($circle->getId() == CircleConstants::CD09DOB_ID_CIRCLE) {
+                    $label = "Je m'exprime sur le Débat d'Orientation Budgétaire";
                 }
             }
         } else {
