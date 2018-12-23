@@ -37,6 +37,7 @@ class AlgoliaSearchIndexingCommand extends ContainerAwareCommand
 {
     private $router;
     private $logger;
+    private $documentService;
     private $globalTools;
 
     protected function configure()
@@ -84,6 +85,8 @@ class AlgoliaSearchIndexingCommand extends ContainerAwareCommand
         // services
         $this->router = $this->getContainer()->get('router');
         $this->logger = $this->getContainer()->get('logger');
+
+        $this->documentService = $this->getContainer()->get('politizr.functional.document');
 
         // $this->filterManager = $this->getContainer()->get('liip_imagine.filter.manager');
         // $this->cacheManager = $this->getContainer()->get('liip_imagine.cache.manager');
@@ -286,7 +289,11 @@ class AlgoliaSearchIndexingCommand extends ContainerAwareCommand
         foreach ($debates as $debate) {
             $imagePath = null;
             try {
-                $imagePath = $this->globalTools->filterImage($debate->getPathFileName(), 'algolia_image_document');
+                $pathFileName = $this->documentService->findMainImagePath($debate);
+                if (!$pathFileName) {
+                    $pathFileName = $debate->getDefaultPathFileName();
+                }
+                $imagePath = $this->globalTools->filterImage($pathFileName, 'algolia_image_document');
             } catch (\Exception $e) {
                 $output->writeln(sprintf('Exception for debate id-%s - %s', $debate->getId(), $e->getMessage()));
             }
@@ -337,7 +344,11 @@ class AlgoliaSearchIndexingCommand extends ContainerAwareCommand
         foreach ($reactions as $reaction) {
             $imagePath = null;
             try {
-                $imagePath = $this->globalTools->filterImage($reaction->getPathFileName(), 'algolia_image_document');
+                $pathFileName = $this->documentService->findMainImagePath($reaction);
+                if (!$pathFileName) {
+                    $pathFileName = $reaction->getDefaultPathFileName();
+                }
+                $imagePath = $this->globalTools->filterImage($pathFileName, 'algolia_image_document');
             } catch (\Exception $e) {
                 $output->writeln(sprintf('Exception for reaction id-%s - %s', $reaction->getId(), $e->getMessage()));
             }
