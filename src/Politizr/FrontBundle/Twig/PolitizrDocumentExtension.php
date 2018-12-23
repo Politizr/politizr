@@ -1405,13 +1405,10 @@ class PolitizrDocumentExtension extends \Twig_Extension
             $user = null;
         }
 
-        // no boost available for circle's documents nor op documents
+        // no boost available for circle's documents
         $debate = $document->getDebate();
-        $operation = $debate->getPEOperation();
 
         if ($document->getPCTopicId()) {
-            return null;
-        } elseif ($operation) {
             return null;
         }
 
