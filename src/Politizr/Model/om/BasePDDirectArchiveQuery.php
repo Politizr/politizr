@@ -19,6 +19,7 @@ use Politizr\Model\PDDirectArchiveQuery;
  * @method PDDirectArchiveQuery orderByName($order = Criteria::ASC) Order by the name column
  * @method PDDirectArchiveQuery orderByCity($order = Criteria::ASC) Order by the city column
  * @method PDDirectArchiveQuery orderByEmail($order = Criteria::ASC) Order by the email column
+ * @method PDDirectArchiveQuery orderByPhone($order = Criteria::ASC) Order by the phone column
  * @method PDDirectArchiveQuery orderByDescription($order = Criteria::ASC) Order by the description column
  * @method PDDirectArchiveQuery orderByCreatedAt($order = Criteria::ASC) Order by the created_at column
  * @method PDDirectArchiveQuery orderByUpdatedAt($order = Criteria::ASC) Order by the updated_at column
@@ -28,6 +29,7 @@ use Politizr\Model\PDDirectArchiveQuery;
  * @method PDDirectArchiveQuery groupByName() Group by the name column
  * @method PDDirectArchiveQuery groupByCity() Group by the city column
  * @method PDDirectArchiveQuery groupByEmail() Group by the email column
+ * @method PDDirectArchiveQuery groupByPhone() Group by the phone column
  * @method PDDirectArchiveQuery groupByDescription() Group by the description column
  * @method PDDirectArchiveQuery groupByCreatedAt() Group by the created_at column
  * @method PDDirectArchiveQuery groupByUpdatedAt() Group by the updated_at column
@@ -43,6 +45,7 @@ use Politizr\Model\PDDirectArchiveQuery;
  * @method PDDirectArchive findOneByName(string $name) Return the first PDDirectArchive filtered by the name column
  * @method PDDirectArchive findOneByCity(string $city) Return the first PDDirectArchive filtered by the city column
  * @method PDDirectArchive findOneByEmail(string $email) Return the first PDDirectArchive filtered by the email column
+ * @method PDDirectArchive findOneByPhone(string $phone) Return the first PDDirectArchive filtered by the phone column
  * @method PDDirectArchive findOneByDescription(string $description) Return the first PDDirectArchive filtered by the description column
  * @method PDDirectArchive findOneByCreatedAt(string $created_at) Return the first PDDirectArchive filtered by the created_at column
  * @method PDDirectArchive findOneByUpdatedAt(string $updated_at) Return the first PDDirectArchive filtered by the updated_at column
@@ -52,6 +55,7 @@ use Politizr\Model\PDDirectArchiveQuery;
  * @method array findByName(string $name) Return PDDirectArchive objects filtered by the name column
  * @method array findByCity(string $city) Return PDDirectArchive objects filtered by the city column
  * @method array findByEmail(string $email) Return PDDirectArchive objects filtered by the email column
+ * @method array findByPhone(string $phone) Return PDDirectArchive objects filtered by the phone column
  * @method array findByDescription(string $description) Return PDDirectArchive objects filtered by the description column
  * @method array findByCreatedAt(string $created_at) Return PDDirectArchive objects filtered by the created_at column
  * @method array findByUpdatedAt(string $updated_at) Return PDDirectArchive objects filtered by the updated_at column
@@ -161,7 +165,7 @@ abstract class BasePDDirectArchiveQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `id`, `name`, `city`, `email`, `description`, `created_at`, `updated_at`, `archived_at` FROM `p_d_direct_archive` WHERE `id` = :p0';
+        $sql = 'SELECT `id`, `name`, `city`, `email`, `phone`, `description`, `created_at`, `updated_at`, `archived_at` FROM `p_d_direct_archive` WHERE `id` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -377,6 +381,35 @@ abstract class BasePDDirectArchiveQuery extends ModelCriteria
         }
 
         return $this->addUsingAlias(PDDirectArchivePeer::EMAIL, $email, $comparison);
+    }
+
+    /**
+     * Filter the query on the phone column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterByPhone('fooValue');   // WHERE phone = 'fooValue'
+     * $query->filterByPhone('%fooValue%'); // WHERE phone LIKE '%fooValue%'
+     * </code>
+     *
+     * @param     string $phone The value to use as filter.
+     *              Accepts wildcards (* and % trigger a LIKE)
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return PDDirectArchiveQuery The current query, for fluid interface
+     */
+    public function filterByPhone($phone = null, $comparison = null)
+    {
+        if (null === $comparison) {
+            if (is_array($phone)) {
+                $comparison = Criteria::IN;
+            } elseif (preg_match('/[\%\*]/', $phone)) {
+                $phone = str_replace('*', '%', $phone);
+                $comparison = Criteria::LIKE;
+            }
+        }
+
+        return $this->addUsingAlias(PDDirectArchivePeer::PHONE, $phone, $comparison);
     }
 
     /**

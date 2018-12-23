@@ -2,8 +2,8 @@
 {% extends layout %}
 {% set headerRight = false %}
 
-{% set metaTitle = 'Dialogue citoyen' %}
-{% set metaDescription = 'Politizr est une plateforme qui favorise un dialogue constructif entre les citoyens et les élus.' %}
+{% set metaTitle = 'Rédigez le Cahier de Doléances Citoyennes' %}
+{% set metaDescription = 'Participez à la rédaction d\'un cahier de doléances citoyennes !' %}
 
 {% block title %}{{ metaTitle }} - {{ parent() }}{% endblock title %}
 {% block description %}{{ metaDescription }}{% endblock description %}
@@ -20,41 +20,76 @@
     <div id="lpGeneric">
         <div id="lpHero">
             <div class="center">
-                <h1>En 2018, POLITIZR réinvente le dialogue citoyen...</h1>
-                <div id="f-display"><img src="{{ asset('bundles/politizrfront/images/f-display.png') }}" alt="Dialogue Citoyen"></div>
+                <h1>Cahier de Doléances Citoyennes</h1>
+                <h2>Exprimez votre opinion pour participer à la rédaction d'un cahier de doléances citoyennes et faire réagir vos élus</h2>
+                <div id="f-display"><img src="{{ asset('bundles/politizrfront/images/f-display.png') }}" alt="Actualités Ariège"></div>
                 <div id="f-accessories"><img src="{{ asset('bundles/politizrfront/images/f-accessories.png') }}"></div>
             </div>
             <div id="lpHeroFader"></div>
         </div>
         <div id="lpUnderHero">
             <div class="center">
-                POLITIZR est un espace de discussion indépendant, neutre et gratuit qui renouvelle les pratiques politiques en permettant des échanges structurés et constructifs entre les citoyen.ne.s, les élu.e.s et leurs collectivités partout en France.
+                POLITIZR est un espace de discussion indépendant, neutre et gratuit qui permet des échanges structurés et constructifs entre les citoyen.ne.s et leurs élu.e.s.<br/><br/>
+                À l'occasion du mouvement des <b>gilets jaunes</b> qui bouscule notre démocratie, nous vous proposons de vous participer au grand débat pour nous faire part de vos doléances ! Notre équipe se chargera de compiler les propositions pour constituer un grand cahier de doléances citoyennes.<br/><br/>
+                <b>Participez à la constitution d'un grand cahier de doléances citoyennes, exprimez-vous!</b>
+                <br/><br/>
+                <b>Vous êtes un élu et vous cherchez un outil en ligne pour organisez le débat?</b><br/><a href="#lpContact">Contactez-nous !</a>
             </div>
         </div>
+
+        <div id="lpCTA">
+            <div class="center">
+                <a href="{{ path('InscriptionChoice') }}">Inscription</a>
+            </div>
+        </div>
+
+        <div id="postSelection">
+            <div class="center">
+                <h1>Les réactions à la crise des gilets jaunes</h1>
+                <h2>Citoyens, élus locaux... Partout en France !</h2>
+                
+                {% for document in documents %}
+                    {% if loop.first or loop.index0 is divisible by(2) %}
+                        <div class="cardColumn">
+                    {% endif %}
+                        {% include 'PolitizrFrontBundle:Document:_cardPublic.html.twig' %}
+                    {% if loop.last or loop.index is divisible by(2) %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+
+        <div id="lpCTA">
+            <div class="center">
+                <a href="{{ path('InscriptionChoice') }}">Inscription</a>
+            </div>
+        </div>
+
         <div id="lpArgu">
             <div class="center">
                 <div class="lpLeftCol">
                     <p>
-                        Politizr est un site web qui renouvelle le dialogue citoyen en l'inscrivant dans l'ère numérique. Venez exprimer vos opinions sur votre ville et instaurez un dialogue direct et transparent avec vos élus.
+                        POLITIZR propose un réseau social de dialogue citoyen permettant de reconnecter les citoyen.ne.s et leurs élu.e.s.
                         <br/><br/>
-                        Nous travaillons à améliorer la démocratie locale en proposant un espace de discussion qui favorise les échanges structurées et argumentées dans un temps long propice à la qualité du débat.
+                        Nous travaillons à améliorer la démocratie participative en proposant à nos utilisateurs citoyens et élus d'échanger via un espace de discussion qui favorise les échanges structurées et argumentées dans un temps long propice à la qualité du débat.
                     </p>
                     <img src="{{ asset('bundles/politizrfront/images/f-illustr01.jpg') }}">
                 </div>
                 <div class="lpRightCol">
-                    <h3>Vous êtes un citoyen désireux d'une nouvelle politique?</h3>
+                    <h3>Vous êtes un citoyen prêt à s'exprimer?</h3>
                     <div class="lpCheckLi"><i class="icon-check"></i><p>Discutez directement avec vos élu.e.s.</p></div>
                     <div class="lpCheckLi"><i class="icon-check"></i><p>Commentez et notez toutes les discussions ouvertes.</p></div>
-                    <div class="lpCheckLi"><i class="icon-check"></i><p>Partagez votre opinion auprès de vos concitoyen.ne.s et élu.e.s.</p></div>
+                    <div class="lpCheckLi"><i class="icon-check"></i><p>Partagez votre opinion sur l'actualité auprès de vos concitoyen.ne.s et élu.e.s.</p></div>
                     <div class="lpCheckLi"><i class="icon-check"></i><p>Participez à des échanges suivant vos centres d'intérêt.</p></div>
-                    <div class="lpCheckLi"><i class="icon-check"></i><p>Accédez à l'ensemble des publications aux niveaux local et national.</p></div>
-                    <div class="lpCheckLi"><i class="icon-social-fb"></i><p>&nbsp;Visualisez l'impact Facebook de vos publications sur votre territoire.</p></div>
+                    <div class="lpCheckLi"><i class="icon-check"></i><p>Accédez à l'ensemble des publications de votre territoire et d'ailleurs.</p></div>
+                    <div class="lpCheckLi"><i class="icon-social-fb"></i><p>&nbsp;Visualisez l'impact sur Facebook de vos publications.</p></div>
                     <br/>
                     <h3>Vous êtes un élu moderne?</h3>
                     <div class="lpCheckLi"><i class="icon-check"></i><p>Expliquez vos actions à vos concitoyen.ne.s.</p></div>
-                    <div class="lpCheckLi"><i class="icon-check"></i><p>Répondez aux questions et aux opinions de vos concitoyen.ne.s.</p></div>
+                    <div class="lpCheckLi"><i class="icon-check"></i><p>Répondez aux questions et aux opinions d'actualité de vos concitoyen.ne.s.</p></div>
                     <div class="lpCheckLi"><i class="icon-check"></i><p>Faîtes profiter d'autres élu.e.s de vos retours d'expérience.</p></div>
-                    <div class="lpCheckLi"><i class="icon-check"></i><p>Participez à des échanges suivant vos centres d'intérêt.</p></div>
+                    <div class="lpCheckLi"><i class="icon-check"></i><p>Participez à des échanges suivant l'actualité et vos centres d'intérêt.</p></div>
                     <div class="lpCheckLi"><i class="icon-check"></i><p>Accédez à l'ensemble des publications aux niveaux local et national.</p></div>
                     <div class="lpCheckLi"><i class="icon-social-fb"></i><p>&nbsp;Visualisez l'impact Facebook de vos publications sur votre territoire.</p></div>
                     <h3>Vous êtes une collectivité?</h3>
@@ -66,17 +101,17 @@
 
         <div id="lpCTA">
             <div class="center">
-                <a href="{{ path('Concept') }}">En savoir plus</a>
+                <a href="{{ path('InscriptionChoice') }}">Inscription</a>
             </div>
         </div>
 
         {% include 'PolitizrFrontBundle:Public\\LandingPage:_blockMarianne.html.twig' %}
-        
+
         <div id="lpContact">
             <div class="center">
                 <div class="lpLeftCol">
-                    Contactez-nous pour plus d'informations : <a href="mailto:contact@politizr.com">contact@politizr.com</a><br>
-                    ou par téléphone au <b>09. 50. 42. 09. 34</b>
+                    Envie de nous remonter une doléance citoyenne rapidement?<br/>
+                    Vous pouvez aussi simplement remplir ce questionnaire!
                 </div>
                 <div class="lpRightCol">
                     {% include 'PolitizrFrontBundle:Public\\LandingPage:_formContact.html.twig' with { 'phone': false, 'city' : true } %}
@@ -96,7 +131,7 @@
 
     {% if (app.environment == 'prod') %}
         <script type="text/javascript">
-            mixpanel.track("LP Civic Tech");
+            mixpanel.track("LP");
         </script>
     {% endif %}
 

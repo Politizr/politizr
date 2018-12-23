@@ -19,6 +19,7 @@ use Politizr\Model\PDDirectQuery;
  * @method PDDirectQuery orderByName($order = Criteria::ASC) Order by the name column
  * @method PDDirectQuery orderByCity($order = Criteria::ASC) Order by the city column
  * @method PDDirectQuery orderByEmail($order = Criteria::ASC) Order by the email column
+ * @method PDDirectQuery orderByPhone($order = Criteria::ASC) Order by the phone column
  * @method PDDirectQuery orderByDescription($order = Criteria::ASC) Order by the description column
  * @method PDDirectQuery orderByCreatedAt($order = Criteria::ASC) Order by the created_at column
  * @method PDDirectQuery orderByUpdatedAt($order = Criteria::ASC) Order by the updated_at column
@@ -27,6 +28,7 @@ use Politizr\Model\PDDirectQuery;
  * @method PDDirectQuery groupByName() Group by the name column
  * @method PDDirectQuery groupByCity() Group by the city column
  * @method PDDirectQuery groupByEmail() Group by the email column
+ * @method PDDirectQuery groupByPhone() Group by the phone column
  * @method PDDirectQuery groupByDescription() Group by the description column
  * @method PDDirectQuery groupByCreatedAt() Group by the created_at column
  * @method PDDirectQuery groupByUpdatedAt() Group by the updated_at column
@@ -41,6 +43,7 @@ use Politizr\Model\PDDirectQuery;
  * @method PDDirect findOneByName(string $name) Return the first PDDirect filtered by the name column
  * @method PDDirect findOneByCity(string $city) Return the first PDDirect filtered by the city column
  * @method PDDirect findOneByEmail(string $email) Return the first PDDirect filtered by the email column
+ * @method PDDirect findOneByPhone(string $phone) Return the first PDDirect filtered by the phone column
  * @method PDDirect findOneByDescription(string $description) Return the first PDDirect filtered by the description column
  * @method PDDirect findOneByCreatedAt(string $created_at) Return the first PDDirect filtered by the created_at column
  * @method PDDirect findOneByUpdatedAt(string $updated_at) Return the first PDDirect filtered by the updated_at column
@@ -49,6 +52,7 @@ use Politizr\Model\PDDirectQuery;
  * @method array findByName(string $name) Return PDDirect objects filtered by the name column
  * @method array findByCity(string $city) Return PDDirect objects filtered by the city column
  * @method array findByEmail(string $email) Return PDDirect objects filtered by the email column
+ * @method array findByPhone(string $phone) Return PDDirect objects filtered by the phone column
  * @method array findByDescription(string $description) Return PDDirect objects filtered by the description column
  * @method array findByCreatedAt(string $created_at) Return PDDirect objects filtered by the created_at column
  * @method array findByUpdatedAt(string $updated_at) Return PDDirect objects filtered by the updated_at column
@@ -160,7 +164,7 @@ abstract class BasePDDirectQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `id`, `name`, `city`, `email`, `description`, `created_at`, `updated_at` FROM `p_d_direct` WHERE `id` = :p0';
+        $sql = 'SELECT `id`, `name`, `city`, `email`, `phone`, `description`, `created_at`, `updated_at` FROM `p_d_direct` WHERE `id` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -376,6 +380,35 @@ abstract class BasePDDirectQuery extends ModelCriteria
         }
 
         return $this->addUsingAlias(PDDirectPeer::EMAIL, $email, $comparison);
+    }
+
+    /**
+     * Filter the query on the phone column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterByPhone('fooValue');   // WHERE phone = 'fooValue'
+     * $query->filterByPhone('%fooValue%'); // WHERE phone LIKE '%fooValue%'
+     * </code>
+     *
+     * @param     string $phone The value to use as filter.
+     *              Accepts wildcards (* and % trigger a LIKE)
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return PDDirectQuery The current query, for fluid interface
+     */
+    public function filterByPhone($phone = null, $comparison = null)
+    {
+        if (null === $comparison) {
+            if (is_array($phone)) {
+                $comparison = Criteria::IN;
+            } elseif (preg_match('/[\%\*]/', $phone)) {
+                $phone = str_replace('*', '%', $phone);
+                $comparison = Criteria::LIKE;
+            }
+        }
+
+        return $this->addUsingAlias(PDDirectPeer::PHONE, $phone, $comparison);
     }
 
     /**

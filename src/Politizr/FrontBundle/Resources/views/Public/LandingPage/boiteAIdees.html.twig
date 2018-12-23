@@ -31,7 +31,8 @@
             <div class="center">
                 POLITIZR déploie pour les collectivités locales une boîte à idée numérique: accessible très simplement depuis une URL dédiée, vos administré.e.s pourront accéder à un espace réservé à votre collectivité qui présentera le principe de l’opération et les invitera à proposer leurs idées.<br/><br/>
                 En souscrivant au service “Boîte à Idées”, vous et vos administré.e.s bénéficierez de toute la puissance de notre réseau social de dialogue citoyen: fil d’actualité personnalisé, notifications, gestion d’abonnements, possibilité de commenter et noter les publications, intégration avec Facebook, etc.
-                <br/><br/><b>Offre gratuite et sans engagement!</b><br/><br/>
+                <br/><br/><b>Service gratuit et sans engagement</b><br/><br/>
+                <b>Utilisez notre boîte à idées pour faire remonter les doléances de vos administré.e.s !</b><br/><br/>
                 <i>Contactez-nous pour programmer une démo!</i>
             </div>
         </div>
@@ -69,7 +70,7 @@
                     ou par téléphone au <b>09. 50. 42. 09. 34</b>
                 </div>
                 <div class="lpRightCol">
-                    {% include 'PolitizrFrontBundle:Public\\LandingPage:_formContact.html.twig' %}
+                    {% include 'PolitizrFrontBundle:Public\\LandingPage:_formContact.html.twig' with { 'phone': true, 'city' : true } %}
                 </div>
             </div>
         </div>

@@ -14,6 +14,8 @@ params:
             label:          Ville
         email:
             label:          Email
+        phone:
+            label:          Téléphone
         description:
             label:          Description
         created_at:
@@ -30,7 +32,7 @@ builders:
             title:                              Liste des messages directs
             max_per_page:                       50
             sort:                               [ created_at, DESC ]
-            display:                            [ name, city, email, created_at ]
+            display:                            [ name, city, email, phone, created_at ]
             filtersMode:                        modal
             filters:                            [ name, email, created_at ]
             object_actions:
@@ -47,7 +49,7 @@ builders:
             title:                              "Edition du message de '{{ PDDirect.name }}'"
             tabs:
                 "Utilisateur":
-                    "Auteur":                    [ name, city, email ]
+                    "Auteur":                    [ name, city, email, phone ]
                 "Message":
                     "Description":               [ description ]
                 "Attributs":
@@ -73,7 +75,7 @@ builders:
             title:                              "Visualisation du message de '{{ PDDirect.name }}'"
             tabs:
                 "Utilisateur":
-                    "Auteur":                    [ name, city, email ]
+                    "Auteur":                    [ name, city, email, phone ]
                 "Message":
                     "Description":               [ description ]
                 "Attributs":

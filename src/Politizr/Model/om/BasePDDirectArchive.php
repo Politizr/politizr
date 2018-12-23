@@ -63,6 +63,12 @@ abstract class BasePDDirectArchive extends BaseObject implements Persistent
     protected $email;
 
     /**
+     * The value for the phone field.
+     * @var        string
+     */
+    protected $phone;
+
+    /**
      * The value for the description field.
      * @var        string
      */
@@ -148,6 +154,17 @@ abstract class BasePDDirectArchive extends BaseObject implements Persistent
     {
 
         return $this->email;
+    }
+
+    /**
+     * Get the [phone] column value.
+     *
+     * @return string
+     */
+    public function getPhone()
+    {
+
+        return $this->phone;
     }
 
     /**
@@ -366,6 +383,27 @@ abstract class BasePDDirectArchive extends BaseObject implements Persistent
     } // setEmail()
 
     /**
+     * Set the value of [phone] column.
+     *
+     * @param  string $v new value
+     * @return PDDirectArchive The current object (for fluent API support)
+     */
+    public function setPhone($v)
+    {
+        if ($v !== null) {
+            $v = (string) $v;
+        }
+
+        if ($this->phone !== $v) {
+            $this->phone = $v;
+            $this->modifiedColumns[] = PDDirectArchivePeer::PHONE;
+        }
+
+
+        return $this;
+    } // setPhone()
+
+    /**
      * Set the value of [description] column.
      *
      * @param  string $v new value
@@ -491,10 +529,11 @@ abstract class BasePDDirectArchive extends BaseObject implements Persistent
             $this->name = ($row[$startcol + 1] !== null) ? (string) $row[$startcol + 1] : null;
             $this->city = ($row[$startcol + 2] !== null) ? (string) $row[$startcol + 2] : null;
             $this->email = ($row[$startcol + 3] !== null) ? (string) $row[$startcol + 3] : null;
-            $this->description = ($row[$startcol + 4] !== null) ? (string) $row[$startcol + 4] : null;
-            $this->created_at = ($row[$startcol + 5] !== null) ? (string) $row[$startcol + 5] : null;
-            $this->updated_at = ($row[$startcol + 6] !== null) ? (string) $row[$startcol + 6] : null;
-            $this->archived_at = ($row[$startcol + 7] !== null) ? (string) $row[$startcol + 7] : null;
+            $this->phone = ($row[$startcol + 4] !== null) ? (string) $row[$startcol + 4] : null;
+            $this->description = ($row[$startcol + 5] !== null) ? (string) $row[$startcol + 5] : null;
+            $this->created_at = ($row[$startcol + 6] !== null) ? (string) $row[$startcol + 6] : null;
+            $this->updated_at = ($row[$startcol + 7] !== null) ? (string) $row[$startcol + 7] : null;
+            $this->archived_at = ($row[$startcol + 8] !== null) ? (string) $row[$startcol + 8] : null;
             $this->resetModified();
 
             $this->setNew(false);
@@ -504,7 +543,7 @@ abstract class BasePDDirectArchive extends BaseObject implements Persistent
             }
             $this->postHydrate($row, $startcol, $rehydrate);
 
-            return $startcol + 8; // 8 = PDDirectArchivePeer::NUM_HYDRATE_COLUMNS.
+            return $startcol + 9; // 9 = PDDirectArchivePeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
             throw new PropelException("Error populating PDDirectArchive object", $e);
@@ -724,6 +763,9 @@ abstract class BasePDDirectArchive extends BaseObject implements Persistent
         if ($this->isColumnModified(PDDirectArchivePeer::EMAIL)) {
             $modifiedColumns[':p' . $index++]  = '`email`';
         }
+        if ($this->isColumnModified(PDDirectArchivePeer::PHONE)) {
+            $modifiedColumns[':p' . $index++]  = '`phone`';
+        }
         if ($this->isColumnModified(PDDirectArchivePeer::DESCRIPTION)) {
             $modifiedColumns[':p' . $index++]  = '`description`';
         }
@@ -758,6 +800,9 @@ abstract class BasePDDirectArchive extends BaseObject implements Persistent
                         break;
                     case '`email`':
                         $stmt->bindValue($identifier, $this->email, PDO::PARAM_STR);
+                        break;
+                    case '`phone`':
+                        $stmt->bindValue($identifier, $this->phone, PDO::PARAM_STR);
                         break;
                     case '`description`':
                         $stmt->bindValue($identifier, $this->description, PDO::PARAM_STR);
@@ -837,15 +882,18 @@ abstract class BasePDDirectArchive extends BaseObject implements Persistent
                 return $this->getEmail();
                 break;
             case 4:
-                return $this->getDescription();
+                return $this->getPhone();
                 break;
             case 5:
-                return $this->getCreatedAt();
+                return $this->getDescription();
                 break;
             case 6:
-                return $this->getUpdatedAt();
+                return $this->getCreatedAt();
                 break;
             case 7:
+                return $this->getUpdatedAt();
+                break;
+            case 8:
                 return $this->getArchivedAt();
                 break;
             default:
@@ -880,10 +928,11 @@ abstract class BasePDDirectArchive extends BaseObject implements Persistent
             $keys[1] => $this->getName(),
             $keys[2] => $this->getCity(),
             $keys[3] => $this->getEmail(),
-            $keys[4] => $this->getDescription(),
-            $keys[5] => $this->getCreatedAt(),
-            $keys[6] => $this->getUpdatedAt(),
-            $keys[7] => $this->getArchivedAt(),
+            $keys[4] => $this->getPhone(),
+            $keys[5] => $this->getDescription(),
+            $keys[6] => $this->getCreatedAt(),
+            $keys[7] => $this->getUpdatedAt(),
+            $keys[8] => $this->getArchivedAt(),
         );
         $virtualColumns = $this->virtualColumns;
         foreach ($virtualColumns as $key => $virtualColumn) {
@@ -936,15 +985,18 @@ abstract class BasePDDirectArchive extends BaseObject implements Persistent
                 $this->setEmail($value);
                 break;
             case 4:
-                $this->setDescription($value);
+                $this->setPhone($value);
                 break;
             case 5:
-                $this->setCreatedAt($value);
+                $this->setDescription($value);
                 break;
             case 6:
-                $this->setUpdatedAt($value);
+                $this->setCreatedAt($value);
                 break;
             case 7:
+                $this->setUpdatedAt($value);
+                break;
+            case 8:
                 $this->setArchivedAt($value);
                 break;
         } // switch()
@@ -975,10 +1027,11 @@ abstract class BasePDDirectArchive extends BaseObject implements Persistent
         if (array_key_exists($keys[1], $arr)) $this->setName($arr[$keys[1]]);
         if (array_key_exists($keys[2], $arr)) $this->setCity($arr[$keys[2]]);
         if (array_key_exists($keys[3], $arr)) $this->setEmail($arr[$keys[3]]);
-        if (array_key_exists($keys[4], $arr)) $this->setDescription($arr[$keys[4]]);
-        if (array_key_exists($keys[5], $arr)) $this->setCreatedAt($arr[$keys[5]]);
-        if (array_key_exists($keys[6], $arr)) $this->setUpdatedAt($arr[$keys[6]]);
-        if (array_key_exists($keys[7], $arr)) $this->setArchivedAt($arr[$keys[7]]);
+        if (array_key_exists($keys[4], $arr)) $this->setPhone($arr[$keys[4]]);
+        if (array_key_exists($keys[5], $arr)) $this->setDescription($arr[$keys[5]]);
+        if (array_key_exists($keys[6], $arr)) $this->setCreatedAt($arr[$keys[6]]);
+        if (array_key_exists($keys[7], $arr)) $this->setUpdatedAt($arr[$keys[7]]);
+        if (array_key_exists($keys[8], $arr)) $this->setArchivedAt($arr[$keys[8]]);
     }
 
     /**
@@ -994,6 +1047,7 @@ abstract class BasePDDirectArchive extends BaseObject implements Persistent
         if ($this->isColumnModified(PDDirectArchivePeer::NAME)) $criteria->add(PDDirectArchivePeer::NAME, $this->name);
         if ($this->isColumnModified(PDDirectArchivePeer::CITY)) $criteria->add(PDDirectArchivePeer::CITY, $this->city);
         if ($this->isColumnModified(PDDirectArchivePeer::EMAIL)) $criteria->add(PDDirectArchivePeer::EMAIL, $this->email);
+        if ($this->isColumnModified(PDDirectArchivePeer::PHONE)) $criteria->add(PDDirectArchivePeer::PHONE, $this->phone);
         if ($this->isColumnModified(PDDirectArchivePeer::DESCRIPTION)) $criteria->add(PDDirectArchivePeer::DESCRIPTION, $this->description);
         if ($this->isColumnModified(PDDirectArchivePeer::CREATED_AT)) $criteria->add(PDDirectArchivePeer::CREATED_AT, $this->created_at);
         if ($this->isColumnModified(PDDirectArchivePeer::UPDATED_AT)) $criteria->add(PDDirectArchivePeer::UPDATED_AT, $this->updated_at);
@@ -1064,6 +1118,7 @@ abstract class BasePDDirectArchive extends BaseObject implements Persistent
         $copyObj->setName($this->getName());
         $copyObj->setCity($this->getCity());
         $copyObj->setEmail($this->getEmail());
+        $copyObj->setPhone($this->getPhone());
         $copyObj->setDescription($this->getDescription());
         $copyObj->setCreatedAt($this->getCreatedAt());
         $copyObj->setUpdatedAt($this->getUpdatedAt());
@@ -1123,6 +1178,7 @@ abstract class BasePDDirectArchive extends BaseObject implements Persistent
         $this->name = null;
         $this->city = null;
         $this->email = null;
+        $this->phone = null;
         $this->description = null;
         $this->created_at = null;
         $this->updated_at = null;
