@@ -319,6 +319,8 @@ class ListingController extends Controller
         $cityUuid = null;
         $departmentUuid = null;
         $regionUuid = null;
+        $franceUuid = $france->getUuid();
+        
         if ($user) {
             $city = $user->getPLCity();
             if ($city) {
@@ -345,6 +347,7 @@ class ListingController extends Controller
             'cityUuid' => $cityUuid,
             'departmentUuid' => $departmentUuid,
             'regionUuid' => $regionUuid,
+            'franceUuid' => $franceUuid,
         ));
     }
 

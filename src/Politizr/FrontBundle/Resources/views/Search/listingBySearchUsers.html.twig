@@ -30,8 +30,9 @@
     <div id="content">
         <div id="localizationPreload" action="usersMyMap" type="{{ currentType }}" uuid="{{ currentUuid }}"></div>
         <div id="localizationChoiceBox">
-            <a action="usersMyMap" id="linkMyRegion" type="{{ constant('Politizr\\Constant\\LocalizationConstants::TYPE_REGION') }}" uuid="{{ regionUuid }}">Ma région</a>
-            <a action="usersMyMap" id="linkMyDepartment" type="{{ constant('Politizr\\Constant\\LocalizationConstants::TYPE_DEPARTMENT') }}" uuid="{{ departmentUuid }}">Mon département</a>
+            <a action="usersMyMap" id="linkFrance" type="{{ constant('Politizr\\Constant\\LocalizationConstants::TYPE_COUNTRY') }}" uuid="{{ franceUuid }}">Tous</a>
+            <a action="usersMyMap" id="linkMyRegion" type="{{ constant('Politizr\\Constant\\LocalizationConstants::TYPE_REGION') }}" uuid="{{ regionUuid }}">Région</a>
+            <a action="usersMyMap" id="linkMyDepartment" type="{{ constant('Politizr\\Constant\\LocalizationConstants::TYPE_DEPARTMENT') }}" uuid="{{ departmentUuid }}">Département</a>
         </div>
         <div id="documentListing" class="searchResults withLoaderInside">
             {% include 'PolitizrFrontBundle:Navigation\\Xhr:_xhrLocalLoader.html.twig' %}

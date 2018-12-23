@@ -6,7 +6,8 @@ $(function() {
     if (currentUuid) {
         $("#localizationPreload").trigger("click");
     } else if (userUuid) {
-        $("#linkMyRegion").trigger("click");
+        // $("#linkMyRegion").trigger("click");
+        $("#linkFrance").trigger("click");
     } else {
         usersByFiltersListing();
     }
