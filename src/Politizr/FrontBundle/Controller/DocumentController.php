@@ -275,7 +275,7 @@ class DocumentController extends Controller
         // manage context (op, topic)
         $opUuid = $request->get('op');
         $topicUuid = $request->get('topic');
-        $debate = $this->get('politizr.functional.document')->manageEditDocumentContext($debate, $opUuid, $topicUuid);
+        $debate = $this->get('politizr.functional.document')->manageEditDocumentContext($user, $debate, $opUuid, $topicUuid);
 
         $topic = $debate->getPCTopic();
         if ($topic) {

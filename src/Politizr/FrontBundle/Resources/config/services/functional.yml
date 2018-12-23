@@ -9,6 +9,7 @@ services:
             - @politizr.functional.tag
             - @politizr.functional.localization
             - @politizr.functional.circle
+            - @event_dispatcher
             - @router
             - @politizr.tools.global
             - @logger

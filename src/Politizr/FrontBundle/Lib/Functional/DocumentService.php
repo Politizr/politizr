@@ -5,6 +5,8 @@ use Symfony\Component\DomCrawler\Crawler;
 
 use Politizr\Exception\InconsistentDataException;
 
+use Symfony\Component\EventDispatcher\GenericEvent;
+
 use Politizr\Constant\ObjectTypeConstants;
 use Politizr\Constant\PathConstants;
 use Politizr\Constant\DocumentConstants;
@@ -54,6 +56,8 @@ class DocumentService
     private $localizationService;
     private $circleService;
 
+    private $eventDispatcher;
+
     private $router;
 
     private $globalTools;
@@ -69,6 +73,7 @@ class DocumentService
      * @param @politizr.functional.tag
      * @param @politizr.functional.localization
      * @param @politizr.functional.circle
+     * @param @event_dispatcher
      * @param @router
      * @param @politizr.tools.global
      * @param @logger
@@ -81,6 +86,7 @@ class DocumentService
         $tagService,
         $localizationService,
         $circleService,
+        $eventDispatcher,
         $router,
         $globalTools,
         $logger
@@ -94,6 +100,8 @@ class DocumentService
         $this->tagService = $tagService;
         $this->localizationService = $localizationService;
         $this->circleService = $circleService;
+
+        $this->eventDispatcher = $eventDispatcher;
 
         $this->router = $router;
 
@@ -824,7 +832,7 @@ class DocumentService
      * @param
      * @return
      */
-    public function manageEditDocumentContext(PDDebate $debate, $opUuid = null, $topicUuid = null)
+    public function manageEditDocumentContext(PUser $user, PDDebate $debate, $opUuid = null, $topicUuid = null)
     {
         // manage OP context
         $operation = null;
@@ -839,10 +847,19 @@ class DocumentService
             $debate->setPEOperationId($operation->getId());
             $debate->save();
 
-            // op preset tags
             $tags = $operation->getPTags();
             foreach ($tags as $tag) {
+                // op preset tags to doc
                 $this->tagManager->createDebateTag($debate->getId(), $tag->getId());
+
+                // op preset tags to user (cf #843)
+                $puTaggedT = $this->tagManager->createUserTag($user->getId(), $tag->getId());
+
+                // Events
+                if ($puTaggedT) {
+                    $event = new GenericEvent($tag, array('author_user_id' => $user->getId(),));
+                    $dispatcher = $this->eventDispatcher->dispatch('n_user_tag', $event);
+                }
             }
 
             return $debate;

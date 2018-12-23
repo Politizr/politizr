@@ -450,14 +450,23 @@ ORDER BY title ASC
      */
     public function createUserTag($userId, $tagId)
     {
-        $puTaggedT = new PUTaggedT();
+        $puTaggedT = PUTaggedTQuery::create()
+            ->filterByPTagId($tagId)
+            ->filterByPUserId($userId)
+            ->findOne();
 
-        $puTaggedT->setPUserId($userId);
-        $puTaggedT->setPTagId($tagId);
+        if (!$puTaggedT) {
+            $puTaggedT = new PUTaggedT();
 
-        $puTaggedT->save();
+            $puTaggedT->setPUserId($userId);
+            $puTaggedT->setPTagId($tagId);
 
-        return $puTaggedT;
+            $puTaggedT->save();
+
+            return $puTaggedT;
+        }
+
+        return null;
     }
 
     /**
