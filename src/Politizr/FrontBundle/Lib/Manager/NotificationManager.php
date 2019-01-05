@@ -61,7 +61,7 @@ class NotificationManager
             NotificationConstants::ID_D_C_NOTE_NEG,
             NotificationConstants::ID_U_FOLLOWED,
             NotificationConstants::ID_U_BADGE,
-            NotificationConstants::ID_S_T_USER,
+            // NotificationConstants::ID_S_T_USER,
             NotificationConstants::ID_S_T_DOCUMENT,
             NotificationConstants::ID_ADM_MESSAGE,
             NotificationConstants::ID_L_U_CITY,
