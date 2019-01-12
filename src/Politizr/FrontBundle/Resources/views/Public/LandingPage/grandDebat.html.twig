@@ -2,8 +2,8 @@
 {% extends layout %}
 {% set headerRight = false %}
 
-{% set metaTitle = 'Rédigez le Cahier de Doléances Citoyennes' %}
-{% set metaDescription = 'Participez à la rédaction d\'un cahier de doléances citoyennes !' %}
+{% set metaTitle = 'Participez au Grand Débat National' %}
+{% set metaDescription = 'Participez Grand Débat National sur un site neutre et indépendant !' %}
 
 {% block title %}{{ metaTitle }} - {{ parent() }}{% endblock title %}
 {% block description %}{{ metaDescription }}{% endblock description %}
@@ -20,8 +20,8 @@
     <div id="lpGeneric">
         <div id="lpHero">
             <div class="center">
-                <h1>Cahier de Doléances Citoyennes</h1>
-                <h2>Exprimez votre opinion pour participer à la rédaction d'un cahier de doléances citoyennes et faire réagir vos élus</h2>
+                <h1>Grand Débat National, c'est le moment !</h1>
+                <h2>Exprimez-vous librement sur un site neutre et indépendant pour participer Grand Débat National</h2>
                 <div id="f-display"><img src="{{ asset('bundles/politizrfront/images/f-display.png') }}" alt="Actualités Ariège"></div>
                 <div id="f-accessories"><img src="{{ asset('bundles/politizrfront/images/f-accessories.png') }}"></div>
             </div>
@@ -30,19 +30,20 @@
         <div id="lpUnderHero">
             <div class="center">
                 POLITIZR est un espace de discussion indépendant, neutre et gratuit qui permet des échanges structurés et constructifs entre les citoyen.ne.s et leurs élu.e.s.<br/><br/>
-                À l'occasion de la mise en place du <b>grand débat national</b>, nous vous invitons à participer à cette consultation citoyenne pour nous faire part de vos doléances ! Notre équipe se chargera de compiler les propositions pour constituer un grand cahier de doléances citoyennes.<br/><br/>
-                <b>Participez à la constitution d'un grand cahier de doléances citoyennes, exprimez-vous!</b>
-                <br/><br/>
-                <b>Vous êtes un élu et vous cherchez un outil en ligne pour organisez le débat dans votre commune?</b><br/>Découvrez notre <a href="{{ path('LandingPage', { 'theme': 'boite-a-idees-numerique'}) }}">boîte à idées 100% gratuite</a> ou notre <a href="{{ path('LandingPage', { 'theme': 'bien-dit'}) }}">outil de remontées citoyennes</a> clef en main à partir de 100€HT/mois !
+                A l’initiative du Président de la République, le Gouvernement engage un grand débat national permettant à toutes et tous de débattre de questions essentielles pour les Français. <br><br>
+                <b>Chacun pouvant organiser un débat, POLITIZR, plateforme neutre et indépendante, a décidé d'organiser le Grand Débat National à sa façon !</b><br><br>
+                <b>Nous reprenons les thématiques proposées par le gouvernement et nous ajouterons de nouvelles thématiques issues des doléances citoyennes publiées par ailleurs sur notre plateforme.</b><br><br>
+                La suite sera construite avec vous pour exploiter au mieux vos contributions...
             </div>
         </div>
 
         <div id="lpCTA">
             <div class="center">
-                <a href="{{ path('InscriptionChoice') }}">Inscription</a>
+                <a href="{{ path('CircleDetail', {'slug': 'le-grand-debat-national'}) }}">Découvrir</a>
             </div>
         </div>
 
+        {#
         <div id="postSelection">
             <div class="center">
                 <h1>Les dernières doléances citoyennes</h1>
@@ -65,6 +66,7 @@
                 <a href="{{ path('InscriptionChoice') }}">Inscription</a>
             </div>
         </div>
+        #}
 
         <div id="lpArgu">
             <div class="center">
@@ -93,7 +95,7 @@
                     <div class="lpCheckLi"><i class="icon-check"></i><p>Accédez à l'ensemble des publications aux niveaux local et national.</p></div>
                     <div class="lpCheckLi"><i class="icon-social-fb"></i><p>&nbsp;Visualisez l'impact Facebook de vos publications sur votre territoire.</p></div>
                     <h3>Vous êtes une collectivité?</h3>
-                    <div class="lpCheckLi"><i class="icon-check"></i><p><a href="{{ path('LandingPage', { 'theme': 'offres-collectivites'}) }}">Découvrez nos offres vous permettant de déployer facilement un cahier de doléances en ligne pour votre collectivité !</a></div>
+                    <div class="lpCheckLi"><i class="icon-check"></i><p><a href="{{ path('LandingPage', { 'theme': 'offres-collectivites'}) }}">Découvrez nos offres de démocratie participative pour votre collectivité !</a></div>
                     <h3>&nbsp;</h3>
                 </div>
             </div>
@@ -101,7 +103,7 @@
 
         <div id="lpCTA">
             <div class="center">
-                <a href="{{ path('InscriptionChoice') }}">Inscription</a>
+                <a href="{{ path('CircleDetail', {'slug': 'le-grand-debat-national'}) }}">Découvrir</a>
             </div>
         </div>
 
@@ -110,7 +112,7 @@
         <div id="lpContact">
             <div class="center">
                 <div class="lpLeftCol">
-                    Envie de nous remonter une doléance citoyenne rapidement?<br/>
+                    Envie de nous participer au grand débat plus rapidement?<br/>
                     Vous pouvez aussi simplement remplir ce questionnaire!
                 </div>
                 <div class="lpRightCol">

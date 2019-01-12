@@ -26,4 +26,7 @@ class CircleConstants
 
     // SPECIFIC CD09 DOB 2018
     const CD09DOB_ID_CIRCLE = 4;
+
+    // SPECIFIC GRAND DEBAT
+    const GRANDDEBAT_ID_CIRCLE = 7;
 }

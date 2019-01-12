@@ -135,6 +135,8 @@ class PublicController extends Controller
             $template = 'offresCollectivites.html.twig';
         } elseif ($theme == 'boite-a-idees-numerique')  {
             $template = 'boiteAIdees.html.twig';
+        } elseif ($theme == 'doleances-en-ligne')  {
+            $template = 'doleancesEnLigne.html.twig';
         } elseif ($theme == 'bien-dit')  {
             $template = 'bienDit.html.twig';
         } elseif ($theme == 'actus-ariege')  {
@@ -317,6 +319,15 @@ class PublicController extends Controller
             );
 
             $template = 'cahierDeDoleances.html.twig';
+        } elseif ($theme == 'grand-debat-national')  {
+            // $documents = $this->get('politizr.functional.document')->getDocumentsByTagsPaginated(
+            //     [ 1126 ],
+            //     null,
+            //     ListingConstants::ORDER_BY_KEYWORD_LAST,
+            //     0, ListingConstants::LISTING_LP_RESULTS
+            // );
+
+            $template = 'grandDebat.html.twig';
         } else {
             return $this->redirect($this->generateUrl('Homepage'));
         }
