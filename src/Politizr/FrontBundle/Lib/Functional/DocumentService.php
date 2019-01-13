@@ -540,10 +540,13 @@ class DocumentService
             return null;
         }
 
+
+        // add "orderByPTagId('desc')" to maximize recently created tag
         $similars = PDDebateQuery::create()
             ->filterById($document->getDebateId(), \Criteria::NOT_EQUAL)
             ->usePDDTaggedTQuery()
                 ->filterByPTag($document->getTags(TagConstants::TAG_TYPE_THEME))
+                ->orderByPTagId('desc')
             ->endUse()
             ->distinct()
             ->online()
