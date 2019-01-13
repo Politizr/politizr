@@ -20,9 +20,9 @@
 {% block headerMsg %}
     {{ parent() }}
 
-    {% if tag.tagType == constant('Politizr\\Constant\\TagConstants::TAG_TYPE_PRIVATE') %}
+    {# if tag.tagType == constant('Politizr\\Constant\\TagConstants::TAG_TYPE_PRIVATE') #}
         {{ tag | tagOperation }}
-    {% endif %}
+    {# endif #}
 {% endblock %}
 
 {% block content %}

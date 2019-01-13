@@ -118,6 +118,7 @@ class UserController extends Controller
             ->usePEOScopePLCQuery(null, "LEFT JOIN")
                 ->filterByPLCityId($user->getPLCityId())
             ->endUse()
+            ->orderByUpdatedAt('desc')
             ->find();
 
         return $this->render('PolitizrFrontBundle:Timeline:user.html.twig', array(
