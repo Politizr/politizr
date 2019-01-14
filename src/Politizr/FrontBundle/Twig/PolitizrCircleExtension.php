@@ -109,6 +109,11 @@ class PolitizrCircleExtension extends \Twig_Extension
                 array('is_safe' => array('html'), 'needs_environment' => true)
             ),
             new \Twig_SimpleFilter(
+                'topicHowToBox',
+                array($this, 'topicHowToBox'),
+                array('is_safe' => array('html'), 'needs_environment' => true)
+            ),
+            new \Twig_SimpleFilter(
                 'authorizedReactionUsers',
                 array($this, 'authorizedReactionUsers'),
                 array('is_safe' => array('html'), 'needs_environment' => true)
@@ -390,6 +395,34 @@ class PolitizrCircleExtension extends \Twig_Extension
 
         return $html;
     }
+
+    /**
+     * Display contextual "how to" box
+     *
+     * @param PCTopic $topic
+     * @return string
+     */
+    public function topicHowToBox(\Twig_Environment $env, PCTopic $topic)
+    {
+        $html = null;
+
+        $circle = $topic->getPCircle();
+
+        // get template path > generic or dedicated
+        $templatePath = 'Topic';
+        if ($circle->getPCircleTypeId() == CircleConstants::CIRCLE_TYPE_SPECIFIC && $circle->getId() == CircleConstants::GRANDDEBAT_ID_CIRCLE) {
+            $templatePath = 'Topic\\granddebat';
+        }
+
+        $html = $env->render(
+            'PolitizrFrontBundle:'.$templatePath.':_circleHowTo.html.twig',
+            array(
+            )
+        );
+
+        return $html;
+    }
+
 
     /**
      * Display listing of users authorized to react in this circle

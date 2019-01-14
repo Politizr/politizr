@@ -422,11 +422,20 @@ class PolitizrDocumentExtension extends \Twig_Extension
         $authorizedUsersIds = null;
         $onlyElected = true;
         $labelSuffix = 'd\'élu-e';
+        $profileIcon = 'icon-profil-elu';
+        
         if ($circle = $document->getCircle()) {
             // group context > check for authorized users publications
             $authorizedUsersIds = $this->circleService->getAuthorizedReactionUsersIdsByCircle($circle);
             $onlyElected = false;
-            $labelSuffix = 'd\'animateur';
+
+            $openReaction = $circle->getOpenReaction();
+            if ($openReaction) {
+                $labelSuffix = '';
+                $profileIcon = 'icon-profil-citoyen';
+            } else {
+                $labelSuffix = 'd\'animateur';
+            }
         }
 
         switch ($document->getType()) {
@@ -475,6 +484,7 @@ class PolitizrDocumentExtension extends \Twig_Extension
                 'document' => $document,
                 'nbElectedPublications' => $nbElectedPublications,
                 'labelElectedPublications' => $labelElectedPublications,
+                'profileIcon' => $profileIcon,
             )
         );
         
