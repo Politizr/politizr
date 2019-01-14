@@ -2,10 +2,10 @@
 
 /**
  * Data object containing the SQL and PHP code to migrate the database
- * up to version 1545491949.
- * Generated on 2018-12-22 16:19:09 by lionel
+ * up to version 1547491800.
+ * Generated on 2019-01-14 19:50:00 by lionel
  */
-class PropelMigration_1545491949
+class PropelMigration_1547491800
 {
 
     public function preUp($manager)
@@ -42,15 +42,11 @@ class PropelMigration_1545491949
 # It "suspends judgement" for fkey relationships until are tables are set.
 SET FOREIGN_KEY_CHECKS = 0;
 
-ALTER TABLE `p_d_direct`
-    ADD `phone` VARCHAR(250) AFTER `email`;
+ALTER TABLE `p_circle`
+    ADD `open_reaction` TINYINT(1) AFTER `public_circle`;
 
-ALTER TABLE `p_d_direct_archive`
-    ADD `phone` VARCHAR(250) AFTER `email`;
-
-DROP INDEX `p_u_current_q_o_FI_1` ON `p_u_current_q_o`;
-
-DROP INDEX `p_u_subscribe_p_n_e_FI_1` ON `p_u_subscribe_p_n_e`;
+ALTER TABLE `p_circle_archive`
+    ADD `open_reaction` TINYINT(1) AFTER `public_circle`;
 
 # This restores the fkey checks, after having unset them earlier
 SET FOREIGN_KEY_CHECKS = 1;
@@ -74,13 +70,9 @@ SET FOREIGN_KEY_CHECKS = 0;
 
 DROP INDEX `acl_object_identity_ancestors_I_2` ON `acl_object_identity_ancestors`;
 
-ALTER TABLE `p_d_direct` DROP `phone`;
+ALTER TABLE `p_circle` DROP `open_reaction`;
 
-ALTER TABLE `p_d_direct_archive` DROP `phone`;
-
-CREATE INDEX `p_u_current_q_o_FI_1` ON `p_u_current_q_o` (`p_user_id`);
-
-CREATE INDEX `p_u_subscribe_p_n_e_FI_1` ON `p_u_subscribe_p_n_e` (`p_user_id`);
+ALTER TABLE `p_circle_archive` DROP `open_reaction`;
 
 # This restores the fkey checks, after having unset them earlier
 SET FOREIGN_KEY_CHECKS = 1;

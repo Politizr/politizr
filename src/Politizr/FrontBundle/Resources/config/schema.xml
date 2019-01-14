@@ -1382,6 +1382,8 @@
         <column name="online" type="boolean" />
         <column name="read_only" type="boolean" />
         <column name="only_elected" type="boolean" />
+        <column name="public_circle" type="boolean" />
+        <column name="open_reaction" type="boolean" />
 
         <foreign-key foreignTable="p_c_owner" onDelete="CASCADE" onUpdate="CASCADE">
             <reference local="p_c_owner_id" foreign="id" />

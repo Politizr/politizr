@@ -36,6 +36,10 @@ params:
             label:          En ligne
         only_elected:
             label:          Élus seulement
+        public_circle:
+            label:          Accès public
+        open_reaction:
+            label:          Réactions ouvertes
         created_at:
             label:          Création
         updated_at:
@@ -93,7 +97,7 @@ builders:
                     "Offre":                    [ p_circle_type ]
                 "Options":
                     "Adresse":                  [ url ]
-                    "Restrictions":             [ only_elected ]
+                    "Restrictions":             [ only_elected, public_circle, open_reaction ]
                 "Attributs":
                     "Identifiants":             [ [ id, uuid, slug ] ]
                     "État":                     [ read_only, online ]
@@ -146,7 +150,7 @@ builders:
                     "Offre":                    [ p_circle_type ]
                 "Options":
                     "Adresse":                  [ url ]
-                    "Restrictions":             [ only_elected ]
+                    "Restrictions":             [ only_elected, public_circle, open_reaction ]
                 "Attributs":
                     "Identifiants":             [ [ id, uuid, slug ] ]
                     "État":                     [ read_only, online ]

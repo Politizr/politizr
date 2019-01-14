@@ -308,16 +308,9 @@ class PolitizrCircleExtension extends \Twig_Extension
         $nbReactions = $this->circleService->countReactionsByTopic($topic);
         $nbComments = $this->circleService->countCommentsByTopic($topic);
 
-        // get template path > generic or dedicated
-        $templatePath = 'Topic';
-        $circle = $topic->getPCircle();
-        if ($circle->getId() == CircleConstants::GRANDDEBAT_ID_CIRCLE) {
-            $templatePath = 'Topic\\granddebat';
-        }
-
         // Construction du rendu du tag
         $html = $env->render(
-            'PolitizrFrontBundle:'.$templatePath.':_topicStats.html.twig',
+            'PolitizrFrontBundle:Topic:_topicStats.html.twig',
             array(
                 'circle' => $topic->getPCircle(),
                 'topic' => $topic,

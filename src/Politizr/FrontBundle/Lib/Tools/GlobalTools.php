@@ -866,6 +866,11 @@ class GlobalTools
         $topic = $document->getPCTopic();
         $type = $document->getType();
 
+        if ($topic) {
+            $circle = $topic->getPCircle();
+            $publicCircle = $circle->getPublicCircle();
+        }
+
         // public if
         if ($visitor) {
             // user is connected
@@ -898,6 +903,8 @@ class GlobalTools
             if ($diff->days > $mode) {
                 return false;
             }
+        } elseif ($topic && $publicCircle) {
+            return false;
         }
 
         return true;
