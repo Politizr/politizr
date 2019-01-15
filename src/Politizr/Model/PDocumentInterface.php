@@ -119,6 +119,13 @@ interface PDocumentInterface
     public function getCircle();
 
     /**
+     * Get associated circle id
+     *
+     * @return int|null
+     */
+    public function getCircleId();
+
+    /**
      * Get associated topic id
      *
      * @return int|null
