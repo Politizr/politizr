@@ -4,7 +4,7 @@
     </div>
     <div class="grpChaptersList">
         <h1>Les thématiques du grand débat</h1>
-        <h2>et les autres...</h2>
+        <h2>et les vôtres...</h2>
         {% for topic in topics %}
             <div class="grpChaptersListItem">
                 <div class="grpCharterImg">
@@ -15,7 +15,7 @@
                         {% endif %}
                     </a>
                 </div>
-                {# topic | topicStats #}
+                {{ topic | topicStats }}
                 <p>
                     {# topic.summary | striptags | truncate(70, true) | purify #}
                     <a href="{{ path('TopicDetail', { 'circleSlug': circle.slug, 'slug': topic.slug }) }}" class="grpKnowMore">En savoir plus</a>
