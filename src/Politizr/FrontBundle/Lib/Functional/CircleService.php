@@ -446,6 +446,25 @@ class CircleService
     }
 
     /**
+     * Get topic id list by user id
+     *
+     * @param int $userId
+     * @return array
+     */
+    public function getPublicCircleTopicIds()
+    {
+        $topicIds = PCTopicQuery::create()
+            ->select('Id')
+            ->usePCircleQuery()
+                ->filterByPublicCircle(true)
+            ->endUse()
+            ->find()
+            ->toArray();
+
+        return $topicIds;
+    }
+
+    /**
      * Return users by filtering those who are not in circle
      *
      * @param \PropelCollection $users
