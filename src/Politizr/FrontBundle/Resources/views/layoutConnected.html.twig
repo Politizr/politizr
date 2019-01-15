@@ -46,26 +46,6 @@
     {% endif %}
 {% endblock %}
 
-
-{% block mixPanel %}
-    {{ parent() }}
-
-    {% if app.environment == 'prod' and inscriptionComplete %}
-        {# Mix Panel Customer info #}
-        <script type="text/javascript">
-            mixpanel.people.set({
-                "$email": "{{ app.user.email }}",
-                "$created": "{{ app.user.createdAt | date('d/m/Y H:i:s') }}",
-                "gender": "{{ app.user.gender }}",
-                "firstname": "{{ app.user.firstname }}",
-                "name": "{{ app.user.name }}",
-                "qualified": "{{ app.user.qualified }}"
-            });
-        </script>
-    {% endif %}
-{% endblock %}
-
-
 {% block bodyClass %} class="user"{% endblock %}
 
 {% block header %}

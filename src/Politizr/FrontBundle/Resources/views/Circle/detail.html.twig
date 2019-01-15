@@ -56,12 +56,6 @@
 {% block javascriptFooter %}
     {{ parent() }}
 
-    {% if (app.environment == 'prod') %}
-        <script type="text/javascript">
-            mixpanel.track("Groupe - {{ circle.title }}");
-        </script>
-    {% endif %}
-
     {% javascripts
         '@PolitizrFrontBundle/Resources/public/js/politizr/pages/detailCircle.js'
         filter='uglifyjs2' %}

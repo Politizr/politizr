@@ -134,12 +134,6 @@
 {% block javascriptFooter %}
     {{ parent() }}
 
-    {% if (app.environment == 'prod') %}
-        <script type="text/javascript">
-            mixpanel.track("LP Concertation Publique");
-        </script>
-    {% endif %}
-
     {% javascripts
         '@PolitizrFrontBundle/Resources/public/js/politizr/pages/landingPage.js'
         filter='uglifyjs2' %}

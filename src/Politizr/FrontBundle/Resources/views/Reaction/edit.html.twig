@@ -128,13 +128,6 @@
 {% block javascriptFooter %}
     {{ parent() }}
 
-    {% if (app.environment == 'prod') %}
-        <script type="text/javascript">
-            mixpanel.track("Édition d'une réponse");
-        </script>
-    {% endif %}
-
-
     {% javascripts
         '@PolitizrFrontBundle/Resources/public/js/smoke.min.js'
         '@PolitizrFrontBundle/Resources/public/js/handlebars-v4.0.11.js'
