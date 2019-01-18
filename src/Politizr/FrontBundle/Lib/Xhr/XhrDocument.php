@@ -1110,6 +1110,7 @@ class XhrDocument
         $nextLink = null;
         $nextNumMonth = null;
         $nextYear = null;
+        $nextMonth = null;
         if ($search <= $now) {
             $nextNumMonth = $search->format('n');
             $nextMonth = $this->globalTools->getLabelFromMonthNum($nextNumMonth);
@@ -1125,8 +1126,10 @@ class XhrDocument
                 'year' => $year,
                 'prevLink' => $prevLink,
                 'nextLink' => $nextLink,
+                'prevMonth' => $prevMonth,
                 'prevNumMonth' => $prevNumMonth,
                 'prevYear' => $prevYear,
+                'nextMonth' => $nextMonth,
                 'nextNumMonth' => $nextNumMonth,
                 'nextYear' => $nextYear,
             )
