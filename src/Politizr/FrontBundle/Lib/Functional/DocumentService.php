@@ -341,7 +341,11 @@ class DocumentService
             $filterDate = ListingConstants::FILTER_KEYWORD_EXACT_MONTH;
         }
 
-        $documents = $this->documentManager->generateDocumentsByRecommendPaginated($filterDate, $month, $year, $offset, $count);
+        $inQueryTopicIds = null;
+        $topicIds = $this->circleService->getPublicCircleTopicIds();
+        $inQueryTopicIds = $this->globalTools->getInQuery($topicIds);
+
+        $documents = $this->documentManager->generateDocumentsByRecommendPaginated($inQueryTopicIds, $filterDate, $month, $year, $offset, $count);
 
         return $documents;
     }
@@ -401,7 +405,11 @@ class DocumentService
      */
     public function getTopDocumentsBestNote($count = ListingConstants::LISTING_TOP_DOCUMENTS_LIMIT)
     {
-        $documents = $this->documentManager->generateTopDocumentsBestNote($count);
+        $inQueryTopicIds = null;
+        $topicIds = $this->circleService->getPublicCircleTopicIds();
+        $inQueryTopicIds = $this->globalTools->getInQuery($topicIds);
+
+        $documents = $this->documentManager->generateTopDocumentsBestNote($inQueryTopicIds, $count);
 
         return $documents;
     }
