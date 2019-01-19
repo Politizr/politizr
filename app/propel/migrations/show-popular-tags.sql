@@ -8,3 +8,4 @@ GROUP BY p_tag.id
 ORDER BY `total` desc
 
 # à affiner pour sortir les top tags associé à une op, ie. systématiquement associé à un tag précis > req sur p_d_debate?
+# à affiner pour sortir les top tags associé à un groupe
