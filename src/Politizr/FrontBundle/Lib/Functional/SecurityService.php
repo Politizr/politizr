@@ -25,6 +25,7 @@ use Politizr\Constant\NotificationConstants;
 use Politizr\Constant\EmailConstants;
 
 use Politizr\Model\PUser;
+use Politizr\Model\PDDirect;
 
 use Politizr\Model\POrderQuery;
 use Politizr\Model\PUserQuery;
@@ -49,6 +50,8 @@ class SecurityService
     private $usernameCanonicalizer;
     private $emailCanonicalizer;
     
+    private $localizationService;
+
     private $userManager;
     private $orderManager;
 
@@ -73,6 +76,7 @@ class SecurityService
      * @param @event_dispatcher
      * @param @fos_user.util.username_canonicalizer
      * @param @fos_user.util.email_canonicalizer
+     * @param @politizr.functional.localization
      * @param @politizr.manager.user
      * @param @politizr.manager.order
      * @param @politizr.tools.global
@@ -94,6 +98,7 @@ class SecurityService
         $eventDispatcher,
         $usernameCanonicalizer,
         $emailCanonicalizer,
+        $localizationService,
         $userManager,
         $orderManager,
         $globalTools,
@@ -118,6 +123,8 @@ class SecurityService
 
         $this->usernameCanonicalizer = $usernameCanonicalizer;
         $this->emailCanonicalizer = $emailCanonicalizer;
+
+        $this->localizationService = $localizationService;
 
         $this->userManager = $userManager;
         $this->orderManager = $orderManager;
@@ -541,6 +548,67 @@ class SecurityService
             default:
                 throw new InconsistentDataException(sprintf('OAuth Provider %s not managed.'), $provider);
         }
+
+        // save user
+        $user->save();
+
+        return $user;
+    }
+
+    /**
+     * Create user w. provided contact data
+     *
+     * @param PDDirect $directMessage
+     * @return PUser
+     */
+    public function createUserFromDirectMessage(PDDirect $directMessage)
+    {
+        // $this->logger->info('*** createUserFromDirectMessage');
+
+        // test if user already exist
+        $user = PUserQuery::create()->filterByEmail($directMessage->getEmail())->findOne();
+        if ($user) {
+            return $user;
+        }
+
+        // create new user & update it
+        $user = new PUser();
+
+        $user->setPUStatusId(UserConstants::STATUS_ACTIVED);
+        $user->setQualified(false);
+        $user->setOnline(false);
+
+        $user->setName($directMessage->getName());
+        $user->setEmail($directMessage->getEmail());
+        $user->setUsername($directMessage->getEmail());
+        $user->setPlainPassword($directMessage->getEmail());
+
+        $roles = [ 'ROLE_CITIZEN', 'ROLE_PROFILE_COMPLETED' ];
+
+        // update user
+        $this->userManager->updateCanonicalFields($user);
+        $user = $this->userManager->updateForInscriptionStart(
+            $user,
+            $roles,
+            $this->usernameCanonicalizer->canonicalize($user->getEmail()),
+            $this->encoderFactory->getEncoder($user)->encodePassword($user->getPlainPassword(), $user->getSalt())
+        );
+
+        // save user > needed for next updates
+        $user->save();
+
+        // update reputation
+        $user->updateReputation(ReputationConstants::ACTION_CITIZEN_INSCRIPTION);
+
+        // notification subscription > all by default
+        $this->userManager->createUserSubscribeNotifEmail($user->getId(), EmailConstants::getDefaultNotificationSubscribeIds());
+
+        // retrieve city
+        $cityId = $this->localizationService->getPLCityIdFromCityString($directMessage->getCity());
+        $user->setPLCityId($cityId);
+
+        // circle events
+        $dispatcher =  $this->eventDispatcher->dispatch('u_inscription', new GenericEvent($user));
 
         // save user
         $user->save();

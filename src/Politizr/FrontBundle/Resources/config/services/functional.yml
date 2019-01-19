@@ -38,6 +38,7 @@ services:
             - @event_dispatcher
             - @fos_user.util.username_canonicalizer
             - @fos_user.util.email_canonicalizer
+            - @politizr.functional.localization
             - @politizr.manager.user
             - @politizr.manager.order
             - @politizr.tools.global

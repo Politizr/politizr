@@ -12,6 +12,8 @@ use Politizr\Model\PLDepartmentQuery;
 use Politizr\Model\PLRegionQuery;
 use Politizr\Model\PLCountryQuery;
 
+use StudioEcho\Lib\StudioEchoUtils;
+
 /**
  * Functional service for localization management.
  *
@@ -696,5 +698,24 @@ class LocalizationService
         } else {
             return $this->localizationManager->updateUserCity($user, $formGeoloc['localization']['city']->getData());
         }
+    }
+
+    /**
+     * Try to retrieve PLCity id from city string
+     *
+     * @param string $city
+     * @return int
+     */
+    public function getPLCityIdFromCityString($city)
+    {
+        // sluggify input
+        $citySlug = StudioEchoUtils::generateSlug($city);
+        $plCity = PLCityQuery::create()->filterBySlug($citySlug)->findOne();
+
+        if ($plCity) {
+            return $plCity->getId();
+        }
+
+        return null;
     }
 }

@@ -101,7 +101,7 @@ class PublicController extends Controller
         */
 
         $directMessage = new PDDirect();
-        $form = $this->createForm(new PDDirectType(), $directMessage);
+        $form = $this->createForm(new PDDirectType(), $directMessage, ['automatic_creation' => false]);
 
         if ($theme == 'civic-tech') {
             $template = 'civictech.html.twig';
@@ -326,6 +326,8 @@ class PublicController extends Controller
             //     ListingConstants::ORDER_BY_KEYWORD_LAST,
             //     0, ListingConstants::LISTING_LP_RESULTS
             // );
+
+            $form = $this->createForm(new PDDirectType(), $directMessage, ['automatic_creation' => true]);
 
             $template = 'grandDebat.html.twig';
         } else {

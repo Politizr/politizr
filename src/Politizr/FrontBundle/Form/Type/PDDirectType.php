@@ -21,6 +21,11 @@ class PDDirectType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+       $builder->add('automatic_creation', 'hidden', array(
+           'mapped' => false,
+           'data' => $options['automatic_creation'],
+        ));
+
         $builder->add('name', 'text', array(
             'required' => true,
             'label' => 'Nom',
@@ -92,6 +97,7 @@ class PDDirectType extends AbstractType
         $resolver->setDefaults(array(
             'data_class' => 'Politizr\Model\PDDirect',
             'user' => null,
+            'automatic_creation' => false,
         ));
     }
 }

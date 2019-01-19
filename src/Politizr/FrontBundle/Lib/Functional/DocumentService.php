@@ -20,6 +20,7 @@ use Politizr\Model\PDDebate;
 use Politizr\Model\PDReaction;
 use Politizr\Model\PUser;
 use Politizr\Model\PDMedia;
+use Politizr\Model\PDDirect;
 
 use Politizr\Model\PDDebateQuery;
 use Politizr\Model\PDReactionQuery;
@@ -1038,5 +1039,31 @@ class DocumentService
             'authorUrl' => $authorUrl,
             'initialDebate' => $initialDebate,
         );
+    }
+
+    /**
+     * Create a debate from direct message form
+     *
+     * @param User $user
+     * @param PDDirect $directMessage
+     * @return PDDebate
+     */
+    public function createDebateFromDirectMessage(PUser $user, PDDirect $directMessage)
+    {
+        if (!$user) {
+            throw new InconsistentDataException('User null');
+        }
+        if (!$directMessage) {
+            throw new InconsistentDataException('DirectMessage null');
+        }
+
+        $debate = new PDDebate();
+
+        $debate->setPUserId($user->getId());
+        $debate->setDescription($directMessage->getDescription());
+
+        $debate->save();
+
+        return $debate;
     }
 }

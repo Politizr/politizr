@@ -5,6 +5,8 @@ services:
         arguments:
             - @security.token_storage
             - @event_dispatcher
+            - @politizr.functional.security
+            - @politizr.functional.document
             - @templating
             - @form.factory
             - @logger
