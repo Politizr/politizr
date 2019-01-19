@@ -57,8 +57,10 @@ class CircleListener
         $circles = $this->circleService->getAuthorizedCirclesByUser($user);
 
         // default add user to his local circles
-        foreach ($circles as $circle) {
-            $this->circleService->addUserInCircle($user, $circle);
+        if ($circles) {
+            foreach ($circles as $circle) {
+                $this->circleService->addUserInCircle($user, $circle);
+            }
         }
     }
 

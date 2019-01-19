@@ -1060,6 +1060,7 @@ class DocumentService
         $debate = new PDDebate();
 
         $debate->setPUserId($user->getId());
+        $debate->setTitle('MESSAGE DIRECT');
         $debate->setDescription($directMessage->getDescription());
 
         $debate->save();

@@ -128,7 +128,7 @@ class XhrGeneral
             $dispatcher =  $this->eventDispatcher->dispatch('direct_message_email', new GenericEvent($directMessage));
 
             // Automatic user & subject creation
-            // try {
+            try {
                 if ($automaticCreation) {
                     $user = $this->securityService->createUserFromDirectMessage($directMessage);
 
@@ -136,9 +136,9 @@ class XhrGeneral
                         $debate = $this->documentService->createDebateFromDirectMessage($user, $directMessage);
                     }
                 }
-            // } catch (\Exception $e) {
-            //     $this->logger->info('Exception creation auto - Msg = '.$e->getMessage());
-            // }
+            } catch (\Exception $e) {
+                $this->logger->info('Exception creation auto - Msg = '.$e->getMessage());
+            }
         } else {
             $errors = StudioEchoUtils::getAjaxFormErrors($form);
             throw new BoxErrorException($errors);

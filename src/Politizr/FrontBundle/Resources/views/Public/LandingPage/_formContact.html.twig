@@ -28,5 +28,12 @@
                 Envoyer
             </button>
         </div>
+        {% if automatic_creation is defined and automatic_creation %}
+            <br/><br/>
+            <div class="notice">
+                <i class="icon-info"></i>
+                L'envoi de ce message vaut acceptation de nos <a action="openCgu">Mentions légales</a> et de notre <a action="openCharte">charte</a>. Un administrateur prendra connaissance de votre message avant de le publier sur notre plateforme.
+            </div>
+        {% endif %}
     </form>
 </div>

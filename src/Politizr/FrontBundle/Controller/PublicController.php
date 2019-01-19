@@ -309,6 +309,8 @@ class PublicController extends Controller
                 0, ListingConstants::LISTING_LP_RESULTS
             );
 
+            $form = $this->createForm(new PDDirectType(), $directMessage, ['automatic_creation' => true]);
+
             $template = 'giletsJaunes.html.twig';
         } elseif ($theme == 'cahier-de-doleances')  {
             $documents = $this->get('politizr.functional.document')->getDocumentsByTagsPaginated(
@@ -317,6 +319,8 @@ class PublicController extends Controller
                 ListingConstants::ORDER_BY_KEYWORD_LAST,
                 0, ListingConstants::LISTING_LP_RESULTS
             );
+
+            $form = $this->createForm(new PDDirectType(), $directMessage, ['automatic_creation' => true]);
 
             $template = 'cahierDeDoleances.html.twig';
         } elseif ($theme == 'grand-debat-national')  {
