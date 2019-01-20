@@ -18,15 +18,25 @@ if ($('#searchInputAlgolia').length > 0) {
         startSearch.show();
         return;
       }
+
       helper.search();
       searchResults.show();
     }
   });
 
+  // https://www.algolia.com/doc/api-reference/api-parameters/filters/?language=javascript
+  search.addWidget(
+    instantsearch.widgets.configure({
+      filters: 'circleUuid=0'
+    })
+  );
+
   search.addWidget(
     instantsearch.widgets.searchBox({
       container: '#searchInputAlgolia',
       autofocus: false,
+      reset: false,
+      magnifier: false,
     })
   );
 

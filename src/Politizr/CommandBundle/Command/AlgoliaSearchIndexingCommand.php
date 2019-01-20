@@ -230,10 +230,13 @@ class AlgoliaSearchIndexingCommand extends ContainerAwareCommand
                 $output->writeln(sprintf('Exception for user id-%s - %s', $user->getId(), $e->getMessage()));
             }
 
+            // @todo add circles member of filter (circleUuid) to manage user results in circle search
+
             $attributes = [
                 'objectID' => $user->getUuid(),
                 'type' => ObjectTypeConstants::TYPE_USER,
                 'typeLabel' => 'Utilisateur',
+                'circleUuid' => 0,
                 'cssClass' => 'hitUser',
                 'id' => $user->getId(),
                 'image' => $imagePath,
@@ -298,10 +301,19 @@ class AlgoliaSearchIndexingCommand extends ContainerAwareCommand
                 $output->writeln(sprintf('Exception for debate id-%s - %s', $debate->getId(), $e->getMessage()));
             }
 
+            // debate in circle?
+            $circleUuid = 0;
+            $topic = $debate->getPCTopic();
+            if ($topic) {
+                $circle = $topic->getPCircle();
+                $circleUuid = $circle->getUuid();
+            }
+
             $indexedObjects[] = [
                 'objectID' => $debate->getUuid(),
                 'type' => ObjectTypeConstants::TYPE_DEBATE,
                 'typeLabel' => 'Sujet',
+                'circleUuid' => $circleUuid,
                 'cssClass' => 'hitPublication',
                 'id' => $debate->getId(),
                 'image' => $imagePath,
@@ -353,10 +365,19 @@ class AlgoliaSearchIndexingCommand extends ContainerAwareCommand
                 $output->writeln(sprintf('Exception for reaction id-%s - %s', $reaction->getId(), $e->getMessage()));
             }
 
+            // reaction in circle?
+            $circleUuid = 0;
+            $topic = $reaction->getPCTopic();
+            if ($topic) {
+                $circle = $topic->getPCircle();
+                $circleUuid = $circle->getUuid();
+            }
+
             $indexedObjects[] = [
                 'objectID' => $reaction->getUuid(),
                 'type' => ObjectTypeConstants::TYPE_REACTION,
                 'typeLabel' => 'Réponse',
+                'circleUuid' => $circleUuid,
                 'cssClass' => 'hitPublication',
                 'id' => $reaction->getId(),
                 'image' => $imagePath,
