@@ -1,0 +1,2 @@
+INSERT INTO `p_notification` (`id`, `uuid`, `p_n_type_id`, `title`, `online`, `created_at`, `updated_at`) 
+VALUES (26, 'd9493077-fd33-4b96-a242-e9589da55cec', 1, 'Lorsqu\'un nouveau sujet a été publié dans un groupe auquel j\'appartiens', 1, '2019-01-20 09:11:30', '2019-01-20 09:11:30');
