@@ -33,11 +33,13 @@ En complément, nous proposons désormais aux collectivités, de tout type et de
 
 {% else %}
 
-Grâce à Politizr, vous pourrez exprimer votre opinion sur les sujets qui vous semblent importants et obtenir des retours de vos élus.<br/><br/>
+{#Grâce à Politizr, vous pourrez exprimer votre opinion sur les sujets qui vous semblent importants et obtenir des retours de vos élus.<br/><br/>#}
 
 {% endif %} 
 
-Commencez dès aujourd'hui à vous <a href="{{ url('DebateDraftNew') }}">exprimer</a>!<br/><br/>
+En ce moment, POLITIZR organise le Grand Débat National à sa façon, venez vous <a href="{{ path('CircleDetail', {'slug': 'le-grand-debat-national'}) }}">exprimer</a> !<br/><br/>
+
+{#Commencez dès aujourd'hui à vous <a href="{{ url('DebateDraftNew') }}">exprimer</a>!<br/><br/>#}
 
 {% if user.qualified %}
 Lionel Bouzonville<br>
