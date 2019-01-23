@@ -44,6 +44,7 @@ class AdminPCTopicLocalizationType extends AbstractType
                 'Ville' => 'city',
                 'Département' => 'department',
                 'Région' => 'region',
+                'Pays' => 'country',
             ),
             'choices_as_values' => true,
             'data' => $this->topic->getForceGeolocType(),
