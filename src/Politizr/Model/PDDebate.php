@@ -50,6 +50,16 @@ class PDDebate extends BasePDDebate implements PDocumentInterface
     }
 
     /**
+     * Return "strip_tag"ged description
+     *
+     * @return string
+     */
+    public function getStripTaggedDescription()
+    {
+        return strip_tags($this->getDescription());
+    }
+
+    /**
      * @see PDocumentInterface::getDebateId
      */
     public function getDebateId()
