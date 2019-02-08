@@ -134,7 +134,7 @@ builders:
                 excel:                          ~
     excel:
         params:
-            display:                            [ title, stripTaggedDescription, p_user, slug, published_at ]
+            display:                            [ uuid, title, stripTaggedDescription, localizations, strTags, notePos, noteNeg, slug, userUuid, published_at ]
             filename:                           politizr-subjects
             filetype: ~
             datetime_format: ~
