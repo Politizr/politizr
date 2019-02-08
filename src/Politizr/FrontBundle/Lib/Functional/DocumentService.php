@@ -203,6 +203,9 @@ class DocumentService
         if ($currentUserId) {
             $topicIds = $this->circleService->getTopicIdsByUserId($currentUserId);
             $inQueryTopicIds = $this->globalTools->getInQuery($topicIds);
+        } else {
+            $topicIds = $this->circleService->getPublicCircleTopicIds();
+            $inQueryTopicIds = $this->globalTools->getInQuery($topicIds);
         }
 
         $inQueryCityIds = null;
