@@ -12,7 +12,7 @@
 {% block stylesheets %}
     {{ parent() }}
 
-    <link rel="stylesheet" href="{{ asset('bundles/politizrfront/css/styleUser.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/politizrfront/css/styleUser.css?v'~assets_version) }}">
 {% endblock %}
 
 {% block fbScript %}
@@ -118,7 +118,7 @@
         '@PolitizrFrontBundle/Resources/public/js/politizr/localization/edit.js'
         '@PolitizrFrontBundle/Resources/public/js/politizr/searchEngine/algolia.js'
         filter='uglifyjs2' %}
-        <script src="{{ asset_url }}"></script>
+        <script src="{{ asset_url~'?v'~assets_version }}"></script>
     {% endjavascripts %}
 
     {# First connexion #}
@@ -136,20 +136,4 @@
             });
         </script>
     {% endif %}
-
-    <script type="text/javascript">
-        {% if app.environment == 'prod' %}
-            mixpanel.identify("{{ app.user.uuid }}");
-            
-            {# Mix Panel Customer info #}
-            mixpanel.people.set({
-                "$email": "{{ app.user.email }}",
-                "$created": "{{ app.user.createdAt | date('d/m/Y H:i:s') }}",
-                "gender": "{{ app.user.gender }}",
-                "firstname": "{{ app.user.firstname }}",
-                "name": "{{ app.user.name }}",
-                "qualified": "{{ app.user.qualified }}"
-            });
-        {% endif %}
-    </script>
 {% endblock javascriptFooter %}

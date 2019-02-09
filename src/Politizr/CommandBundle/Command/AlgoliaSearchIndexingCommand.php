@@ -39,6 +39,7 @@ class AlgoliaSearchIndexingCommand extends ContainerAwareCommand
     private $logger;
     private $documentService;
     private $globalTools;
+    private $maxLength;
 
     protected function configure()
     {
@@ -93,6 +94,8 @@ class AlgoliaSearchIndexingCommand extends ContainerAwareCommand
         // $this->dataManager = $this->getContainer()->get('liip_imagine.data.manager');
         $this->globalTools = $this->getContainer()->get('politizr.tools.global');
 
+        $this->maxLength = 15000;
+
 
         $appId = $this->getContainer()->getParameter('algolia_app_id');
         $apiKey = $this->getContainer()->getParameter('algolia_admin_api_key');
@@ -101,6 +104,7 @@ class AlgoliaSearchIndexingCommand extends ContainerAwareCommand
         // Algolia client init
         $client = new AlgoliaSearchClient($appId, $apiKey);
         $index = $client->initIndex($indexName);
+
 
         // get option
         $userId = $input->getOption('userId');
@@ -126,7 +130,14 @@ class AlgoliaSearchIndexingCommand extends ContainerAwareCommand
         $indexedPDReactions = $this->getPDReactionObjectsToIndex($reactionId, $nbNewIndexed, true, false, $output);
 
         $indexedNewObjects = array_merge($indexedPUsers, $indexedPDDebates, $indexedPDReactions);
-        $index->addObjects($indexedNewObjects);
+        // $index->addObjects($indexedNewObjects);
+        foreach ($indexedNewObjects as $indexedNewObject) {
+            try {
+                $index->addObject($indexedNewObject);
+            } catch (\Exception $e) {
+                $output->writeln(sprintf('<info>Exception in addObject with %s</info>', var_dump($indexedNewObject, true)));
+            }
+        }
 
         // Updated objects
         $indexedUpdatedObjects = array();
@@ -137,7 +148,14 @@ class AlgoliaSearchIndexingCommand extends ContainerAwareCommand
         $indexedPDReactions = $this->getPDReactionObjectsToIndex($reactionId, $nbUpdateIndexed, false, $forceUpdateIndex, $output);
 
         $indexedUpdatedObjects = array_merge($indexedPUsers, $indexedPDDebates, $indexedPDReactions);
-        $index->saveObjects($indexedUpdatedObjects);
+        // $index->saveObjects($indexedUpdatedObjects);
+        foreach ($indexedUpdatedObjects as $indexedUpdatedObject) {
+            try {
+                $index->saveObject($indexedUpdatedObject);
+            } catch (\Exception $e) {
+                $output->writeln(sprintf('<info>Exception in addObject with %s</info>', var_dump($indexedUpdatedObject, true)));
+            }
+        }
 
         // Deleted objects (newly offlined & archived objects)
         $indexedDeletedObjects = array();
@@ -148,7 +166,14 @@ class AlgoliaSearchIndexingCommand extends ContainerAwareCommand
         $indexedPDReactions = $this->getPDReactionObjectsToDelete($reactionId, $nbDeleteIndexed);
 
         $indexedDeletedObjects = array_merge($indexedPUsers, $indexedPDDebates, $indexedPDReactions);
-        $index->deleteObjects($indexedDeletedObjects);
+        // $index->deleteObjects($indexedDeletedObjects);
+        foreach ($indexedDeletedObjects as $indexedDeletedObject) {
+            try {
+                $index->deleteObject($indexedDeletedObject);
+            } catch (\Exception $e) {
+                $output->writeln(sprintf('<info>Exception in addObject with %s</info>', var_dump($indexedDeletedObject, true)));
+            }
+        }
 
         // update db indexation info
         $nbIndexedPUsers = $this->updateIndexedAtForPUserObjects($userId, $forceUpdateIndex);
@@ -309,6 +334,13 @@ class AlgoliaSearchIndexingCommand extends ContainerAwareCommand
                 $circleUuid = $circle->getUuid();
             }
 
+            // cut description to fit max indexing obj
+            $description = html_entity_decode(strip_tags($debate->getDescription()));
+            if (strlen($description) > $this->maxLength) {
+                $output->writeln(sprintf('debate id-%s strlen %s !', $debate->getId(), strlen($description)));
+                $description = $this->globalTools->tokenTruncate($description, $this->maxLength);
+            }
+
             $indexedObjects[] = [
                 'objectID' => $debate->getUuid(),
                 'type' => ObjectTypeConstants::TYPE_DEBATE,
@@ -318,7 +350,7 @@ class AlgoliaSearchIndexingCommand extends ContainerAwareCommand
                 'id' => $debate->getId(),
                 'image' => $imagePath,
                 'title' => $debate->getTitle(),
-                'description' => html_entity_decode(strip_tags($debate->getDescription())),
+                'description' => $description,
                 'url' => $this->router->generate('DebateDetail', array('slug' => $debate->getSlug()), true),
             ];
 
@@ -373,6 +405,13 @@ class AlgoliaSearchIndexingCommand extends ContainerAwareCommand
                 $circleUuid = $circle->getUuid();
             }
 
+            // cut description to fit max indexing obj
+            $description = html_entity_decode(strip_tags($reaction->getDescription()));
+            if (strlen($description) > $this->maxLength) {
+                $output->writeln(sprintf('reaction id-%s strlen %s !', $reaction->getId(), strlen($description)));
+                $description = $this->globalTools->tokenTruncate($description, $this->maxLength);
+            }
+
             $indexedObjects[] = [
                 'objectID' => $reaction->getUuid(),
                 'type' => ObjectTypeConstants::TYPE_REACTION,
@@ -382,7 +421,7 @@ class AlgoliaSearchIndexingCommand extends ContainerAwareCommand
                 'id' => $reaction->getId(),
                 'image' => $imagePath,
                 'title' => $reaction->getTitle(),
-                'description' => html_entity_decode(strip_tags($reaction->getDescription())),
+                'description' => $description,
                 'url' => $this->router->generate('ReactionDetail', array('slug' => $reaction->getSlug()), true),
             ];
 
@@ -627,5 +666,13 @@ class AlgoliaSearchIndexingCommand extends ContainerAwareCommand
         }
 
         return $indexedObjects;
+    }
+
+    /**
+     *
+     */
+    function encodeURIComponent($str) {
+        $revert = array('%21'=>'!', '%2A'=>'*', '%27'=>"'", '%28'=>'(', '%29'=>')');
+        return strtr(rawurlencode($str), $revert);
     }
 }

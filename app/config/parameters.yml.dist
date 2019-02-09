@@ -67,3 +67,6 @@ parameters:
     
     # HTML Purifier customized service
     exercise_html_purifier.config.class: Politizr\FrontBundle\Lib\HtmlPurifierConfig
+
+    # Useful to force cache browser reload
+    assets_version: 1.0.0

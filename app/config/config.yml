@@ -65,6 +65,7 @@ twig:
 #      image_path_project:     %image_path_project%
 #      image_path_diaporama:   %image_path_diaporama%
     globals:
+        assets_version:         %assets_version%
         facebook:
             admin_ids:          %facebook_admin_ids%
             client_id:          %facebook_client_id%

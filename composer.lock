@@ -4,36 +4,41 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "9f771d51658a9bcb9023fe2ea7bdb340",
-    "content-hash": "b1d9aba96e8f7cc5e629adb40610f97a",
+    "hash": "f21d5c76c86346905650c11c2212a128",
+    "content-hash": "d6cb5e7bc7142770c033143f88979893",
     "packages": [
         {
             "name": "algolia/algoliasearch-client-php",
-            "version": "1.20.0",
+            "version": "1.28.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/algolia/algoliasearch-client-php.git",
-                "reference": "3daee8d55c1d84eff227fd99054e78ddc196f309"
+                "reference": "c167ba3247b38b028fc05b1c58e8b5fb5e08d114"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/algolia/algoliasearch-client-php/zipball/3daee8d55c1d84eff227fd99054e78ddc196f309",
-                "reference": "3daee8d55c1d84eff227fd99054e78ddc196f309",
+                "url": "https://api.github.com/repos/algolia/algoliasearch-client-php/zipball/c167ba3247b38b028fc05b1c58e8b5fb5e08d114",
+                "reference": "c167ba3247b38b028fc05b1c58e8b5fb5e08d114",
                 "shasum": ""
             },
             "require": {
+                "ext-curl": "*",
                 "ext-mbstring": "*",
-                "php": ">=5.3"
+                "php": "^5.3 || ^7.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^4.8 || ^5.0",
-                "satooshi/php-coveralls": "0.6.*"
+                "phpunit/phpunit": "^4.8.35 || ^5.7 || ^6.4 || ^7.0",
+                "satooshi/php-coveralls": "^1.0"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-2.0": "2.0.x-dev"
+                }
+            },
             "autoload": {
                 "psr-0": {
-                    "AlgoliaSearch": "src/",
-                    "AlgoliaSearch\\Tests": "tests/"
+                    "AlgoliaSearch": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -56,7 +61,7 @@
             ],
             "description": "Algolia Search API Client for PHP",
             "homepage": "https://github.com/algolia/algoliasearch-client-php",
-            "time": "2017-08-30 08:28:40"
+            "time": "2018-11-06 10:48:00"
         },
         {
             "name": "badlamer/propel-uuid-behavior",
@@ -781,7 +786,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Elao/WebProfilerExtraBundle/zipball/7a51d4844c137880eee69287a6484ce48411cf57",
+                "url": "https://api.github.com/repos/Elao/WebProfilerExtraBundle/zipball/edbcd31a3e0b0940b0ed0301d467f2419280d679",
                 "reference": "befa5280d2b9a01587404e219b02af4f9272c6bf",
                 "shasum": ""
             },
@@ -1465,12 +1470,12 @@
             "version": "v2.2.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/google/google-api-php-client.git",
+                "url": "https://github.com/googleapis/google-api-php-client.git",
                 "reference": "f3fadd538315d62ebd1191d89ac791468c617260"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/google/google-api-php-client/zipball/f3fadd538315d62ebd1191d89ac791468c617260",
+                "url": "https://api.github.com/repos/googleapis/google-api-php-client/zipball/f3fadd538315d62ebd1191d89ac791468c617260",
                 "reference": "f3fadd538315d62ebd1191d89ac791468c617260",
                 "shasum": ""
             },
@@ -1524,12 +1529,12 @@
             "version": "v0.22",
             "source": {
                 "type": "git",
-                "url": "https://github.com/google/google-api-php-client-services.git",
+                "url": "https://github.com/googleapis/google-api-php-client-services.git",
                 "reference": "f3cc7456ec878086ee6b53591e979a022e24ac27"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/google/google-api-php-client-services/zipball/f3cc7456ec878086ee6b53591e979a022e24ac27",
+                "url": "https://api.github.com/repos/googleapis/google-api-php-client-services/zipball/f3cc7456ec878086ee6b53591e979a022e24ac27",
                 "reference": "f3cc7456ec878086ee6b53591e979a022e24ac27",
                 "shasum": ""
             },
@@ -1561,12 +1566,12 @@
             "version": "v1.0.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/google/google-auth-library-php.git",
+                "url": "https://github.com/googleapis/google-auth-library-php.git",
                 "reference": "db8e3022a308cb0e988026d38e67b91a42b41622"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/google/google-auth-library-php/zipball/db8e3022a308cb0e988026d38e67b91a42b41622",
+                "url": "https://api.github.com/repos/googleapis/google-auth-library-php/zipball/db8e3022a308cb0e988026d38e67b91a42b41622",
                 "reference": "db8e3022a308cb0e988026d38e67b91a42b41622",
                 "shasum": ""
             },
@@ -6907,6 +6912,54 @@
         }
     ],
     "packages-dev": [
+        {
+            "name": "psr/simple-cache",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/simple-cache.git",
+                "reference": "408d5eafb83c57f6365a3ca330ff23aa4a5fa39b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/simple-cache/zipball/408d5eafb83c57f6365a3ca330ff23aa4a5fa39b",
+                "reference": "408d5eafb83c57f6365a3ca330ff23aa4a5fa39b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Psr\\SimpleCache\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "http://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interfaces for simple caching",
+            "keywords": [
+                "cache",
+                "caching",
+                "psr",
+                "psr-16",
+                "simple-cache"
+            ],
+            "time": "2017-10-23 01:57:42"
+        },
         {
             "name": "symfony/phpunit-bridge",
             "version": "v2.8.27",
