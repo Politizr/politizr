@@ -68,10 +68,15 @@ builders:
                 delete:                         ~
             actions:
                 new:                            ~
+                excel:                          ~
     excel:
-        params: ~
-        filename: ~
-        filetype: ~
+        params:
+            display:                            [ uuid, stripTaggedDescription, notePos, noteNeg, documentUuid, userUuid, published_at ]
+            filename:                           politizr-subjects-comments
+            filetype: ~
+            datetime_format: ~
+            fields: ~
+            export: ~
     new:
         params:
             title:                              "Création d'un commentaire"

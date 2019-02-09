@@ -4,6 +4,7 @@ namespace Politizr\FrontBundle\Lib\Manager;
 use Politizr\Model\PLRegionQuery;
 use Politizr\Model\PLDepartmentQuery;
 use Politizr\Model\PLCityQuery;
+use Politizr\Model\PLCountryQuery;
 
 use Politizr\Model\PUser;
 

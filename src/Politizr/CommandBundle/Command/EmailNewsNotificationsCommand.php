@@ -130,6 +130,7 @@ class EmailNewsNotificationsCommand extends ContainerAwareCommand
                 $subjectMessage = $this->newsNotificationEmail($user, $nearestUsersPart, $nearestDebatesPart);
 
                 // monitoring
+                /*
                 if (sizeof($subjectMessage) > 0) {
                     $pmEmailing = new PMEmailing();
                     $pmEmailing->setPUserId($user->getId());
@@ -139,6 +140,7 @@ class EmailNewsNotificationsCommand extends ContainerAwareCommand
                     $pmEmailing->setTargetEmail($subjectMessage[2]);
                     $pmEmailing->save();
                 }
+                */
             }
         }
 

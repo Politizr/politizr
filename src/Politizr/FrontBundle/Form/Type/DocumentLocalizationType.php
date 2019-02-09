@@ -66,6 +66,8 @@ class DocumentLocalizationType extends AbstractType
                     $currentUuid = $this->localizationManager->getDepartmentUuidByDepartmentId($options['force_geoloc_id']);
                 } elseif ($currentType == LocalizationConstants::TYPE_REGION) {
                     $currentUuid = $this->localizationManager->getRegionUuidByRegionId($options['force_geoloc_id']);
+                } elseif ($currentType == LocalizationConstants::TYPE_COUNTRY) {
+                    $currentUuid = $this->localizationManager->getCountryUuidByCountryId($options['force_geoloc_id']);
                 }
             } else {
                 // If user is out of France, default is "circonscription" / other case > "city"

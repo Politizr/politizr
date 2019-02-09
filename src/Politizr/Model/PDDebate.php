@@ -50,6 +50,16 @@ class PDDebate extends BasePDDebate implements PDocumentInterface
     }
 
     /**
+     * Return "strip_tag"ged description
+     *
+     * @return string
+     */
+    public function getStripTaggedDescription()
+    {
+        return html_entity_decode(strip_tags($this->getDescription()));
+    }
+
+    /**
      * @see PDocumentInterface::getDebateId
      */
     public function getDebateId()
@@ -275,6 +285,21 @@ class PDDebate extends BasePDDebate implements PDocumentInterface
     }
 
     /**
+     * @see PDocumentInterface::getTags
+     */
+    public function getStrTags($tagTypeId = null, $online = true)
+    {
+        $tags = $this->getArrayTags($tagTypeId, $online);
+
+        $strTags = '';
+        foreach ($tags as $tag) {
+            $strTags .= $tag . ' - ';
+        }
+
+        return $strTags;
+    }
+
+    /**
      * @see PDocumentInterface::isWithPrivateTag
      */
     public function isWithPrivateTag()
@@ -469,6 +494,19 @@ class PDDebate extends BasePDDebate implements PDocumentInterface
     public function getUser()
     {
         return $this->getPUser();
+    }
+
+    /**
+     * @see getPUser
+     */
+    public function getUserUuid()
+    {
+        $user = $this->getPUser();
+        if ($user) {
+            return $user->getUuid();
+        }
+
+        return null;
     }
 
     /**

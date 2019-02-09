@@ -156,6 +156,7 @@ class EmailAccountNotificationsCommand extends ContainerAwareCommand
                 $subjectMessage = $this->accountNotificationEmail($user, $badgesPart, $userPublicationsPart, $followedDebatesPublicationsPart, $followedUsersPublicationsPart, $followersPart);
 
                 // monitoring
+                /*
                 if (sizeof($subjectMessage) > 0) {
                     $pmEmailing = new PMEmailing();
                     $pmEmailing->setPUserId($user->getId());
@@ -165,6 +166,7 @@ class EmailAccountNotificationsCommand extends ContainerAwareCommand
                     $pmEmailing->setTargetEmail($subjectMessage[2]);
                     $pmEmailing->save();
                 }
+                */
             }
         }
 
