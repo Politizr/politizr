@@ -184,6 +184,8 @@ class PolitizrCircleExtension extends \Twig_Extension
             $templatePath = 'Circle\\lhospi';
         } elseif ($circle->getPCircleTypeId() == CircleConstants::CIRCLE_TYPE_SPECIFIC && $circle->getId() == CircleConstants::GRANDDEBAT_ID_CIRCLE) {
             $templatePath = 'Circle\\granddebat';
+        } elseif ($circle->getPCircleTypeId() == CircleConstants::CIRCLE_TYPE_SPECIFIC && $circle->getId() == CircleConstants::GRANDDEBATSUITE_ID_CIRCLE) {
+            $templatePath = 'Circle\\granddebatsuite';
         } else {
             $templatePath = 'Circle';
         }
@@ -285,6 +287,8 @@ class PolitizrCircleExtension extends \Twig_Extension
             $templatePath = 'Circle\\cd09dob';
         } elseif ($circle->getId() == CircleConstants::GRANDDEBAT_ID_CIRCLE) {
             $templatePath = 'Circle\\granddebat';
+        } elseif ($circle->getId() == CircleConstants::GRANDDEBATSUITE_ID_CIRCLE) {
+            $templatePath = 'Circle\\granddebat';
         }
 
         // Construction du rendu du tag
@@ -347,6 +351,8 @@ class PolitizrCircleExtension extends \Twig_Extension
             $templatePath = 'Topic\\cd09thd';
         } elseif ($circle->getPCircleTypeId() == CircleConstants::CIRCLE_TYPE_SPECIFIC && $circle->getId() == CircleConstants::CD09DOB_ID_CIRCLE) {
             $templatePath = 'Topic\\cd09dob';
+        } elseif ($circle->getPCircleTypeId() == CircleConstants::CIRCLE_TYPE_SPECIFIC && $circle->getId() == CircleConstants::GRANDDEBATSUITE_ID_CIRCLE) {
+            $templatePath = 'Topic\\granddebatsuite';
         }
 
         // Construction du rendu du tag
@@ -382,6 +388,8 @@ class PolitizrCircleExtension extends \Twig_Extension
             $templatePath = 'Topic\\cd09dob';
         } elseif ($circle->getPCircleTypeId() == CircleConstants::CIRCLE_TYPE_SPECIFIC && $circle->getId() == CircleConstants::GRANDDEBAT_ID_CIRCLE) {
             $templatePath = 'Topic\\granddebat';
+        } elseif ($circle->getPCircleTypeId() == CircleConstants::CIRCLE_TYPE_SPECIFIC && $circle->getId() == CircleConstants::GRANDDEBATSUITE_ID_CIRCLE) {
+            $templatePath = 'Topic\\granddebatsuite';
         }
 
         // Construction du rendu du tag
@@ -412,6 +420,8 @@ class PolitizrCircleExtension extends \Twig_Extension
         $templatePath = 'Topic';
         if ($circle->getPCircleTypeId() == CircleConstants::CIRCLE_TYPE_SPECIFIC && $circle->getId() == CircleConstants::GRANDDEBAT_ID_CIRCLE) {
             $templatePath = 'Topic\\granddebat';
+        } elseif ($circle->getPCircleTypeId() == CircleConstants::CIRCLE_TYPE_SPECIFIC && $circle->getId() == CircleConstants::GRANDDEBATSUITE_ID_CIRCLE) {
+            $templatePath = 'Topic\\granddebatsuite';
         }
 
         $html = $env->render(
@@ -448,8 +458,6 @@ class PolitizrCircleExtension extends \Twig_Extension
             $templatePath = 'Circle\\cd09';
         } elseif ($circle->getId() == CircleConstants::CD09_ID_CIRCLE) {
             $templatePath = 'Circle\\cd09';
-        } elseif ($circle->getId() == CircleConstants::GRANDDEBAT_ID_CIRCLE) {
-            $templatePath = 'Circle\\granddebat';
         }
 
         // Construction du rendu du tag

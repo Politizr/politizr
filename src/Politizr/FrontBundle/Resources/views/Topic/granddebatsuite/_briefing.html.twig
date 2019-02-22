@@ -1,0 +1,13 @@
+<div id="grpBrief">
+    <div id="grpBriefHeader">
+        <div class="center">
+            {{ topic.summary | raw }}
+            <p><a href="{{ path('DebateDraftNew', { topic: topic.uuid }) }}">Je m'exprime</a></p>
+            <p><a href="{{ path('CircleDetail', { slug: circle.slug }) }}">Revenir au dossier de présentation</a></p>
+        </div>
+        <div id="grpBriefHeaderImg">
+            <div id="grpBriefHeaderImgShadow"></div>
+            <img src="{{ asset(constant('Politizr\\Constant\\PathConstants::CIRCLE_UPLOAD_WEB_PATH') ~ topic.fileName) }}">
+        </div>
+    </div>
+</div>
