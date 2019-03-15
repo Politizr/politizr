@@ -406,7 +406,6 @@ class UserService
                 }
             }
 
-            dump($this->openReaction);
             // everyone can react if "open_reaction" is set to true
             if ($this->openReaction) {
                 if ($reason) {

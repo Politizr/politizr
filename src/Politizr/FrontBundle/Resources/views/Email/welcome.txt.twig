@@ -1,23 +1,20 @@
 Bonjour {{ user }},
 
 Je suis {% if user.qualified %}Lionel Bouzonville{% else %}Thomas Champion{% endif %}, co-fondateur de Politizr.
-Chez Politizr, nous pensons que citoyens et élus doivent échanger pour oeuvrer à l’intérêt général: nous voulons faire évoluer les pratiques politiques pour favoriser des échanges constructifs, basés sur la transparence, le respect et la bienveillance.
+POLITIZR propose un espace de démocratie continue: exprimez-vous sur des sujets de politique locale ou nationale et faites réagir vos concitoyen.ne.s et vos élu.e.s!
 
 {% if user.qualified %}
-Un des points fort de Politizr est de permettre de générer des discussions de fond sur des problématiques précises, pour permettre d’échanger sur des points de vue et avoir des retours sur des bonnes pratiques de la part d'élus de toute la France.
+Un des points fort de POLITIZR est de permettre de générer des discussions de fond sur des problématiques précises, pour permettre d’échanger sur des points de vue et avoir des retours sur des bonnes pratiques de la part d'élus de toute la France.
 
-En complément, nous proposons désormais aux collectivités, de tout type et de toute taille, un service intégré à POLITIZR pour leur permettre d’avoir des retours de leurs administrés: je reviendrai vers vous prochainement avec une documentation complète !
+En complément, nous proposons désormais aux collectivités, de tout type et de toute taille, un service intégré à POLITIZR pour leur permettre d’avoir des retours de leurs administrés: merci de prendre contact avec nous pour avoir plus d'informations !
 
 {% else %}
 
-{# Grâce à Politizr, vous pourrez exprimer votre opinion sur les sujets qui vous semblent importants sur votre territoire et obtenir des retours de vos élus. #}
+Grâce à POLITIZR, vous pourrez exprimer votre opinion sur les sujets de politique locale ou nationale qui vous semblent importants et obtenir des retours de vos élus et concitoyens.
 
 {% endif %} 
 
-{# Commencez dès aujourd'hui à vous <a href="{{ url('DebateDraftNew') }}">exprimer</a>! #}
-En ce moment, POLITIZR organise le Grand Débat National à sa façon, venez vous <a href="{{ url('CircleDetail', {'slug': 'le-grand-debat-national'}) }}">exprimer</a> !
-
-
+Commencez dès aujourd'hui à vous <a href="{{ url('DebateDraftNew') }}">exprimer</a>!
 
 {% if user.qualified %}
 Lionel Bouzonville

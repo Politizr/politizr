@@ -4,7 +4,7 @@
         <i class="icon-arrow-up"></i>Retour en haut de page
     </div>
     <div id="footerLinks">
-        <a href="http://www.politizr.help" target="_blank">Aide</a>
+        <a href="{{ path('GlobalHelper') }}">Aide</a>
         {% if app.user %}
             <a action="openCgu">Mentions légales</a>
             {% if document is defined %}
