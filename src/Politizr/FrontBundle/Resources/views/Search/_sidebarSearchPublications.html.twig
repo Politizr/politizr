@@ -9,13 +9,15 @@
     {% endif %}
 
     <div class="sidebarSearchMap">
-        <h5>Zone Géographique</h5>
+        {% if app.user %}
+            <h5>Zone Géographique</h5>
             <div class="mapMenu withLoaderInside" id="mapMenu">
                 {% include 'PolitizrFrontBundle:Search\\Map:_menu.html.twig' with { 'isFom': false, 'isWorld': false } %}
             </div>
             <div class="mapBreadcrumbs withLoaderInside" id="mapBreadcrumb">
                 {% include 'PolitizrFrontBundle:Search\\Map:_breadcrumb.html.twig' with { 'geoTypeObjects': null } %}
             </div>
+        {% endif %}
         
         <div id="mapHolder" class="withLoaderInside">
             {% include 'PolitizrFrontBundle:Navigation\\Xhr:_xhrLocalLoader.html.twig' %}
