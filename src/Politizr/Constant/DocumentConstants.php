@@ -29,6 +29,7 @@ class DocumentConstants
     const REASON_USER_OPERATION = 8;
     const REASON_OWNER_OPERATION = 9;
     const REASON_NO_REPUTATION = 10;
+    const REASON_OPEN_REACTION = 11;
 
     // ******************************************************** //
     //                   NOTATION REASONS                       //

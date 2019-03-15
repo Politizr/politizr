@@ -17,6 +17,7 @@ services:
     politizr.functional.user:
         class: Politizr\FrontBundle\Lib\Functional\UserService
         arguments:
+            - "%open_reaction%"
             - @security.token_storage
             - @security.authorization_checker
             - @politizr.manager.user

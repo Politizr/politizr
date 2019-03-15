@@ -38,6 +38,8 @@ use Politizr\Model\PLCityQuery;
  */
 class UserService
 {
+    private $openReaction;
+
     private $securityTokenStorage;
     private $securityAuthorizationChecker;
     
@@ -55,6 +57,7 @@ class UserService
 
     /**
      *
+     * @param %open_reaction%
      * @param @security.token_storage
      * @param @security.authorization_checker
      * @param @politizr.manager.user
@@ -66,6 +69,7 @@ class UserService
      * @param @logger
      */
     public function __construct(
+        $openReaction,
         $securityTokenStorage,
         $securityAuthorizationChecker,
         $userManager,
@@ -76,6 +80,8 @@ class UserService
         $router,
         $logger
     ) {
+        $this->openReaction = $openReaction;
+
         $this->securityTokenStorage = $securityTokenStorage;
         $this->securityAuthorizationChecker =$securityAuthorizationChecker;
 
@@ -397,6 +403,16 @@ class UserService
                             return false;
                         }
                     }
+                }
+            }
+
+            dump($this->openReaction);
+            // everyone can react if "open_reaction" is set to true
+            if ($this->openReaction) {
+                if ($reason) {
+                    return DocumentConstants::REASON_OPEN_REACTION;
+                } else {
+                    return true;
                 }
             }
 
