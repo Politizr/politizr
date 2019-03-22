@@ -105,38 +105,10 @@ class PublicController extends Controller
 
         if ($theme == 'civic-tech') {
             $template = 'civictech.html.twig';
-        } elseif ($theme == 'elus-locaux')  {
-            $template = 'eluLocal.html.twig';
-        } elseif ($theme == 'dialogue-citoyen')  {
-            $template = 'dialogueCitoyen.html.twig';
-        } elseif ($theme == 'democratie-locale')  {
-            $template = 'democratieLocale.html.twig';
-        } elseif ($theme == 'democratie-participative')  {
-            $template = 'democratieParticipative.html.twig';
-        } elseif ($theme == 'reseau-social-politique')  {
-            $template = 'reseauSocial.html.twig';
-        } elseif ($theme == 'primaires-presidentielle-2017')  {
-            $template = 'presidentielle.html.twig';
-        } elseif ($theme == 'charlotte-marchandise')  {
-            $template = 'charlotte.html.twig';
-        } elseif ($theme == 'concertation-publique')  {
-            $template = 'concertationPublique.html.twig';
-        } elseif ($theme == 'budget-participatif')  {
-            $template = 'budgetParticipatif.html.twig';
-        } elseif ($theme == 'entreprise-liberee')  {
-            $template = 'entrepriseLiberee.html.twig';
-        } elseif ($theme == 'dialogue-entreprise-public')  {
-            $template = 'dialogueEntreprisePublic.html.twig';
-        } elseif ($theme == 'offre-candidat-legislatives-2017')  {
-            $template = 'offreCandidat.html.twig';
-        } elseif ($theme == 'offre-candidat-senatoriales-2017')  {
-            $template = 'offreCandidatSenatoriales.html.twig';
+        } elseif ($theme == 'offre-candidat-municipales-2020')  {
+            $template = 'offreCandidatMunicipales.html.twig';
         } elseif ($theme == 'offres-collectivites')  {
             $template = 'offresCollectivites.html.twig';
-        } elseif ($theme == 'boite-a-idees-numerique')  {
-            $template = 'boiteAIdees.html.twig';
-        } elseif ($theme == 'doleances-en-ligne')  {
-            $template = 'doleancesEnLigne.html.twig';
         } elseif ($theme == 'bien-dit')  {
             $template = 'bienDit.html.twig';
         } elseif ($theme == 'actus-ariege')  {

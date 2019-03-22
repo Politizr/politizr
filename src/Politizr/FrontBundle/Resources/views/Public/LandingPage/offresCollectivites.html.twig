@@ -21,7 +21,7 @@
         <div id="lpHero">
             <div class="center">
                 <h1>En 2019, il est temps pour les collectivités d'impliquer leurs administré.e.s!</h1>
-                <h2>Nous proposons 3 offres pour organiser vos consultations</h2>
+                <h2>Découvrez nos services de consultations</h2>
                 <div id="f-display"><img src="{{ asset('bundles/politizrfront/images/f-display.png') }}" alt="Collectivités publiques"></div>
                 <div id="f-accessories"><img src="{{ asset('bundles/politizrfront/images/f-accessories.png') }}"></div>
             </div>
@@ -29,30 +29,13 @@
         </div>
         <div id="lpUnderHero">
             <div class="center">
-                <h1>Offre n°1: la Boîte à Idées</h1>
-                <h3>Récoltez facilement les suggestions de vos concitoyen.ne.s !</h3>
-                Ce service est adapté pour les collectivités qui souhaitent proposer un service numérique tout
-                à la fois constructif et simple à leurs administré.e.s et facile à déployer et à exploiter pour vos
-                services.
-                <br/><br/>
-                <i>La boîte à idées de POLITIZR est disponible ​ gratuitement​.</i>
-            </div>
-        </div>
-        <div id="lpCTA">
-            <div class="center">
-                <a href="{{ path('LandingPage', { 'theme': 'boite-a-idees-numerique'}) }}">En savoir plus</a>
-            </div>
-        </div>
-        <div id="lpUnderHero">
-            <div class="center">
-                <h1>Offre n°2: Politizr Territoires</h1>
+                <h1>POLITIZR TERRITOIRES, ORGANISEZ VOTRE CONSULTATION</h1>
                 <h3>Faites réagir vos concitoyen.ne.s sur un sujet porté par votre collectivité !</h3>
-                Ce service est adapté pour les collectivités qui souhaitent faire réagir leurs administré.e.s de
-                façon ponctuelle en profitant notamment de la base d’utilisateurs déjà inscrits sur notre
-                plateforme!
+                Ce service est adapté pour les collectivités qui souhaitent faire réagir leurs administré.e.s de façon ponctuelle en profitant notamment de la base d’utilisateurs déjà inscrits sur notre plateforme!
                 <br/><br/>
-                <i>Le service de consultation de POLITIZR est disponible au tarif unique de 990€HT pour une durée
-                comprise entre 1 et 3 mois.</i>
+                Quelque soit la taille de votre collectivité, profitez de notre expérience du débat en ligne pour faire réagir vos administré.e.s...
+                <br/><br/>
+                <i>Le service de consultation de POLITIZR est disponible au tarif unique de 990€HT pour une durée comprise entre 1 et 3 mois.</i>
             </div>
         </div>
         <div id="lpCTA">
@@ -62,11 +45,9 @@
         </div>
         <div id="lpUnderHero">
             <div class="center">
-                <h1>Offre n°3: “BIEN DIT”, le réseau social citoyen à votre image</h1>
+                <h1>BIEN DIT, LE RÉSEAU SOCIAL CITOYEN À VOTRE IMAGE</h1>
                 <h3>Maximisez l’engagement de vos concitoyen.ne.s sur le long terme !</h3>
-                Ce service est destiné aux collectivités désireuses d’ouvrir un canal de discussion adapté,
-                protégé et indépendant avec leurs concitoyen.ne.s. BIEN DIT est tout à la fois simple,
-                constructif, respectueux et paramétrable!
+                Ce service est destiné aux collectivités désireuses d’ouvrir un canal de discussion adapté, protégé et indépendant avec leurs concitoyen.ne.s. BIEN DIT est tout à la fois simple, constructif, respectueux et paramétrable!
                 <br/><br/>
                 <i>La plateforme BIEN DIT est disponible à partir de 100€HT/mois, sans engagements.</i>
             </div>
@@ -80,19 +61,11 @@
             <div class="center">
                 <div class="lpLeftCol">
                     <p>
-                        POLITIZR est un acteur français de la Civic Tech, ou technologie civique, qui représente l’ensemble des procédés, outils et technologies qui permettent d’améliorer le système politique.
-                        <br/><br/>
-                        POLITIZR propose des services de consultation citoyenne aux collectivités de toute taille désireuses de proposer un canal de discussion adapté, protégé et constructif avec leurs concitoyen.ne.s.
+                        {% include 'PolitizrFrontBundle:Public\\LandingPage:_wordingGD.html.twig' %}  Nous invitons chaque collectivité à reproduire cette expérience chez elle et dans la durée en faisant appel à nos services !
                     </p>
                     <img src="{{ asset('bundles/politizrfront/images/f-illustr01.jpg') }}">
                 </div>
                 <div class="lpRightCol">
-                    <h3>Nos Clients</h3>
-                    <div class="lpCheckLi"><i class="icon-check"></i><p>Ariège Le Département</p></div>
-                    <div class="lpCheckLi"><i class="icon-check"></i><p>Science Po</div>
-                    <div class="lpCheckLi"><i class="icon-check"></i><p>L'Hospitalet</p></div>
-                    <div class="lpCheckLi"><i class="icon-check"></i><p>Serres-sur-Arget</p></div>
-                    <div class="lpCheckLi"><i class="icon-check"></i><p>etc.</p></div>
                     <h3>Récompenses</h3>
                     <div class="lpCheckLi"><i class="icon-check"></i><p>Finaliste Prix de la Démocratie 2018</p></div>
                     <div class="lpCheckLi"><i class="icon-check"></i><p>Lauréat Prix du Jury Occistart 2017</p></div>
@@ -105,6 +78,10 @@
                     <div class="lpCheckLi"><i class="icon-check"></i><p>Microsoft RSLN</p></div>
                     <div class="lpCheckLi"><i class="icon-check"></i><p>La Tribune</p></div>
                     <div class="lpCheckLi"><i class="icon-check"></i><p>Maddyness</p></div>
+                    <h3>Nos Clients</h3>
+                    <div class="lpCheckLi"><i class="icon-check"></i><p>Ariège Le Département</p></div>
+                    <div class="lpCheckLi"><i class="icon-check"></i><p>Science Po</div>
+                    <div class="lpCheckLi"><i class="icon-check"></i><p>Et bien d'autres...</p></div>
                     <h3>&nbsp;</h3>
                 </div>
             </div>
