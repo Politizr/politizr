@@ -1,7 +1,8 @@
 {# beta #}
 <div class="actionPublish">
     {% if 
-        reason == constant('Politizr\\Constant\\DocumentConstants::REASON_DEBATE_OWNER')
+        reason == constant('Politizr\\Constant\\DocumentConstants::REASON_OPEN_REACTION')
+        or reason == constant('Politizr\\Constant\\DocumentConstants::REASON_DEBATE_OWNER')
         or reason == constant('Politizr\\Constant\\DocumentConstants::REASON_AUTHORIZED_CIRCLE_USER')
         or reason == constant('Politizr\\Constant\\DocumentConstants::REASON_USER_ELECTED')
         or reason == constant('Politizr\\Constant\\DocumentConstants::REASON_USER_OPERATION')
