@@ -105,6 +105,8 @@ class PublicController extends Controller
 
         if ($theme == 'civic-tech') {
             $template = 'civictech.html.twig';
+        } elseif ($theme == 'democratie-participative') {
+            $template = 'dempart.html.twig';
         } elseif ($theme == 'offre-candidat-municipales-2020')  {
             $template = 'offreCandidatMunicipales.html.twig';
         } elseif ($theme == 'offres-collectivites')  {
