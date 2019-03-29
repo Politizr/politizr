@@ -289,10 +289,10 @@ class ListingController extends Controller
         $logger->info('*** searchUsersAction');
 
         // Users listing only for connected people
-        $user = $this->getUser();
-        if (!$user) {
-            return $this->redirect($this->generateUrl('Homepage'));
-        }
+        // $user = $this->getUser();
+        // if (!$user) {
+        //     return $this->redirect($this->generateUrl('Homepage'));
+        // }
 
         // Map ids
         $france = PLCountryQuery::create()->findPk(LocalizationConstants::FRANCE_ID);
@@ -312,13 +312,12 @@ class ListingController extends Controller
         }
 
         // Current user localization
-        $user = $this->getUser();
-
         $cityUuid = null;
         $departmentUuid = null;
         $regionUuid = null;
         $franceUuid = $france->getUuid();
-        
+
+        $user = $this->getUser();
         if ($user) {
             $city = $user->getPLCity();
             if ($city) {

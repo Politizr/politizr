@@ -1197,9 +1197,22 @@ class XhrUser
             ListingConstants::LISTING_CLASSIC_PAGINATION
         );
 
+        // get current user
+        $currentUser = $this->securityTokenStorage->getToken()->getUser();
+        if (is_string($currentUser)) {
+            $currentUser = null;
+        }
+
         // update url w. js
-        $localization = $this->localizationService->getPLocalizationFromGeoUuid($geoUuid, $type);
-        $url = $this->router->generate('ListingSearchUsers'.$this->globalTools->computeProfileSuffix(), array('slug' => $localization->getSlug()));
+        if ($currentUser) {
+            $path = 'ListingSearchUsers'.$this->globalTools->computeProfileSuffix();
+            $localization = $this->localizationService->getPLocalizationFromGeoUuid($geoUuid, $type);
+            $locSlug = $localization->getSlug();
+        } else {
+            $path = 'ListingSearchUsersC';
+            $locSlug = null;
+        }
+        $url = $this->router->generate($path, array('slug' => $locSlug));
 
         // /!\ PropelPager object
         $moreResults = false;
