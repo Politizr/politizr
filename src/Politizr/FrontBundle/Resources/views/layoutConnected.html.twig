@@ -5,9 +5,12 @@
 {# useful to remove flash bag #}
 {% set inscriptionComplete = app.session.flashbag.get('inscription/success') %}
 
-{% block title %}{{ app.user | typeGender }} {{ app.user }} - Politizr{% endblock title %}
+{% block title %}{{ app.user | typeGender }} {{ app.user }} - POLITIZR{% endblock title %}
 
-{% block description %}Politizr permet de renouer du lien entre les habitants, leurs élus et leurs collectivités locales.{% endblock description %}
+{% set metaDescription = "POLITIZR est un réseau social citoyen offrant un espace de consultation publique permettant aux citoyens, élus et collectivités d'échanger de façon constructive." %}
+{% block description %}{{ metaDescription }}{% endblock description %}
+{% block ogDescription %}{{ metaDescription }}{% endblock ogDescription %}
+{% block tcDescription %}{{ metaDescription }}{% endblock tcDescription %}
 
 {% block stylesheets %}
     {{ parent() }}

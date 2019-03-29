@@ -1,7 +1,11 @@
 {% extends 'PolitizrFrontBundle::baseFront.html.twig' %}
 
-{% block title %}Politizr{% endblock title %}
-{% block description %}Politizr permet de renouer du lien entre les habitants, leurs élus et leurs collectivités locales.{% endblock description %}
+{% block title %}Citoyen Élus Collectivités - POLITIZR{% endblock title %}
+
+{% set metaDescription = "POLITIZR est un réseau social citoyen offrant un espace de consultation publique permettant aux citoyens, élus et collectivités d'échanger de façon constructive." %}
+{% block description %}{{ metaDescription }}{% endblock description %}
+{% block ogDescription %}{{ metaDescription }}{% endblock ogDescription %}
+{% block tcDescription %}{{ metaDescription }}{% endblock tcDescription %}
 
 {% block stylesheets %}
     {{ parent() }}

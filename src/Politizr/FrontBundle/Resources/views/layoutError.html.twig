@@ -1,7 +1,12 @@
 {% extends 'PolitizrFrontBundle::baseFront.html.twig' %}
 
-{% block title %}Politizr{% endblock title %}
-{% block description %}Politizr{% endblock description %}
+{% block title %}Au revoir... - POLITIZR{% endblock title %}
+
+{% set metaDescription = "POLITIZR est un réseau social citoyen offrant un espace de consultation publique permettant aux citoyens, élus et collectivités d'échanger de façon constructive." %}
+{% block description %}{{ metaDescription }}{% endblock description %}
+{% block ogDescription %}{{ metaDescription }}{% endblock ogDescription %}
+{% block tcDescription %}{{ metaDescription }}{% endblock tcDescription %}
+% block description %}Politizr{% endblock description %}
 
 {% block stylesheets %}
     <style type="text/css" media="screen" >

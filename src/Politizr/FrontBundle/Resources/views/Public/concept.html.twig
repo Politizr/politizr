@@ -4,36 +4,29 @@
 {% endif %}
 {% extends layout %}
 
-{% block title %}POLITIZR, réseau social politique entre les citoyens, les élus et les collectivités{% endblock title %}
+{% set metaTitle = "Citoyens + Élus + Collectivités = POLITIZR" %}
+{% set metaDescription = "Réseau social civic tech offrant un espace de consultation et de concertation publique permettant aux citoyens, élus et collectivités d'échanger de façon constructive." %}
 
-{#
-{% set metaTitle = 'Le concept' %}
-{% set metaDescription = 'Le concept de POLITIZR: une nouvelle idée de la démocratie participative s\'invente ici: digitale, participative, concrète, locale et sans frontière.' %}
-
-{% block title %}{{ metaTitle }} - {{ parent() }}{% endblock title %}
+{% block title %}{{ metaTitle }}{% endblock title %}
 {% block description %}{{ metaDescription }}{% endblock description %}
-
-{% block ogTitle %}{{ metaTitle }} - {{ parent() }}{% endblock ogTitle %}
 {% block ogDescription %}{{ metaDescription }}{% endblock ogDescription %}
-
-{% block tcTitle %}{{ metaTitle }} - {{ parent() }}{% endblock tcTitle %}
 {% block tcDescription %}{{ metaDescription }}{% endblock tcDescription %}
-#}
 
 {% block bodyClass %} class="public visitor noHeaderTrigger"{% endblock %}
 
 {% block main %}
     <div id="animConceptTitle">
         <div class="center">
-            <h1>Une nouvelle idée de la politique s’invente ici :<br>
-                Digitale. Participative. Concrète. Locale et sans frontières. </h1>
-            <h2>POLITIZR propose un espace de démocratie continue: exprimez-vous sur des sujets de politique locale ou nationale et faites réagir vos concitoyen.ne.s et vos élu.e.s!</h2>
+            <h1>Une nouvelle idée de la démocratie s’invente ici :<br>
+                Digitale. Participative. Concrète. Locale et continue. </h1>
+            <h2>POLITIZR propose un espace constructif de consultation et de concertation entre citoyens, élus et collectivités: exprimez-vous sur des sujets de politique locale ou nationale!</h2>
             <p>&nbsp;</p>
             <h2><b><u><a href="{{ path('CircleDetail', {'slug': 'grand-debat-la-suite'}) }}">Grand Débat National: exprimez-vous sur la suite !</a></u></b></h2>
             <p>&nbsp;</p>
-            {#<h2><b><u><a href="{{ path('LandingPage', { 'theme': 'offres-collectivites'}) }}">Collectivités, découvrez nos services !</a></u></b></h2>#}
+            <p><b>Indépendant - Neutre - Sans Publicité - Gratuit - Civic Tech</b></p>
             <p>&nbsp;</p>
-            <p><b>Indépendant - Neutre - Sans Publicité - Gratuit - CivicTech</b></p>
+            <b><u><a href="{{ path('LandingPage', { 'theme': 'offres-collectivites'}) }}">Collectivités, découvrez nos services</a></u></b>&nbsp;-&nbsp;
+            <b><u><a href="{{ path('LandingPage', { 'theme': 'offre-candidat-municipales-2020'}) }}">Candidats aux Municipales 2020?</a></u></b>
         </div>
     </div>
     <div id="animConcept">
