@@ -45,18 +45,21 @@ class AdminMenu extends AdmingeneratorMenuBuilder
                 ->setExtra('icon', 'fa fa-dashboard');
         }
 
-        // Order
-        $orders = $this->addDropdown($menu, 'Commande');
+        // Stats
+        $stats = $this->addDropdown($menu, 'Statistique');
         $this->addLinkRoute(
-            $orders,
-            'Opération',
-            'Politizr_AdminBundle_PEOperation_list'
+            $stats,
+            'Utilisateur',
+            'PolitizrAdminStats_PUser'
         );
         $this->addLinkRoute(
-            $orders,
-            'Premium',
-            'Politizr_AdminBundle_POrder_list'
+            $stats,
+            'Sujet',
+            'PolitizrAdminStats_PDDebate'
         );
+
+        // Operations
+        $orders = $this->addLinkRoute($menu, 'Opération', 'Politizr_AdminBundle_PEOperation_list');
 
         // User
         $users = $this->addLinkRoute($menu, 'Utilisateur', 'Politizr_AdminBundle_PUser_list');
