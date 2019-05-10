@@ -308,6 +308,17 @@ class PublicController extends Controller
             $form = $this->createForm(new PDDirectType(), $directMessage, ['automatic_creation' => true]);
 
             $template = 'grandDebat.html.twig';
+        } elseif ($theme == 'europeennes-2019')  {
+            $documents = $this->get('politizr.functional.document')->getDocumentsByTagsPaginated(
+                [ 1112 ],
+                null,
+                ListingConstants::ORDER_BY_KEYWORD_LAST,
+                0, ListingConstants::LISTING_LP_RESULTS
+            );
+
+            $form = $this->createForm(new PDDirectType(), $directMessage, ['automatic_creation' => true]);
+
+            $template = 'europenne2019.html.twig';
         } else {
             return $this->redirect($this->generateUrl('Homepage'));
         }
