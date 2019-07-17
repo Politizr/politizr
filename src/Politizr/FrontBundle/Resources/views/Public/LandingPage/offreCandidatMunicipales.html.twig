@@ -1,5 +1,5 @@
-{% set layout = 'PolitizrFrontBundle::layoutPublic.html.twig' %}
-{% extends layout %}
+{# beta #}
+{% extends 'PolitizrFrontBundle::layoutPublic.html.twig' %}
 {% set headerRight = false %}
 
 {% set metaTitle = 'Municipales 2020' %}
@@ -14,85 +14,110 @@
 {% block tcTitle %}{{ metaTitle }} - {{ parent() }}{% endblock tcTitle %}
 {% block tcDescription %}{{ metaDescription }}{% endblock tcDescription %}
 
+{% block ogVideo %}<meta property='og:video' content='https://www.youtube.com/v/7WHZpebc9q4' />{% endblock ogVideo %}
+{% block tcPlayer %}<meta name="twitter:player" content="https://www.youtube.com/embed/7WHZpebc9q4" />{% endblock tcPlayer %}
+
+{% block javascriptHeader %}
+    {{ parent() }}
+
+    <script type="text/javascript" src="{{ asset('bundles/politizrfront/js/jquery.youtubebackground.js?v'~assets_version) }}"></script>  
+
+    {% javascripts
+        '@PolitizrFrontBundle/Resources/public/js/politizr/pages/home.js'
+        filter='uglifyjs2' %}
+        <script src="{{ asset_url~'?v'~assets_version }}"></script>
+    {% endjavascripts %}
+{% endblock %}
+
 {% block bodyClass %} class="public visitor noHeaderTrigger"{% endblock %}
 
 {% block main %}
-    <div id="lpGeneric">
-        <div id="lpHero">
-            <div class="center">
-                <h1>Ouvrez le dialogue pour les Élections Municipales 2020 !</h1>
-                <h2>Engagez vos concitoyens autour de votre candidature...</h2>
-                <div id="f-display"><img src="{{ asset('bundles/politizrfront/images/f-display.png') }}" alt="Collectivités publiques"></div>
-                <div id="f-accessories"><img src="{{ asset('bundles/politizrfront/images/f-accessories.png') }}"></div>
+    <div id="publicVideo">
+        <div id="videoOverlay">
+            <div id="videoText">
+                <h1>Ouvrez le dialogue pour les Élections Municipales 2020 !<br/></h1>
+                <h2>Engagez vos électeurs autour de votre candidature...</h2>
             </div>
-            <div id="lpHeroFader"></div>
-        </div>
-        <div id="lpUnderHero">
-            <div class="center">
-                <h1>MUNICIPALES 2020 : CO-CONSTRUISEZ VOTRE PROGRAMME AVEC VOS FUTURS ÉLECTEURS !</h1>
-                <h3>Embarquez la démocratie participative au coeur de votre campagne !</h3>
-                POLITIZR propose un service nommé BIEN DIT destiné aux candidats souhaitant ouvrir un canal de discussion adapté, protégé et indépendant avec leurs concitoyen.ne.s pour les élections municipales de 2020. <b>BIEN DIT est tout à la fois simple, constructif et paramétrable!</b>
-                <br/><br/>
-                Disponible sur mobile et ordinateur à partir d’une adresse web personnalisée, BIEN DIT est une plateforme SaaS sécurisée, configurée aux couleurs de votre équipe de campagne. Inspiré par la plateforme POLITIZR, nous avons utilisé notre savoir-faire pour le développer et le mettre à disposition <b>à destination des équipes candidates aux élections municipales de 2020 désireuses d’ouvrir un canal de discussion constructif avec leurs concitoyens</b>.
-                <br/><br/>
-                BIEN DIT vous permet de faire <b>dialoguer efficacement votre équipe avec les électeurs en générant des consultations à la volée sur des thématiques de votre choix</b>, pour par exemple générer une discussion sur votre programme. Vous pouvez aussi utiliser BIEN DIT pour inviter les gens à proposer leurs idées ou à prolonger vos réunions publiques!
-                <br/><br/>
-                BIEN DIT dispose de nombreuses fonctionnalités et paramétrages à votre convenance: grâce à <b>nos fonctionnalités de partage et au branchement intégré des APIs de Facebook</b>, vous pourrez en particulier utiliser la puissance de Facebook et de Whatsapp pour relayer vos réponses! BIEN DIT est <b>déployé de façon indépendante</b> et vous aurez accès à un <b>puissant module d’administration</b> vous permettant de gérer les pages de contenus, les utilisateurs, les publications, la modération, etc.
-                <br/><br/>
-                Notre équipe s'occupe de toute la partie technique pour vous livrer <b>un outil clef en main</b>: vous pourrez aussi nous solliciter pour un accompagnement plus personnalisé et découvrir des outils complémentaires fournis par nos partenaires. <a href="#lpContact">Contactez-nous!</a>
+            <div id="goDown" action="scrollVideo">
+                Découvrir<br><img src="{{ asset('bundles/politizrfront/images/f-arrowGoDown.svg') }}">
             </div>
         </div>
-        <div id="lpCTA">
-            <div class="center">
-                <a href="https://demo.bien-dit.com" target="_blank">Testez notre démo</a>
-            </div>
-        </div>
-        <div id="lpArgu">
-            <div class="center">
-                <div class="lpLeftCol">
-                    <p>
-                        {% include 'PolitizrFrontBundle:Public\\LandingPage:_wordingGD.html.twig' %}  Nous invitons les candidats aux élections municipales de 2020 à profiter de notre expérience des consultations publiques !
-                    </p>
-                    <img src="{{ asset('bundles/politizrfront/images/f-illustr01.jpg') }}">
-                </div>
-                <div class="lpRightCol">
-                    <h3>Récompenses</h3>
-                    <div class="lpCheckLi"><i class="icon-check"></i><p>Finaliste Prix de la Démocratie 2018</p></div>
-                    <div class="lpCheckLi"><i class="icon-check"></i><p>Lauréat Prix du Jury Occistart 2017</p></div>
-                    <div class="lpCheckLi"><i class="icon-check"></i><p>Sélection "Les 1000 qui font l'économie de demain" par Générations French Tech</p></div>
-                    <div class="lpCheckLi"><i class="icon-check"></i><p>Finaliste Trophée de l'Économie Numérique 2016</p></div>
-                    <h3>Ils parlent de nous</h3>
-                    <div class="lpCheckLi"><i class="icon-check"></i><p>France Inter</p></div>
-                    <div class="lpCheckLi"><i class="icon-check"></i><p>Acteurs Publiques</p></div>
-                    <div class="lpCheckLi"><i class="icon-check"></i><p>France 3</p></div>
-                    <div class="lpCheckLi"><i class="icon-check"></i><p>Microsoft RSLN</p></div>
-                    <div class="lpCheckLi"><i class="icon-check"></i><p>La Tribune</p></div>
-                    <div class="lpCheckLi"><i class="icon-check"></i><p>Maddyness</p></div>
-                    <h3>Nos Clients</h3>
-                    <div class="lpCheckLi"><i class="icon-check"></i><p>Axelle Lemaire, Michel Larive, Elisabeth Toutut Picard, ...</div>
-                    <div class="lpCheckLi"><i class="icon-check"></i><p>Ariège Le Département</p></div>
-                    <div class="lpCheckLi"><i class="icon-check"></i><p>Science Po</div>
-                    <div class="lpCheckLi"><i class="icon-check"></i><p>Et bien d'autres...</p></div>
-                    <h3>&nbsp;</h3>
-                </div>
-            </div>
-        </div>
+        <div id="video"></div>
+        <div id="videoLoader"></div>
+        <div id="ifNoVideo"><img src="{{ asset('bundles/politizrfront/images/f-ifNoVideo.jpg') }}"></div>
+    </div>
+    
+    <div id="triggerVideo"></div>
 
+    <div id="videoFooter">
+        <div class="center">
+            <div id="yellowBlock">
+                <span>
+                    POLITIZR propose un service nommé <b>BIEN DIT</b> destiné aux candidats souhaitant ouvrir un canal de discussion adapté, protégé et indépendant avec leurs concitoyen.ne.s pour les Élections Municipales de 2020. <b>BIEN DIT est tout à la fois simple, constructif et paramétrable!
+                </span>
+            </div>
+            <div id="blueBlock">
+                <span>Des candidat.e.s aux Municipales 2020 déploient Bien Dit !</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="bannerPromo" class="bannerPromoSenatoriales">
+        <div class="center">
+            <div class="txtBannerPromo">
+                <h1>MUNICIPALES 2020</h1>
+                <b>VOS ÉLECTEURS ONT DES CHOSES À VOUS DIRE !</b><br><br>
+                <span>
+Disponible sur mobile et ordinateur à partir d’une adresse web personnalisée, BIEN DIT est une plateforme web sécurisée et configurée aux couleurs de votre équipe de campagne. Inspiré par la plateforme POLITIZR, nous avons utilisé notre savoir-faire pour le développer et le mettre à disposition <b>à destination des équipes candidates aux élections municipales de 2020 désireuses d’ouvrir un canal de discussion constructif avec leurs électeurs</b>.
+                    <br><br>
+                    <a href="#formDirectMessage">Contactez nous pour une démo</a>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div id="lpGeneric">
         {% include 'PolitizrFrontBundle:Public\\LandingPage:_blockMarianne.html.twig' %}
-        
         <div id="lpContact">
             <div class="center">
                 <div class="lpLeftCol">
-                    Contactez-nous pour en savoir plus ou programmer une démo :<br/> <a href="mailto:bonjour@bien-dit.com">bonjour@bien-dit.com</a><br>
-                    <br/>ou notre responsable campagne au <b>06. 78. 58. 27. 45</b>
+                    Contactez-nous pour en savoir plus ou programmer une démo :<br/> <a href="mailto:contact@politizr.com">contact@politizr.com</a><br>
+                    <br/>ou Lionel notre responsable campagne au <br/> <b>06. 78. 58. 27. 45</b>
                 </div>
                 <div class="lpRightCol">
                     {% include 'PolitizrFrontBundle:Public\\LandingPage:_formContact.html.twig' with { 'phone': true, 'city' : true } %}
                 </div>
             </div>
         </div>
+    </div>    
+
+    <div id="bannerPromo" class="bannerPress">
+        <div class="center">
+            <div class="press">
+                <h1>Ils parlent de nous</h1>
+                <img src="{{ asset('bundles/politizrfront/images/f-press.jpg') }}">
+            </div>
+            <div class="trophy">
+                <h1>Récompences</h1>
+                <div class="trophyItem">
+                    <img src="{{ asset('bundles/politizrfront/images/f-trophy5.jpg') }}">
+                    <div class="trophyItemText">Finaliste Prix de la Démocratie 2018.</div>
+                </div>
+                <div class="trophyItem">
+                    <img src="{{ asset('bundles/politizrfront/images/f-trophy1.jpg') }}">
+                    <div class="trophyItemText">Lauréat Prix du jury Occistart 2017.</div>
+                </div>
+                <div class="trophyItem">
+                    <img src="{{ asset('bundles/politizrfront/images/f-trophy2.jpg') }}">
+                    <div class="trophyItemText">Sélection "Les 1000 qui font l'économie française de demain" par Génération French Tech.</div>
+                </div>
+                <div class="trophyItem">
+                    <img src="{{ asset('bundles/politizrfront/images/f-trophy3.jpg') }}">
+                    <div class="trophyItemText">Lauréat Synerthon 2016, organisation & management pour le dialogue inter-entreprises.</div>
+                </div>
+            </div>
+        </div>
     </div>
-    
 {% endblock main %}
 
 {% block postMain %}
