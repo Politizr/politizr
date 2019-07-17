@@ -19,33 +19,6 @@
     <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.8/jquery.validate.min.js?v{{ assets_version }}"></script>
 {% endblock %}
 
-{% block gScript %}
-    {{ parent() }}
-
-    {% if app.environment == 'prod' %}
-        <script>
-        function gtag_report_conversion(url) {
-          var callback = function () {
-            if (typeof(url) != 'undefined') {
-              window.location = url;
-            }
-          };
-          gtag('event', 'conversion', {
-              'send_to': 'AW-872060456/-dnfCMufi4ABEKis6p8D',
-              'event_callback': callback
-          });
-          return false;
-        }
-        </script>
-    {% else %}
-        <script>
-        function gtag_report_conversion(url) {
-            return false;
-        }
-        </script>
-    {% endif %}
-{% endblock %}
-
 {% block bodyClass %} class="public"{% endblock %}
 
 {% block header %}
