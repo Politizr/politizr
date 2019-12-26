@@ -97,7 +97,6 @@
                 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
                 })(window,document,'script','dataLayer','GTM-T65MZHB');
-                gtag('config', 'AW-872060456');
                 </script>
                 <!-- End Google Tag Manager -->
             {% endif %}
@@ -106,14 +105,6 @@
     {% block body %}
         <body{% block bodyClass %}{% endblock %}>
             {% include 'PolitizrFrontBundle:Navigation\\Social:_socialInit.html.twig' %}
-
-            {# Google Tag Manager #}
-            {% if app.environment == 'prod' %}
-                <!-- Google Tag Manager (noscript) -->
-                <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T65MZHB"
-                height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-                <!-- End Google Tag Manager (noscript) -->
-            {% endif %}
 
             <noscript>
                 <div id="noJsBox">
