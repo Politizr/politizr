@@ -501,9 +501,10 @@ class PublicController extends Controller
             $urls[] = $this->generateUrlItem($url, 'weekly', '0.7');
         }
 
-        // pages users
+        // pages users / only qualified
         $contents = PUserQuery::create()
             ->filterByOnline(true)
+            ->filterByQualified(true)
             ->orderByCreatedAt('desc')
             ->find();
 
