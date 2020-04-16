@@ -186,6 +186,8 @@ class PolitizrCircleExtension extends \Twig_Extension
             $templatePath = 'Circle\\granddebat';
         } elseif ($circle->getPCircleTypeId() == CircleConstants::CIRCLE_TYPE_SPECIFIC && $circle->getId() == CircleConstants::GRANDDEBATSUITE_ID_CIRCLE) {
             $templatePath = 'Circle\\granddebatsuite';
+        } elseif ($circle->getPCircleTypeId() == CircleConstants::CIRCLE_TYPE_SPECIFIC && $circle->getId() == CircleConstants::MONDEDAPRES_ID_CIRCLE) {
+            $templatePath = 'Circle\\mondedapres';
         } else {
             $templatePath = 'Circle';
         }
@@ -289,6 +291,8 @@ class PolitizrCircleExtension extends \Twig_Extension
             $templatePath = 'Circle\\granddebat';
         } elseif ($circle->getId() == CircleConstants::GRANDDEBATSUITE_ID_CIRCLE) {
             $templatePath = 'Circle\\granddebat';
+        } elseif ($circle->getId() == CircleConstants::MONDEDAPRES_ID_CIRCLE) {
+            $templatePath = 'Circle\\granddebat';
         }
 
         // Construction du rendu du tag
@@ -390,6 +394,8 @@ class PolitizrCircleExtension extends \Twig_Extension
             $templatePath = 'Topic\\granddebat';
         } elseif ($circle->getPCircleTypeId() == CircleConstants::CIRCLE_TYPE_SPECIFIC && $circle->getId() == CircleConstants::GRANDDEBATSUITE_ID_CIRCLE) {
             $templatePath = 'Topic\\granddebatsuite';
+        } elseif ($circle->getPCircleTypeId() == CircleConstants::CIRCLE_TYPE_SPECIFIC && $circle->getId() == CircleConstants::MONDEDAPRES_ID_CIRCLE) {
+            $templatePath = 'Topic\\mondedapres';
         }
 
         // Construction du rendu du tag
@@ -422,6 +428,8 @@ class PolitizrCircleExtension extends \Twig_Extension
             $templatePath = 'Topic\\granddebat';
         } elseif ($circle->getPCircleTypeId() == CircleConstants::CIRCLE_TYPE_SPECIFIC && $circle->getId() == CircleConstants::GRANDDEBATSUITE_ID_CIRCLE) {
             $templatePath = 'Topic\\granddebatsuite';
+        } elseif ($circle->getPCircleTypeId() == CircleConstants::CIRCLE_TYPE_SPECIFIC && $circle->getId() == CircleConstants::MONDEDAPRES_ID_CIRCLE) {
+            $templatePath = 'Topic\\mondedapres';
         }
 
         $html = $env->render(

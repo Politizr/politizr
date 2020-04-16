@@ -30,4 +30,7 @@ class CircleConstants
     // SPECIFIC GRAND DEBAT
     const GRANDDEBAT_ID_CIRCLE = 7;
     const GRANDDEBATSUITE_ID_CIRCLE = 8;
+
+    // SPECIFIC LE MONDE D'APRÈS
+    const MONDEDAPRES_ID_CIRCLE = 9;
 }

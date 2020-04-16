@@ -319,6 +319,17 @@ class PublicController extends Controller
             $form = $this->createForm(new PDDirectType(), $directMessage, ['automatic_creation' => true]);
 
             $template = 'europenne2019.html.twig';
+        } elseif ($theme == 'le-monde-d-apres')  {
+            // $documents = $this->get('politizr.functional.document')->getDocumentsByTagsPaginated(
+            //     [ 1126 ],
+            //     null,
+            //     ListingConstants::ORDER_BY_KEYWORD_LAST,
+            //     0, ListingConstants::LISTING_LP_RESULTS
+            // );
+
+            $form = $this->createForm(new PDDirectType(), $directMessage, ['automatic_creation' => true]);
+
+            $template = 'mondeDapres.html.twig';
         } else {
             return $this->redirect($this->generateUrl('Homepage'));
         }
