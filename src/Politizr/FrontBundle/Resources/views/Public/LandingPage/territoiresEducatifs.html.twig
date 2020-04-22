@@ -2,8 +2,8 @@
 {% extends layout %}
 {% set headerRight = false %}
 
-{% set metaTitle = 'Le Monde d\'Après Covid-19' %}
-{% set metaDescription = 'Participez aux réflexions sur un site neutre et indépendant !' %}
+{% set metaTitle = 'Territoires Educatifs Ariège' %}
+{% set metaDescription = 'Participez aux réflexions sur l\'éducation et la jeunesse en Ariège' %}
 
 {% block title %}{{ metaTitle }} - {{ parent() }}{% endblock title %}
 {% block description %}{{ metaDescription }}{% endblock description %}
@@ -20,26 +20,29 @@
     <div id="lpGeneric">
         <div id="lpHero">
             <div class="center">
-                <h1>Le Monde d'Après... Vous !</h1>
-                <h2>Exprimez-vous librement sur un site neutre et indépendant pour inventer avec vos élus et vos concitoyens le monde d'après...</h2>
-                <div id="f-display"><img src="{{ asset('bundles/politizrfront/images/f-display.png') }}" alt="Actualités Monde d'Après"></div>
+                <h1>Territoires Educatifs en Ariège</h1>
+                <h2>Vous pourrez, chacun à votre niveau, vous exprimer autour des questions éducatives et des projets autour des enfants et des jeunes.</h2>
+                <div id="f-display"><img src="{{ asset('bundles/politizrfront/images/f-display.png') }}" alt="Actualités Ariège"></div>
                 <div id="f-accessories"><img src="{{ asset('bundles/politizrfront/images/f-accessories.png') }}"></div>
             </div>
             <div id="lpHeroFader"></div>
         </div>
         <div id="lpUnderHero">
             <div class="center">
-                POLITIZR est un espace de discussion indépendant, neutre et gratuit qui permet des échanges structurés et constructifs entre les citoyen.ne.s et leurs élu.e.s.<br/><br/>
-                <h2>Exprimez-vous dans la durée sur une plateforme apolitique !</h2>
-                Au delà de la crise sanitaire, nous proposons aujourd'hui à notre communauté de proposer, débattre, échanger autour de vos propositions pour imaginer et construire un monde plus juste et plus durable pour "l'après COVID-19".
+                TERRITOIRES EDUCATIFS vous invite sur son espace de discussion qui permet des échanges structurés et constructifs entre les citoyen.ne.s et leurs élu.e.s de l'Ariège sur les question d'éducation.<br/><br/>
+                <h2>Exprimez-vous et partagez vos réflexions !</h2>
+                Au vue de la situation exceptionnelle que nous vivons actuellement, TERRITOIRES EDUCATIFS en Ariège vous propose de faire part de vos réflexions sur nos pratiques, nos fonctionnements, nos relations au territoire et à ses habitants...
                 <br><br>
-                Nous invitons nos visiteurs à rejoindre notre agora numérique composée d'élus, de citoyens : venez proposer vos visions et vos solutions pour (re)construire un monde plus juste et plus durable.<br><br>
+                Comment la situation exceptionnelle que nous vivons aujourd’hui interroge nos pratiques, nos fonctionnements, nos relations au territoire, à ses habitants...<br/>
+                Qu’allons-nous en faire demain ?<br/>
+                Qu’allons-nous faire ensemble, après ?<br/>
+                Exprimez-vous !<br><br>
             </div>
         </div>
 
         <div id="lpCTA">
             <div class="center">
-                <a href="{{ path('CircleDetail', {'slug': 'le-monde-d-apres-vous'}) }}">Parcourir notre consultation</a>
+                <a href="https://exprimez-vous.territoireseducatifs09.org/">Parcourir notre consultation</a>
             </div>
         </div>
 
