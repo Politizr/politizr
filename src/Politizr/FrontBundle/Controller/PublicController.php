@@ -388,7 +388,30 @@ class PublicController extends Controller
         $logger = $this->get('logger');
         $logger->info('*** cguAction');
 
-        $legal = PMCguQuery::create()->filterByOnline(true)->orderByCreatedAt('desc')->findOne();
+        $legal = PMCguQuery::create()->filterById(GlobalConstants::GLOBAL_CGU_ID)->filterByOnline(true)->orderByCreatedAt('desc')->findOne();
+
+        if (!$legal) {
+            return $this->redirect($this->generateUrl('Homepage'));
+        }
+
+        return $this->render('PolitizrFrontBundle:Public:cgu.html.twig', array(
+            'legal' => $legal,
+        ));
+    }
+
+    /**
+     * Policies
+     */
+    public function policiesAction()
+    {
+        $logger = $this->get('logger');
+        $logger->info('*** policiesAction');
+
+        $legal = PMCguQuery::create()->filterById(GlobalConstants::GLOBAL_POLICIES_ID)->filterByOnline(true)->orderByCreatedAt('desc')->findOne();
+
+        if (!$legal) {
+            return $this->redirect($this->generateUrl('Homepage'));
+        }
 
         return $this->render('PolitizrFrontBundle:Public:cgu.html.twig', array(
             'legal' => $legal,

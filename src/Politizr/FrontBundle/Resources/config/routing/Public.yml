@@ -17,6 +17,10 @@ Cgu:
     pattern:  /cgu-politizr
     defaults: { _controller: PolitizrFrontBundle:Public:cgu }
 
+Policies:
+    pattern:  /policies-politizr
+    defaults: { _controller: PolitizrFrontBundle:Public:policies }
+
 Charte:
     pattern:  /charte-politizr
     defaults: { _controller: PolitizrFrontBundle:Public:charte }
