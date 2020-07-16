@@ -1385,7 +1385,7 @@ SELECT COUNT(*) as nb
 FROM
 (
 # Liste des réactions filles de 1er niveau pour les réactions d un user
-SELECT child.id
+SELECT child.id, child.p_d_debate_id
 FROM p_d_reaction parent, p_d_reaction child
 WHERE
     parent.p_user_id = :p_user_id
@@ -1399,7 +1399,7 @@ GROUP BY child.p_d_debate_id
 UNION
 
 # Liste des réactions filles de 1er niveau pour les débats d un user
-SELECT child.id
+SELECT child.id, child.p_d_debate_id
 FROM p_d_debate parent, p_d_reaction child
 WHERE
     parent.p_user_id = :p_user_id3
