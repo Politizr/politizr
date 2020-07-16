@@ -68,7 +68,7 @@ class LocalizationManager
         // department out of france list
         $departments = PLDepartmentQuery::create()
             ->distinct()
-            ->select(array('uuid', 'title'))
+            ->select(array('uuid', 'title', 'id'))
             ->orderBy('id')
             ->filterById(LocalizationConstants::getOutOfFranceDepartmentIds())
             ->find()
