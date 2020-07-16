@@ -126,7 +126,7 @@ builders:
                         filters: 
                             qualified:          0
             display:                            [ file_name, name, firstname, p_l_city, qualified, reputation_score, active, last_activity, created_at ]
-            filters:                            [ id, uuid, email, name, qualified, validated, active, created_at, last_login ]
+            filters:                            [ id, uuid, email, name, qualified, validated, active ]
             filtersMode:                        modal
             fields:
                 p_l_city:

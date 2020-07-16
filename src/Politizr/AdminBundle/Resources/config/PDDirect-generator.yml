@@ -34,7 +34,7 @@ builders:
             sort:                               [ created_at, DESC ]
             display:                            [ name, city, email, phone, created_at ]
             filtersMode:                        modal
-            filters:                            [ name, email, created_at ]
+            filters:                            [ name, email ]
             object_actions:
                 show:                           ~
                 edit:

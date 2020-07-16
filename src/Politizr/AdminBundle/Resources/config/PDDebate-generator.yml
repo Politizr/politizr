@@ -118,7 +118,7 @@ builders:
                         filters:                [ inactive ]
             display:                            [ title, p_user_id, p_c_topic, p_e_operation, active, published_at, created_at ]
             filtersMode:                        modal
-            filters:                            [ id, uuid, p_user_id, p_c_topic, p_e_operation, p_l_department, p_l_region, title, active, published_at, created_at ]
+            filters:                            [ id, uuid, p_user_id, p_c_topic, p_e_operation, p_l_department, p_l_region, title, active, published_at ]
             object_actions:
                 show:                           ~
                 edit:                           ~

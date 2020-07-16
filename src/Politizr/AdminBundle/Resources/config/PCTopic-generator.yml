@@ -48,7 +48,7 @@ builders:
             sort:                               [ sortable_rank, ASC ]
             display:                            [ file_name, title, p_circle, online, created_at ]
             filtersMode:                        modal
-            filters:                            [ p_circle, uuid, title, online, created_at ]
+            filters:                            [ p_circle, uuid, title, online ]
             object_actions:
                 show:                           ~
                 edit:                           ~

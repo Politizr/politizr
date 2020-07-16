@@ -56,7 +56,7 @@ builders:
             sort:                               [ sortable_rank, ASC ]
             display:                            [ logo_file_name, title, p_c_owner, p_circle_type, online, read_only, created_at ]
             filtersMode:                        modal
-            filters:                            [ id, p_c_owner, p_circle_type, uuid, title, online, read_only, created_at ]
+            filters:                            [ id, p_c_owner, p_circle_type, uuid, title, online, read_only ]
             object_actions:
                 show:                           ~
                 edit:                           ~
