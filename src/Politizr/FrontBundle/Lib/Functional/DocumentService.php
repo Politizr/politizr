@@ -555,8 +555,6 @@ class DocumentService
             return null;
         }
 
-
-        // add "orderByPTagId('desc')" to maximize recently created tag
         $circleId = $document->getCircleId();
         $similars = PDDebateQuery::create()
             ->filterById($document->getDebateId(), \Criteria::NOT_EQUAL)
