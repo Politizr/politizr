@@ -7,7 +7,7 @@
         "psr-4": { "": "src/" }
     },
     "require": {
-        "php": ">=5.3.9",
+        "php": ">=7.0",
         
         "symfony/symfony": "2.8.*",
         
@@ -15,7 +15,7 @@
         
         "symfony/assetic-bundle": "~2.3",
         "symfony/swiftmailer-bundle": "~2.3",
-        "symfony/monolog-bundle": "~2.4",
+        "symfony/monolog-bundle": "~3.2",
         "symfony/filesystem": "^2.7",
                 
         "sensio/distribution-bundle": "~4.0",
@@ -39,17 +39,17 @@
 
         "knplabs/knp-menu-bundle": ">1.0,<2.2",
         "symfony2admingenerator/generator-bundle": "^2.0",
-        "symfony2admingenerator/form-bundle": "@stable",
+        "symfony2admingenerator/form-bundle": "^1.5",
         "symfony2admingenerator/form-extensions-bundle": "dev-master",
         "liuggio/excelbundle": "^2.0",
         
         "fzaninotto/faker": "1.5.*",
         "willdurand/faker-bundle": "@stable",
 
-        "hwi/oauth-bundle": "~0.4",
+        "hwi/oauth-bundle": "0.4.3",
         "facebook/graph-sdk": "^5.4",
         "j7mbo/twitter-api-php": "~1.0",
-        "google/apiclient": "^2.0.0@RC",
+        "google/apiclient": "^2.0",
         
         "white-october/pagerfanta-bundle": "~1.0",
         
@@ -98,7 +98,7 @@
     "config": {
         "bin-dir": "bin",
         "platform": {
-            "php": "5.6.10"
+            "php": "7.0"
         }
     },
     "extra": {
