@@ -23,13 +23,11 @@
                             <td colspan="2" style="padding: 40px 40px 40px 40px;  line-height: 180%;">
 Bonjour {{ user }},<br/><br/>
 
-Je suis {% if user.qualified %}Lionel Bouzonville{% else %}Thomas Champion{% endif %}, co-fondateur de Politizr.<br/><br/>
+Je suis Lionel Bouzonville, co-fondateur de Politizr.<br/><br/>
 POLITIZR propose un espace de démocratie continue: exprimez-vous sur des sujets de politique locale ou nationale et faites réagir vos concitoyen.ne.s et vos élu.e.s!<br/><br/>
 
 {% if user.qualified %}
 Un des points fort de POLITIZR est de permettre de générer des discussions de fond sur des problématiques précises, pour permettre d’échanger sur des points de vue et avoir des retours sur des bonnes pratiques de la part d'élus de toute la France.<br/><br/>
-
-En complément, nous proposons désormais aux collectivités, de tout type et de toute taille, un service intégré à POLITIZR pour leur permettre d’avoir des retours de leurs administrés: merci de prendre <a href="mailto: support@politizr.com">contact avec nous</a> pour avoir plus d'informations !<br/><br/>
 
 {% else %}
 
@@ -39,14 +37,11 @@ Grâce à POLITIZR, vous pourrez exprimer votre opinion sur les sujets de politi
 
 Commencez dès aujourd'hui à vous <a href="{{ url('DebateDraftNew') }}">exprimer</a>!<br/><br/>
 
-{% if user.qualified %}
 Lionel Bouzonville<br>
 Co Fondateur @ Politizr<br>
-Ex-Conseiller Municipal de Foix (2007-2014)
-{% else %}
-Thomas Champion<br>
-Co Fondateur @ Politizr
-{% endif %} 
+Ex-Conseiller Municipal de Foix (2007-2014)<br/><br/>
+
+PS : nous proposons des outils et services aux collectivités de toute taille pour leur permettre d’avoir des retours de leurs administré.e.s: merci de prendre <a href="mailto: support@politizr.com">contact avec nous</a> pour avoir plus d'informations !
                             </td>
                         </tr>
                         <!-- footer -->
