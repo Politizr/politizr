@@ -71,6 +71,17 @@ class PDDirectType extends AbstractType
             )
         ));
         
+        $builder->add('department', 'text', array(
+            'required' => false,
+            'label' => 'Département',
+            // 'constraints' => array(
+            //     new NotBlank(array('message' => 'Lieu obligatoire.')),
+            // ),
+            'attr' => array(
+                'maxlength' => 250
+            )
+        ));
+        
         $builder->add('description', 'textarea', array(
             'label' => 'Message',
             'required' => false,

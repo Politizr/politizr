@@ -45,6 +45,7 @@ class PDDirectTableMap extends TableMap
         $this->addPrimaryKey('id', 'Id', 'INTEGER', true, null, null);
         $this->addColumn('name', 'Name', 'VARCHAR', false, 250, null);
         $this->addColumn('city', 'City', 'VARCHAR', false, 250, null);
+        $this->addColumn('department', 'Department', 'VARCHAR', false, 250, null);
         $this->addColumn('email', 'Email', 'VARCHAR', false, 250, null);
         $this->addColumn('phone', 'Phone', 'VARCHAR', false, 250, null);
         $this->addColumn('description', 'Description', 'LONGVARCHAR', false, null, null);

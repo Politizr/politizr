@@ -2,10 +2,10 @@
 
 /**
  * Data object containing the SQL and PHP code to migrate the database
- * up to version 1547491800.
- * Generated on 2019-01-14 19:50:00 by lionel
+ * up to version 1597248829.
+ * Generated on 2020-08-12 18:13:49 by lionel
  */
-class PropelMigration_1547491800
+class PropelMigration_1597248829
 {
 
     public function preUp($manager)
@@ -42,11 +42,11 @@ class PropelMigration_1547491800
 # It "suspends judgement" for fkey relationships until are tables are set.
 SET FOREIGN_KEY_CHECKS = 0;
 
-ALTER TABLE `p_circle`
-    ADD `open_reaction` TINYINT(1) AFTER `public_circle`;
+ALTER TABLE `p_d_direct`
+    ADD `department` VARCHAR(250) AFTER `city`;
 
-ALTER TABLE `p_circle_archive`
-    ADD `open_reaction` TINYINT(1) AFTER `public_circle`;
+ALTER TABLE `p_d_direct_archive`
+    ADD `department` VARCHAR(250) AFTER `city`;
 
 # This restores the fkey checks, after having unset them earlier
 SET FOREIGN_KEY_CHECKS = 1;
@@ -68,11 +68,9 @@ SET FOREIGN_KEY_CHECKS = 1;
 # It "suspends judgement" for fkey relationships until are tables are set.
 SET FOREIGN_KEY_CHECKS = 0;
 
-DROP INDEX `acl_object_identity_ancestors_I_2` ON `acl_object_identity_ancestors`;
+ALTER TABLE `p_d_direct` DROP `department`;
 
-ALTER TABLE `p_circle` DROP `open_reaction`;
-
-ALTER TABLE `p_circle_archive` DROP `open_reaction`;
+ALTER TABLE `p_d_direct_archive` DROP `department`;
 
 # This restores the fkey checks, after having unset them earlier
 SET FOREIGN_KEY_CHECKS = 1;
