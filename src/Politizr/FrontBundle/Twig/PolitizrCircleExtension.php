@@ -188,6 +188,8 @@ class PolitizrCircleExtension extends \Twig_Extension
             $templatePath = 'Circle\\granddebatsuite';
         } elseif ($circle->getPCircleTypeId() == CircleConstants::CIRCLE_TYPE_SPECIFIC && $circle->getId() == CircleConstants::MONDEDAPRES_ID_CIRCLE) {
             $templatePath = 'Circle\\mondedapres';
+        } elseif ($circle->getPCircleTypeId() == CircleConstants::CIRCLE_TYPE_SPECIFIC && $circle->getId() == CircleConstants::INNOPOLIS_ID_CIRCLE) {
+            $templatePath = 'Circle\\innopolis';
         } else {
             $templatePath = 'Circle';
         }
@@ -293,6 +295,8 @@ class PolitizrCircleExtension extends \Twig_Extension
             $templatePath = 'Circle\\granddebat';
         } elseif ($circle->getId() == CircleConstants::MONDEDAPRES_ID_CIRCLE) {
             $templatePath = 'Circle\\granddebat';
+        } elseif ($circle->getId() == CircleConstants::INNOPOLIS_ID_CIRCLE) {
+            $templatePath = 'Circle\\innopolis';
         }
 
         // Construction du rendu du tag
@@ -396,6 +400,8 @@ class PolitizrCircleExtension extends \Twig_Extension
             $templatePath = 'Topic\\granddebatsuite';
         } elseif ($circle->getPCircleTypeId() == CircleConstants::CIRCLE_TYPE_SPECIFIC && $circle->getId() == CircleConstants::MONDEDAPRES_ID_CIRCLE) {
             $templatePath = 'Topic\\mondedapres';
+        } elseif ($circle->getPCircleTypeId() == CircleConstants::CIRCLE_TYPE_SPECIFIC && $circle->getId() == CircleConstants::INNOPOLIS_ID_CIRCLE) {
+            $templatePath = 'Topic\\innopolis';
         }
 
         // Construction du rendu du tag
@@ -430,6 +436,8 @@ class PolitizrCircleExtension extends \Twig_Extension
             $templatePath = 'Topic\\granddebatsuite';
         } elseif ($circle->getPCircleTypeId() == CircleConstants::CIRCLE_TYPE_SPECIFIC && $circle->getId() == CircleConstants::MONDEDAPRES_ID_CIRCLE) {
             $templatePath = 'Topic\\mondedapres';
+        } elseif ($circle->getPCircleTypeId() == CircleConstants::CIRCLE_TYPE_SPECIFIC && $circle->getId() == CircleConstants::INNOPOLIS_ID_CIRCLE) {
+            $templatePath = 'Topic\\innopolis';
         }
 
         $html = $env->render(

@@ -33,4 +33,7 @@ class CircleConstants
 
     // SPECIFIC LE MONDE D'APRÈS
     const MONDEDAPRES_ID_CIRCLE = 9;
+
+    // SPECIFIC INNOPOLIS
+    const INNOPOLIS_ID_CIRCLE = 10;
 }

@@ -1,0 +1,7 @@
+{% if not circle.readOnly %}
+    <div class="grpIHaveAQuestion">
+        <h2>Question, avis, remarque ou opinion...</h2>
+        <p>Engagez la discussion avec nos expert.e.s de la SmartCity en vous exprimant, que ce soit pour poser une question ou donner votre avis.</p>
+        <a href="{{ path('DebateDraftNew', { topic: topics[0].uuid }) }}">Je m'exprime!</a><a href="{{ path('TopicDetail', { circleSlug: circle.slug, slug: topics[0].slug }) }}" class="grpAllQuestions">Voir les contributions</a>
+    </div>
+{% endif %}
