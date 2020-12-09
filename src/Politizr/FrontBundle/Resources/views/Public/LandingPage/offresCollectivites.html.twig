@@ -2,8 +2,8 @@
 {% extends layout %}
 {% set headerRight = false %}
 
-{% set metaTitle = 'Offres Collectivités' %}
-{% set metaDescription = 'POLITIZR propose aux collectivités son service numérique de dialogue citoyen pour leur permettre de diffuser de l’information et d’associer leurs concitoyennes et concitoyens aux projets qui façonnent leur territoire.' %}
+{% set metaTitle = 'Consultation Citoyenne' %}
+{% set metaDescription = 'POLITIZR propose aux collectivités différents services numériques de consultation citoyenne pour leur permettre de diffuser de l’information et d’associer leurs concitoyennes et concitoyens aux projets qui façonnent leur territoire.' %}
 
 {% block title %}{{ metaTitle }} - {{ parent() }}{% endblock title %}
 {% block description %}{{ metaDescription }}{% endblock description %}
@@ -20,8 +20,8 @@
     <div id="lpGeneric">
         <div id="lpHero">
             <div class="center">
-                <h1>En 2020, il est temps pour les collectivités d'impliquer leurs administré.e.s!</h1>
-                <h2>Découvrez nos services de consultations</h2>
+                <h1>En 2021, il est temps pour les collectivités d'impliquer leurs administré.e.s!</h1>
+                <h2>Découvrez nos services de consultation</h2>
                 <div id="f-display"><img src="{{ asset('bundles/politizrfront/images/f-display.png') }}" alt="Collectivités publiques"></div>
                 <div id="f-accessories"><img src="{{ asset('bundles/politizrfront/images/f-accessories.png') }}"></div>
             </div>
@@ -29,32 +29,16 @@
         </div>
         <div id="lpUnderHero">
             <div class="center">
-                <h1>POLITIZR TERRITOIRES, ORGANISEZ VOTRE CONSULTATION</h1>
+                <h1>Outils et accompagnements au service de la participation citoyenne</h1>
                 <h3>Faites réagir vos concitoyen.ne.s sur un sujet porté par votre collectivité !</h3>
-                Quelque soit la taille de votre collectivité , profitez de notre expérience du débat en ligne pour faire réagir vos administré.e.s...
+                Quelque soit la taille de votre collectivité, profitez de notre expérience des consultations citoyennes pour faire réagir vos administré.e.s. Nos services sont accessibles et utiles même pour les petites collectivités !
                 <br/><br/>
-                Ce service est adapté pour les collectivités qui souhaitent faire réagir leurs administré.e.s de façon ponctuelle en profitant notamment de la base d’utilisateurs déjà inscrits sur notre plateforme!
-                <br/><br/>
-                <i>Le service de consultation de POLITIZR est disponible au tarif unique de 990€HT pour une durée comprise entre 1 et 3 mois.</i>
+                POLITIZR propose différents outils et services pour vous accompagner sur la mise en place d'un service de consultation citoyenne. <a href="#lpContact">Contactez-nous pour échanger sur vos projets !</a>
             </div>
         </div>
         <div id="lpCTA">
             <div class="center">
                 <a href="#lpContact">En savoir plus</a>
-            </div>
-        </div>
-        <div id="lpUnderHero">
-            <div class="center">
-                <h1>BIEN DIT, LE RÉSEAU SOCIAL CITOYEN À VOTRE IMAGE</h1>
-                <h3>Maximisez l’engagement de vos concitoyen.ne.s sur le long terme !</h3>
-                Ce service est destiné aux collectivités désireuses d’ouvrir un canal de discussion adapté, protégé et indépendant avec leurs concitoyen.ne.s. BIEN DIT est tout à la fois simple, constructif, respectueux et paramétrable!
-                <br/><br/>
-                <i>La plateforme BIEN DIT est disponible à partir de 100€HT/mois, sans engagements.</i>
-            </div>
-        </div>
-        <div id="lpCTA">
-            <div class="center">
-                <a href="{{ path('LandingPage', { 'theme': 'bien-dit'}) }}">En savoir plus</a>
             </div>
         </div>
         <div id="lpArgu">
@@ -93,7 +77,7 @@
             <div class="center">
                 <div class="lpLeftCol">
                     Contactez-nous pour en savoir plus :<br/> <a href="mailto:contact@politizr.com">contact@politizr.com</a><br>
-                    <br/>ou par téléphone au <b>09. 50. 42. 09. 34</b>
+                    <br/>ou Lionel notre responsable collectivités au <br/> <b>06. 78. 58. 27. 45</b>
                 </div>
                 <div class="lpRightCol">
                     {% include 'PolitizrFrontBundle:Public\\LandingPage:_formContact.html.twig' with { 'phone': true, 'city' : true, 'department' : false } %}
