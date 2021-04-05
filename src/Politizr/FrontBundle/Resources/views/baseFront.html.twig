@@ -35,7 +35,12 @@
         {% block stylesheets %}
             <link rel="stylesheet" href="{{ asset('bundles/politizrfront/css/pltzriconfont.css?v'~assets_version) }}">
             <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css?v{{ assets_version }}" rel="stylesheet">
+            <link rel="stylesheet" href="{{ asset('bundles/politizrfront/css/orejime.1.2.4.css?v'~assets_version) }}">
         {% endblock %}
+
+
+        <!-- Orejime init script -->
+        {% include 'PolitizrFrontBundle:Navigation\\Social:_orejime.html.twig' %}
 
         {% block javascriptHeader %}
             <script type="text/javascript" src="{{ asset('bundles/politizrfront/js/jquery-3.2.1.min.js') }}"></script>  
@@ -53,6 +58,7 @@
             <script type="text/javascript" src="{{ asset('bundles/politizrfront/js/autosize.min.js?v'~assets_version) }}"></script>
             <script type="text/javascript" src="{{ asset('bundles/politizrfront/js/select2.full.min.js?v'~assets_version) }}"></script>  
             <script type="text/javascript" src="{{ asset('bundles/politizrfront/js/select2.fr.js?v'~assets_version) }}"></script>  
+            <script type="text/javascript" src="{{ asset('bundles/politizrfront/js/orejime.1.2.4.js') }}"></script>  
         {% endblock %}
 
         {% block responsiveHeader %}
@@ -70,7 +76,10 @@
         {% block fbScript %}
             {% if app.environment == 'prod' %}
                 <!-- Facebook Pixel Code -->
-                <script>
+                <script
+                    type="opt-in"
+                    data-type="application/javascript"
+                    data-name="facebook-pixel">
                 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
                 n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
                 n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
@@ -91,7 +100,10 @@
             {# include 'PolitizrFrontBundle:Navigation\\Social:_analytics.html.twig' #}
             {% if app.environment == 'prod' %}
                 <!-- Google Tag Manager -->
-                <script>
+                <script
+                    type="opt-in"
+                    data-type="application/javascript"
+                    data-name="google-tag-manager">
                 (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
                 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
                 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
@@ -190,7 +202,10 @@
             {% block tawkTo %}
                 {% if app.environment == 'prod' %}
                     <!--Start of Tawk.to Script-->
-                    <script type="text/javascript">
+                    <script
+                        type="opt-in"
+                        data-type="text/javascript"
+                        data-name="tawk-to">
                     var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
                     (function(){
                     var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];

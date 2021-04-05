@@ -5,13 +5,13 @@
     </div>
     <div id="footerLinks">
         <a href="{{ path('GlobalHelper') }}">Aide</a>
-        {% if app.user %}
-            <a action="openCgu">Mentions légales</a>
-            {% if document is defined %}
-                {{ document | linkCharte }}
-            {% else %}
-                <a action="openCharte">Charte</a>
-            {% endif %}
+        <a action="openCgu">Mentions légales</a>
+        {% if document is defined %}
+            {{ document | linkCharte }}
+        {% else %}
+            <a action="openCharte">Charte</a>
         {% endif %}
+        <a action="openPolicies">Confidentialité</a>
+        <a action="openCookies">Cookies</a>
     </div>
 </div>
