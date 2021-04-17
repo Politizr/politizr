@@ -1,0 +1,7 @@
+{% if not circle.readOnly %}
+    <div class="grpIHaveAQuestion">
+        <h2>Proposition, avis, remarque, ou opinion...</h2>
+        <p>Engagez vous dans les échanges !</p>
+        <a href="{{ path('DebateDraftNew', { topic: topic.uuid }) }}">Je m'exprime!</a>
+    </div>
+{% endif %}

@@ -1,0 +1,19 @@
+<div class="grpCard">
+    <div class="grpGlobalIntro">
+        {{ circle.description | raw }}
+    </div>
+    <div class="grpAnswersBy">
+        <div class="grpAnswersByTitle">
+            <h1>Les animateurs en charge de ces sujets</h1>
+            <div class="grpAnswersByTitleNotice">
+                <i class="icon-info"></i>
+                <p>Les animateurs ci-contre sont chargés de répondre à vos questions.</p>
+            </div>
+            
+        </div>
+        {{ circle | authorizedReactionUsers() }}
+    </div>
+    <div class="grpIHaveAQuestionFullWidth">
+        {% include 'PolitizrFrontBundle:Circle\\cd09thd:_question.html.twig' %}
+    </div>
+</div>

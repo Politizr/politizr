@@ -18,6 +18,7 @@ use Politizr\Model\PDDirectQuery;
  * @method PDDirectQuery orderById($order = Criteria::ASC) Order by the id column
  * @method PDDirectQuery orderByName($order = Criteria::ASC) Order by the name column
  * @method PDDirectQuery orderByCity($order = Criteria::ASC) Order by the city column
+ * @method PDDirectQuery orderByDepartment($order = Criteria::ASC) Order by the department column
  * @method PDDirectQuery orderByEmail($order = Criteria::ASC) Order by the email column
  * @method PDDirectQuery orderByPhone($order = Criteria::ASC) Order by the phone column
  * @method PDDirectQuery orderByDescription($order = Criteria::ASC) Order by the description column
@@ -27,6 +28,7 @@ use Politizr\Model\PDDirectQuery;
  * @method PDDirectQuery groupById() Group by the id column
  * @method PDDirectQuery groupByName() Group by the name column
  * @method PDDirectQuery groupByCity() Group by the city column
+ * @method PDDirectQuery groupByDepartment() Group by the department column
  * @method PDDirectQuery groupByEmail() Group by the email column
  * @method PDDirectQuery groupByPhone() Group by the phone column
  * @method PDDirectQuery groupByDescription() Group by the description column
@@ -42,6 +44,7 @@ use Politizr\Model\PDDirectQuery;
  *
  * @method PDDirect findOneByName(string $name) Return the first PDDirect filtered by the name column
  * @method PDDirect findOneByCity(string $city) Return the first PDDirect filtered by the city column
+ * @method PDDirect findOneByDepartment(string $department) Return the first PDDirect filtered by the department column
  * @method PDDirect findOneByEmail(string $email) Return the first PDDirect filtered by the email column
  * @method PDDirect findOneByPhone(string $phone) Return the first PDDirect filtered by the phone column
  * @method PDDirect findOneByDescription(string $description) Return the first PDDirect filtered by the description column
@@ -51,6 +54,7 @@ use Politizr\Model\PDDirectQuery;
  * @method array findById(int $id) Return PDDirect objects filtered by the id column
  * @method array findByName(string $name) Return PDDirect objects filtered by the name column
  * @method array findByCity(string $city) Return PDDirect objects filtered by the city column
+ * @method array findByDepartment(string $department) Return PDDirect objects filtered by the department column
  * @method array findByEmail(string $email) Return PDDirect objects filtered by the email column
  * @method array findByPhone(string $phone) Return PDDirect objects filtered by the phone column
  * @method array findByDescription(string $description) Return PDDirect objects filtered by the description column
@@ -164,7 +168,7 @@ abstract class BasePDDirectQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `id`, `name`, `city`, `email`, `phone`, `description`, `created_at`, `updated_at` FROM `p_d_direct` WHERE `id` = :p0';
+        $sql = 'SELECT `id`, `name`, `city`, `department`, `email`, `phone`, `description`, `created_at`, `updated_at` FROM `p_d_direct` WHERE `id` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -351,6 +355,35 @@ abstract class BasePDDirectQuery extends ModelCriteria
         }
 
         return $this->addUsingAlias(PDDirectPeer::CITY, $city, $comparison);
+    }
+
+    /**
+     * Filter the query on the department column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterByDepartment('fooValue');   // WHERE department = 'fooValue'
+     * $query->filterByDepartment('%fooValue%'); // WHERE department LIKE '%fooValue%'
+     * </code>
+     *
+     * @param     string $department The value to use as filter.
+     *              Accepts wildcards (* and % trigger a LIKE)
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return PDDirectQuery The current query, for fluid interface
+     */
+    public function filterByDepartment($department = null, $comparison = null)
+    {
+        if (null === $comparison) {
+            if (is_array($department)) {
+                $comparison = Criteria::IN;
+            } elseif (preg_match('/[\%\*]/', $department)) {
+                $department = str_replace('*', '%', $department);
+                $comparison = Criteria::LIKE;
+            }
+        }
+
+        return $this->addUsingAlias(PDDirectPeer::DEPARTMENT, $department, $comparison);
     }
 
     /**

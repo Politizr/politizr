@@ -107,7 +107,29 @@ class XhrModal
     {
         // $this->logger->info('*** cgu');
 
-        $legal = PMCguQuery::create()->filterByOnline(true)->orderByCreatedAt('desc')->findOne();
+        $legal = PMCguQuery::create()->findPk(GlobalConstants::GLOBAL_CGU_ID);
+        
+        $html = $this->templating->render(
+            'PolitizrFrontBundle:Monitoring:_legal.html.twig',
+            array(
+                'legal' => $legal
+            )
+        );
+
+        return array(
+            'html' => $html,
+        );
+    }
+
+    /**
+     * Policies
+     * beta
+     */
+    public function policies(Request $request)
+    {
+        // $this->logger->info('*** policies');
+
+        $legal = PMCguQuery::create()->findPk(GlobalConstants::GLOBAL_POLICIES_ID);
         
         $html = $this->templating->render(
             'PolitizrFrontBundle:Monitoring:_legal.html.twig',

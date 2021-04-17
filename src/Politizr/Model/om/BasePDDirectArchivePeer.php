@@ -29,13 +29,13 @@ abstract class BasePDDirectArchivePeer
     const TM_CLASS = 'Politizr\\Model\\map\\PDDirectArchiveTableMap';
 
     /** The total number of columns. */
-    const NUM_COLUMNS = 9;
+    const NUM_COLUMNS = 10;
 
     /** The number of lazy-loaded columns. */
     const NUM_LAZY_LOAD_COLUMNS = 0;
 
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
-    const NUM_HYDRATE_COLUMNS = 9;
+    const NUM_HYDRATE_COLUMNS = 10;
 
     /** the column name for the id field */
     const ID = 'p_d_direct_archive.id';
@@ -45,6 +45,9 @@ abstract class BasePDDirectArchivePeer
 
     /** the column name for the city field */
     const CITY = 'p_d_direct_archive.city';
+
+    /** the column name for the department field */
+    const DEPARTMENT = 'p_d_direct_archive.department';
 
     /** the column name for the email field */
     const EMAIL = 'p_d_direct_archive.email';
@@ -83,12 +86,12 @@ abstract class BasePDDirectArchivePeer
      * e.g. PDDirectArchivePeer::$fieldNames[PDDirectArchivePeer::TYPE_PHPNAME][0] = 'Id'
      */
     protected static $fieldNames = array (
-        BasePeer::TYPE_PHPNAME => array ('Id', 'Name', 'City', 'Email', 'Phone', 'Description', 'CreatedAt', 'UpdatedAt', 'ArchivedAt', ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'name', 'city', 'email', 'phone', 'description', 'createdAt', 'updatedAt', 'archivedAt', ),
-        BasePeer::TYPE_COLNAME => array (PDDirectArchivePeer::ID, PDDirectArchivePeer::NAME, PDDirectArchivePeer::CITY, PDDirectArchivePeer::EMAIL, PDDirectArchivePeer::PHONE, PDDirectArchivePeer::DESCRIPTION, PDDirectArchivePeer::CREATED_AT, PDDirectArchivePeer::UPDATED_AT, PDDirectArchivePeer::ARCHIVED_AT, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('ID', 'NAME', 'CITY', 'EMAIL', 'PHONE', 'DESCRIPTION', 'CREATED_AT', 'UPDATED_AT', 'ARCHIVED_AT', ),
-        BasePeer::TYPE_FIELDNAME => array ('id', 'name', 'city', 'email', 'phone', 'description', 'created_at', 'updated_at', 'archived_at', ),
-        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, )
+        BasePeer::TYPE_PHPNAME => array ('Id', 'Name', 'City', 'Department', 'Email', 'Phone', 'Description', 'CreatedAt', 'UpdatedAt', 'ArchivedAt', ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'name', 'city', 'department', 'email', 'phone', 'description', 'createdAt', 'updatedAt', 'archivedAt', ),
+        BasePeer::TYPE_COLNAME => array (PDDirectArchivePeer::ID, PDDirectArchivePeer::NAME, PDDirectArchivePeer::CITY, PDDirectArchivePeer::DEPARTMENT, PDDirectArchivePeer::EMAIL, PDDirectArchivePeer::PHONE, PDDirectArchivePeer::DESCRIPTION, PDDirectArchivePeer::CREATED_AT, PDDirectArchivePeer::UPDATED_AT, PDDirectArchivePeer::ARCHIVED_AT, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('ID', 'NAME', 'CITY', 'DEPARTMENT', 'EMAIL', 'PHONE', 'DESCRIPTION', 'CREATED_AT', 'UPDATED_AT', 'ARCHIVED_AT', ),
+        BasePeer::TYPE_FIELDNAME => array ('id', 'name', 'city', 'department', 'email', 'phone', 'description', 'created_at', 'updated_at', 'archived_at', ),
+        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, )
     );
 
     /**
@@ -98,12 +101,12 @@ abstract class BasePDDirectArchivePeer
      * e.g. PDDirectArchivePeer::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
      */
     protected static $fieldKeys = array (
-        BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Name' => 1, 'City' => 2, 'Email' => 3, 'Phone' => 4, 'Description' => 5, 'CreatedAt' => 6, 'UpdatedAt' => 7, 'ArchivedAt' => 8, ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'name' => 1, 'city' => 2, 'email' => 3, 'phone' => 4, 'description' => 5, 'createdAt' => 6, 'updatedAt' => 7, 'archivedAt' => 8, ),
-        BasePeer::TYPE_COLNAME => array (PDDirectArchivePeer::ID => 0, PDDirectArchivePeer::NAME => 1, PDDirectArchivePeer::CITY => 2, PDDirectArchivePeer::EMAIL => 3, PDDirectArchivePeer::PHONE => 4, PDDirectArchivePeer::DESCRIPTION => 5, PDDirectArchivePeer::CREATED_AT => 6, PDDirectArchivePeer::UPDATED_AT => 7, PDDirectArchivePeer::ARCHIVED_AT => 8, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'NAME' => 1, 'CITY' => 2, 'EMAIL' => 3, 'PHONE' => 4, 'DESCRIPTION' => 5, 'CREATED_AT' => 6, 'UPDATED_AT' => 7, 'ARCHIVED_AT' => 8, ),
-        BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'name' => 1, 'city' => 2, 'email' => 3, 'phone' => 4, 'description' => 5, 'created_at' => 6, 'updated_at' => 7, 'archived_at' => 8, ),
-        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, )
+        BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Name' => 1, 'City' => 2, 'Department' => 3, 'Email' => 4, 'Phone' => 5, 'Description' => 6, 'CreatedAt' => 7, 'UpdatedAt' => 8, 'ArchivedAt' => 9, ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'name' => 1, 'city' => 2, 'department' => 3, 'email' => 4, 'phone' => 5, 'description' => 6, 'createdAt' => 7, 'updatedAt' => 8, 'archivedAt' => 9, ),
+        BasePeer::TYPE_COLNAME => array (PDDirectArchivePeer::ID => 0, PDDirectArchivePeer::NAME => 1, PDDirectArchivePeer::CITY => 2, PDDirectArchivePeer::DEPARTMENT => 3, PDDirectArchivePeer::EMAIL => 4, PDDirectArchivePeer::PHONE => 5, PDDirectArchivePeer::DESCRIPTION => 6, PDDirectArchivePeer::CREATED_AT => 7, PDDirectArchivePeer::UPDATED_AT => 8, PDDirectArchivePeer::ARCHIVED_AT => 9, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'NAME' => 1, 'CITY' => 2, 'DEPARTMENT' => 3, 'EMAIL' => 4, 'PHONE' => 5, 'DESCRIPTION' => 6, 'CREATED_AT' => 7, 'UPDATED_AT' => 8, 'ARCHIVED_AT' => 9, ),
+        BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'name' => 1, 'city' => 2, 'department' => 3, 'email' => 4, 'phone' => 5, 'description' => 6, 'created_at' => 7, 'updated_at' => 8, 'archived_at' => 9, ),
+        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, )
     );
 
     /**
@@ -180,6 +183,7 @@ abstract class BasePDDirectArchivePeer
             $criteria->addSelectColumn(PDDirectArchivePeer::ID);
             $criteria->addSelectColumn(PDDirectArchivePeer::NAME);
             $criteria->addSelectColumn(PDDirectArchivePeer::CITY);
+            $criteria->addSelectColumn(PDDirectArchivePeer::DEPARTMENT);
             $criteria->addSelectColumn(PDDirectArchivePeer::EMAIL);
             $criteria->addSelectColumn(PDDirectArchivePeer::PHONE);
             $criteria->addSelectColumn(PDDirectArchivePeer::DESCRIPTION);
@@ -190,6 +194,7 @@ abstract class BasePDDirectArchivePeer
             $criteria->addSelectColumn($alias . '.id');
             $criteria->addSelectColumn($alias . '.name');
             $criteria->addSelectColumn($alias . '.city');
+            $criteria->addSelectColumn($alias . '.department');
             $criteria->addSelectColumn($alias . '.email');
             $criteria->addSelectColumn($alias . '.phone');
             $criteria->addSelectColumn($alias . '.description');

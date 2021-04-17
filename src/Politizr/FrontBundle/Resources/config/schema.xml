@@ -1282,6 +1282,7 @@
 
         <column name="name" type="varchar" size="250" />
         <column name="city" type="varchar" size="250" />
+        <column name="department" type="varchar" size="250" />
         <column name="email" type="varchar" size="250" />
         <column name="phone" type="varchar" size="250" />
         
