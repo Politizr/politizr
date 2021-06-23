@@ -168,6 +168,7 @@ class CircleService
                             ->filterByPLCityId($user->getPLCityId())
                         ->endUse()
                     ->endUse()
+                    ->distinct()
                     ->find();
 
         return $owners;
