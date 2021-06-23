@@ -167,9 +167,7 @@ class CircleService
                         ->usePCGroupLCQuery()
                             ->filterByPLCityId($user->getPLCityId())
                         ->endUse()
-                        ->orderByRank()
                     ->endUse()
-                    ->distinct()
                     ->find();
 
         return $owners;
