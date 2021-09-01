@@ -116,13 +116,7 @@ class PDDebate extends BasePDDebate implements PDocumentInterface
      */
     public function isActive()
     {
-        $active = PDDebateQuery::create()
-                    ->online()
-                    ->filterById($this->getId())
-                    ->count()
-                    ;
-
-        if ($active) {
+        if ($this->getOnline()) {
             return true;
         }
 

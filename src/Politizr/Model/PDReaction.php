@@ -128,13 +128,7 @@ class PDReaction extends BasePDReaction implements PDocumentInterface
      */
     public function isActive()
     {
-        $active = PDReactionQuery::create()
-                    ->online()
-                    ->filterById($this->getId())
-                    ->count()
-                    ;
-
-        if ($active) {
+        if ($this->getOnline()) {
             return true;
         }
 

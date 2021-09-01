@@ -345,8 +345,8 @@ class UserService
                 }
             }
 
-            // direct reaction to owned publication
-            if ($document->isOwner($user->getId())) {
+            // direct reaction to owned online publication
+            if ($document->isOwner($user->getId()) && $document->isActive()) {
                 if ($reason) {
                     return DocumentConstants::REASON_OWNER;
                 } else {
@@ -416,7 +416,7 @@ class UserService
             }
 
             // direct reaction to owned publication
-            if ($document->isOwner($user->getId())) {
+            if ($document->isOwner($user->getId()) && $document->isActive()) {
                 if ($reason) {
                     return DocumentConstants::REASON_OWNER;
                 } else {
