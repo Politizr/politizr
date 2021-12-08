@@ -111,6 +111,8 @@ class PublicController extends Controller
             $template = 'offreCandidatMunicipales.html.twig';
         } elseif ($theme == 'offre-candidat-departementales-2021')  {
             $template = 'offreCandidatDepartementales.html.twig';
+        } elseif ($theme == 'offre-candidat-legislatives-2022')  {
+            $template = 'offreCandidatLegislatives.html.twig';
         } elseif ($theme == 'offres-collectivites')  {
             $template = 'offresCollectivites.html.twig';
         } elseif ($theme == 'bien-dit')  {

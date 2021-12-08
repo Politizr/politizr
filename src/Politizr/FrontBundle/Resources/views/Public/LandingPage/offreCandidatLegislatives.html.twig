@@ -1,0 +1,160 @@
+{# beta #}
+{% extends 'PolitizrFrontBundle::layoutPublic.html.twig' %}
+{% set headerRight = false %}
+
+{% set metaTitle = 'Législatives 2022' %}
+{% set metaDescription = 'Services CivicTech pour les candidats aux élections législative de 2022 en mode participatif.' %}
+
+{% block title %}{{ metaTitle }} - {{ parent() }}{% endblock title %}
+{% block description %}{{ metaDescription }}{% endblock description %}
+
+{% block ogTitle %}{{ metaTitle }} - {{ parent() }}{% endblock ogTitle %}
+{% block ogDescription %}{{ metaDescription }}{% endblock ogDescription %}
+
+{% block tcTitle %}{{ metaTitle }} - {{ parent() }}{% endblock tcTitle %}
+{% block tcDescription %}{{ metaDescription }}{% endblock tcDescription %}
+
+{% block ogVideo %}<meta property='og:video' content='https://www.youtube.com/v/7WHZpebc9q4' />{% endblock ogVideo %}
+{% block tcPlayer %}<meta name="twitter:player" content="https://www.youtube.com/embed/7WHZpebc9q4" />{% endblock tcPlayer %}
+
+{% block javascriptHeader %}
+    {{ parent() }}
+
+    <script type="text/javascript" src="{{ asset('bundles/politizrfront/js/jquery.youtubebackground.js?v'~assets_version) }}"></script>  
+
+    {% javascripts
+        '@PolitizrFrontBundle/Resources/public/js/politizr/pages/home.js'
+        filter='uglifyjs2' %}
+        <script src="{{ asset_url~'?v'~assets_version }}"></script>
+    {% endjavascripts %}
+{% endblock %}
+
+{% block bodyClass %} class="public visitor noHeaderTrigger"{% endblock %}
+
+{% block main %}
+    <div id="publicVideo">
+        <div id="videoOverlay">
+            <div id="videoText">
+                <h1>Ouvrez le dialogue pour les élections législatives 2022 !<br/></h1>
+                <h2>Proposez une campagne avec une consultation numérique à vos concitoyens...</h2>
+            </div>
+            <div id="goDown" action="scrollVideo">
+                Découvrir<br><img src="{{ asset('bundles/politizrfront/images/f-arrowGoDown.svg') }}">
+            </div>
+        </div>
+        <div id="video"></div>
+        <div id="videoLoader"></div>
+        <div id="ifNoVideo"><img src="{{ asset('bundles/politizrfront/images/f-ifNoVideo.jpg') }}"></div>
+    </div>
+
+    <div id="triggerVideo"></div>
+
+{#    
+    <div id="videoFooter">
+        <div class="center">
+            <div id="yellowBlock">
+                <span>
+                    Acteur historique de la CivicTech, POLITIZR propose un outil sur mesure et adapté à la <b>campagne des départementales</b> : recueillez des opinions, répondez aux questions et précisez votre programme de façon constructive et efficace !
+                </span>
+            </div>
+            <div id="blueBlock">
+                <span>Rejoignez les équipes déjà équipées...</span>
+            </div>
+        </div>
+    </div>
+#}
+    <div id="bannerPromo" class="bannerPromoSenatoriales">
+        <div class="center">
+            <div class="txtBannerPromo">
+                <h1>LÉGISLATIVES 2022</h1>
+                <b>CONSULTEZ VOS ÉLECTEURS EN LIGNE !</b><br><br>
+                <span>
+                    Disponible sur mobile et ordinateur sur l’adresse web de votre choix, BIEN DIT est un outil de consultation en ligne vous permettant de dialoguer avec vos concitoyens.<br/><br/>
+                    BIEN DIT est simple d’utilisation et dispose d’une interface élégante.<br/><br/>
+                    Plus qu’une simple boîte à outils, BIEN DIT est un véritable réseau social qui vous permet de construire
+                    une communauté de citoyens impliqués !<br/><br/>
+                    <b>Points forts du dispositif :</b><br><br/>
+                    <b>
+                    - Constituez une
+                    communauté de
+                    citoyens actifs et
+                    engagés autour de
+                    votre campagne.<br><br>
+                    - Démontrer votre
+                    connaissance des
+                    dossiers en dialoguant
+                    avec vos concitoyens.<br><br>
+                    - Relayez les réactions
+                    et les propositions les
+                    plus pertinentes vers
+                    les réseaux sociaux.
+                    </b>
+                    <br><br>
+                    <b><a href="https://bien-dit.com" target="_blank">Présentation générale de "Bien Dit" par POLITIZR</a></b>
+                    <br><br>
+                    En mettant à disposition BIEN DIT auprès de vos concitoyens, vous démontrez votre ouverture au dialogue en vous positionnant comme un candidat soucieux d’échanger avec eux.
+                    Notre solution permet à votre équipe de vous concentrer sur les échanges, tandis que nous gérons les problématiques techniques et la modération.
+                    <br><br>
+                    <a href="#formDirectMessage">Contactez nous pour plus d'informations</a>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div id="lpGeneric">
+        {% include 'PolitizrFrontBundle:Public\\LandingPage:_blockMarianne.html.twig' %}
+        <div id="lpContact">
+            <div class="center">
+                <div class="lpLeftCol">
+                    Contactez-nous pour en savoir plus :<br/> <a href="mailto:contact@politizr.com">contact@politizr.com</a><br>
+                    <br/>ou Lionel notre responsable campagne au <br/> <b>06. 78. 58. 27. 45</b>
+                </div>
+                <div class="lpRightCol">
+                    {% include 'PolitizrFrontBundle:Public\\LandingPage:_formContact.html.twig' with { 'phone': true, 'city': false, 'department': true } %}
+                </div>
+            </div>
+        </div>
+    </div>    
+
+    <div id="bannerPromo" class="bannerPress">
+        <div class="center">
+            <div class="press">
+                <h1>Ils parlent de nous</h1>
+                <img src="{{ asset('bundles/politizrfront/images/f-press.jpg') }}">
+            </div>
+            <div class="trophy">
+                <h1>Récompences</h1>
+                <div class="trophyItem">
+                    <img src="{{ asset('bundles/politizrfront/images/f-trophy5.jpg') }}">
+                    <div class="trophyItemText">Finaliste Prix de la Démocratie</div>
+                </div>
+                <div class="trophyItem">
+                    <img src="{{ asset('bundles/politizrfront/images/f-trophy1.jpg') }}">
+                    <div class="trophyItemText">Lauréat Prix du jury Occistart</div>
+                </div>
+                <div class="trophyItem">
+                    <img src="{{ asset('bundles/politizrfront/images/f-trophy2.jpg') }}">
+                    <div class="trophyItemText">Sélection "Les 1000 qui font l'économie française de demain" par Génération French Tech.</div>
+                </div>
+                <div class="trophyItem">
+                    <img src="{{ asset('bundles/politizrfront/images/f-trophy3.jpg') }}">
+                    <div class="trophyItemText">Lauréat Synerthon, organisation & management pour le dialogue inter-entreprises.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock main %}
+
+{% block postMain %}
+    {% include 'PolitizrFrontBundle:Navigation\\Footer:_publicFooter.html.twig' %}
+{% endblock postMain %}
+
+{% block javascriptFooter %}
+    {{ parent() }}
+
+    {% javascripts
+        '@PolitizrFrontBundle/Resources/public/js/politizr/pages/landingPage.js'
+        filter='uglifyjs2' %}
+        <script src="{{ asset_url~'?v'~assets_version }}"></script>
+    {% endjavascripts %}
+{% endblock javascriptFooter %}
