@@ -38,7 +38,7 @@ monolog:
             level: info
         chromephp:
             type:  chromephp
-            level: info
+            level: debug
 
 # # LOGS light pour les scripts en ligne de commande
 # monolog:
@@ -65,10 +65,10 @@ bazinga_faker:
     entities:
         Politizr\Model\PUser:
             custom_formatters:
-                BackFileName:           { method: image, parameters: [ '/home/lionel/www/politizr.beta/web/uploads/users', '1280', '600', 'city', false ] }
-                FileName:               { method: image, parameters: [ '/home/lionel/www/politizr.beta/web/uploads/users', '150', '150', 'people', false ] }
+                BackFileName:           { method: image, parameters: [ '/home/lionel/www/politizr/web/uploads/users', '1280', '600', 'city', false ] }
+                FileName:               { method: image, parameters: [ '/home/lionel/www/politizr/web/uploads/users', '150', '150', 'people', false ] }
 
         Politizr\Model\PDDebate:
             custom_formatters:
-                FileName:               { method: image, parameters: [ '/home/lionel/www/politizr.beta/web/uploads/documents', '640', '480', 'city', false ] }
+                FileName:               { method: image, parameters: [ '/home/lionel/www/politizr/web/uploads/documents', '640', '480', 'city', false ] }
 

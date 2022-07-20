@@ -11,6 +11,8 @@
 /composer.phar
 
 /src/Politizr/FrontBundle/Resources/public/images/grp-ariegeTHD/CD09THD.mp4
+/src/Politizr/FrontBundle/Resources/public/css/.sass-cache/
+/src/StudioEchoBundles/
 
 /web/robots.txt
 /web/app.php
