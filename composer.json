@@ -1,8 +1,8 @@
 {
     "name": "politizr/politizr",
-    "license": "proprietary",
+    "license": "MIT",
     "type": "project",
-    "description": "Politizr web app",
+    "description": "Politizr",
     "autoload": {
         "psr-4": { "": "src/" }
     },
