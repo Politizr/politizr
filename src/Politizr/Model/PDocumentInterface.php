@@ -86,7 +86,7 @@ interface PDocumentInterface
      * @param array $usersIds
      * @return int
      */
-    public function countComments($online = true, $paragraphNo = nul, $onlyElected = null, $usersIds = nulll);
+    public function countComments($online = true, $paragraphNo = null, $onlyElected = null, $usersIds = null);
 
     /**
      * Get the tagged tags objects
