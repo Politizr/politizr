@@ -1,15 +1,16 @@
 <div id="idCheck">
     <div id="maxIdCheckMsg">
-        <h1>Vous disposez de <span id="nbTryLeft">3</span> tentative(s) restante(s) pour procéder a la vérification de votre identité.</h1>
+        {# <h1>Vous disposez de <span id="nbTryLeft">3</span> tentative(s) restante(s) pour procéder a la vérification de votre identité.</h1> #}
+        <h1>Notre équipe procédera au contrôle de votre pièce d'identité pour valider votre identité.</h1>
     </div>
     <div class="card">
         <div class="formBlock">
             {% set uploadAction = path('XhrGeneric', {'xhrRoute': constant('Politizr\\Constant\\XhrConstants::ROUTE_USER_VALIDATE_PHOTO_UPLOAD'), 'xhrService': 'security', 'xhrMethod': 'idCheckPhotoUpload', 'xhrType': constant('Politizr\\Constant\\XhrConstants::RETURN_HTML')}) %}
             <form method="POST" action="{{ uploadAction }}" name="user" id="formIdCheckPhoto" enctype="multipart/form-data">
-                <label>Télécharger la photo de votre Carte Nationale d’Identité</label>
+                <label>Télécharger la photo de votre Carte Nationale d’Identité ou Passeport</label>
                 <div class="notice">
                     <i class="icon-info"></i><b>Précision</b><br/>
-                    Notre service contrôlant la validité de la carte d'identité, merci de ne pas télécharger uniquement une photo d'identité mais bien la photo de votre carte nationale d'identité dans son ensemble.
+                    Notre service contrôlant la validité de votre identité, merci bien télécharger la photo de votre carte nationale d'identité dans son ensemble.
                 </div>
                 <div class="uploadCNI">
                     <input type="file" name="fileName" id="fileName">
@@ -22,7 +23,7 @@
             </div>
         </div>
     </div>
-    <div class="orElse">
+    {# <div class="orElse">
         <div class="orElseLine"></div><span>ou</span><div class="orElseLine"></div>
     </div>
     <div class="card">
@@ -45,6 +46,6 @@
                 Valider mon identité
             </button>
         </form>
-    </div>
+    </div> #}
     <div class="cardFooter"> <i class="icon-alert"></i>Les données fournies ne sont pas conservées. </div>
 </div>

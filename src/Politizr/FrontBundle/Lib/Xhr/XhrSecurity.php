@@ -377,36 +377,48 @@ class XhrSecurity
         $user = $this->securityTokenStorage->getToken()->getUser();
         $nbTry = $user->getNbIdCheck();
 
-        // max try reach > redirect to account w. error msg
-        if ($nbTry >= IdCheckConstants::MAX_USER_TRY) {
-            $errors = null;
-            $success = false;
-            $redirect = true;
-            $redirectUrl = $this->router->generate('EditPerso'.$this->globalTools->computeProfileSuffix());
-        } else {
-            if ($this->isValidIdPhoto($request, $user)) {
-                $this->session->getFlashBag()->add('idcheck/success', true);
+        // workaround to bypass the outdated AriadNext control => todo
+        // elected user validated by default, admin has to moderate if not
+        $this->session->getFlashBag()->add('idcheck/success', true);
 
-                $user->setValidated(true);
-                $user->save();
+        $user->setValidated(true);
+        $user->save();
 
-                $errors = null;
-                $success = true;
-                $redirect = true;
-                $redirectUrl = $this->router->generate('Homepage'.$this->globalTools->computeProfileSuffix());
-            } else {
-                $errors = StudioEchoUtils::multiImplode($this->idcheck->getErrorMsg(), ' <br/> ');
-                $success = false;
-                $redirect = false;
-                $redirectUrl = false;
+        $errors = null;
+        $success = true;
+        $redirect = true;
+        $redirectUrl = $this->router->generate('Homepage'.$this->globalTools->computeProfileSuffix());
 
-                $nbTry = $user->getNbIdCheck();
-                if ($nbTry >= IdCheckConstants::MAX_USER_TRY) {
-                    $redirect = true;
-                    $redirectUrl = $this->router->generate('EditPerso'.$this->globalTools->computeProfileSuffix());
-                }
-            }
-        }
+        // // max try reach > redirect to account w. error msg
+        // if ($nbTry >= IdCheckConstants::MAX_USER_TRY) {
+        //     $errors = null;
+        //     $success = false;
+        //     $redirect = true;
+        //     $redirectUrl = $this->router->generate('EditPerso'.$this->globalTools->computeProfileSuffix());
+        // } else {
+        //     if ($this->isValidIdPhoto($request, $user)) {
+        //         $this->session->getFlashBag()->add('idcheck/success', true);
+
+        //         $user->setValidated(true);
+        //         $user->save();
+
+        //         $errors = null;
+        //         $success = true;
+        //         $redirect = true;
+        //         $redirectUrl = $this->router->generate('Homepage'.$this->globalTools->computeProfileSuffix());
+        //     } else {
+        //         $errors = StudioEchoUtils::multiImplode($this->idcheck->getErrorMsg(), ' <br/> ');
+        //         $success = false;
+        //         $redirect = false;
+        //         $redirectUrl = false;
+
+        //         $nbTry = $user->getNbIdCheck();
+        //         if ($nbTry >= IdCheckConstants::MAX_USER_TRY) {
+        //             $redirect = true;
+        //             $redirectUrl = $this->router->generate('EditPerso'.$this->globalTools->computeProfileSuffix());
+        //         }
+        //     }
+        // }
 
         return array(
             'success' => $success,
